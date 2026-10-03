@@ -13,46 +13,23 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build-and-publish:
+  mirror-and-publish:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: latest
-
-      - name: Install dependencies
-        run: bun install --frozen-lockfile
-
-      - name: Build static site
-        env:
-          GITHUB_ACTIONS: "true"
-          NITRO_PRESET: node-server
-        run: bun run build
-
-      - name: Prepare Pages output
+      - name: Mirror current BRMIS site
         shell: bash
         run: |
           set -euo pipefail
-          rm -rf pages-dist
-          mkdir pages-dist
+          rm -rf mirror pages-dist
+          mkdir -p mirror pages-dist
 
-          if [ -f ".output/public/index.html" ]; then
-            cp -a .output/public/. pages-dist/
-          elif [ -f "dist/client/index.html" ]; then
-            cp -a dist/client/. pages-dist/
-          elif [ -f "dist/index.html" ]; then
-            cp -a dist/. pages-dist/
-          else
-            echo "Static index.html was not generated."
-            find . -maxdepth 4 -name index.html -print
-            exit 1
-          fi
+          wget             --recursive             --level=2             --page-requisites             --convert-links             --adjust-extension             --no-parent             --domains=brmis-construtora.lovable.app             --directory-prefix=mirror             https://brmis-construtora.lovable.app/
 
+          cp -a mirror/brmis-construtora.lovable.app/. pages-dist/
           touch pages-dist/.nojekyll
           test -f pages-dist/index.html
 
