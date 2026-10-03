@@ -45,180 +45,239 @@ a[href="#projetos"],a[href="#inicio"]{transition:color .3s ease,border-color .3s
   #projetos article,#projetos article img,#metodo .group,#sobre .grid-cols-5>.group{transition:none!important;transform:none!important}
 }
 </style><style id="brmis-portfolio-carousel">
-#brmis-acervo{width:100vw;margin-left:calc(50% - 50vw);margin-top:clamp(5rem,10vw,9rem);padding:clamp(4rem,7vw,7rem) 0 2rem;border-top:1px solid rgba(245,242,236,.16);background:#11100f;color:#f5f2ec;overflow:hidden}
-.brmis-acervo-head,.brmis-acervo-controls,.brmis-acervo-note{width:min(calc(100% - 2rem),88rem);margin-inline:auto}
-.brmis-acervo-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:3rem;align-items:end}
-.brmis-acervo-head h3{max-width:900px;margin-top:1rem;font-family:Manrope,sans-serif;font-size:clamp(2.6rem,5.4vw,6rem);font-weight:500;line-height:.97;letter-spacing:-.045em}
-.brmis-acervo-copy{max-width:720px;margin-top:1.5rem;color:rgba(245,242,236,.62);font-size:clamp(.95rem,1.4vw,1.12rem);line-height:1.7}
-.brmis-acervo-number{display:flex;align-items:flex-end;gap:1rem;padding-left:2rem;border-left:1px solid rgba(245,242,236,.2)}
-.brmis-acervo-number strong{font-family:Manrope,sans-serif;font-size:clamp(3.4rem,6vw,6.4rem);font-weight:500;line-height:.8;color:#f27a2b;letter-spacing:-.06em}
-.brmis-acervo-number span{max-width:130px;color:rgba(245,242,236,.58);font-size:.7rem;line-height:1.45;text-transform:uppercase;letter-spacing:.11em}
-.brmis-acervo-controls{display:flex;align-items:center;justify-content:space-between;margin-top:3rem;margin-bottom:1.1rem;padding-top:1rem;border-top:1px solid rgba(245,242,236,.14);font-size:.68rem;text-transform:uppercase;letter-spacing:.13em;color:rgba(245,242,236,.48)}
-#brmis-carousel-toggle{display:inline-flex;align-items:center;gap:.65rem;border:0;background:none;color:rgba(245,242,236,.7);font:inherit;letter-spacing:inherit;text-transform:inherit;cursor:pointer;transition:color .25s ease}
-#brmis-carousel-toggle:hover{color:#f27a2b}
-.brmis-pause-icon{display:grid;place-items:center;width:1.75rem;height:1.75rem;border:1px solid rgba(245,242,236,.2);border-radius:999px;font-size:.62rem}
-.brmis-showcase-viewport{position:relative;overflow:hidden;padding:0 0 1.1rem;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%)}
-.brmis-showcase-viewport-second{margin-top:.15rem}
-.brmis-showcase-track{display:flex;width:max-content;gap:1rem;padding-left:1rem;will-change:transform}
-.brmis-row-a{animation:brmisMarqueeA 52s linear infinite}
-.brmis-row-b{animation:brmisMarqueeB 61s linear infinite}
-#brmis-acervo:hover .brmis-showcase-track,#brmis-acervo.is-paused .brmis-showcase-track{animation-play-state:paused}
-@keyframes brmisMarqueeA{to{transform:translateX(-50%)}}
-@keyframes brmisMarqueeB{from{transform:translateX(-50%)}to{transform:translateX(0)}}
-.brmis-showcase-card{position:relative;flex:0 0 clamp(260px,28vw,420px);padding:0;border:0;background:transparent;color:inherit;text-align:left;cursor:pointer;overflow:hidden}
-.brmis-showcase-image{position:relative;display:block;aspect-ratio:16/10;overflow:hidden;background:#1b1917}
-.brmis-showcase-image:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 52%,rgba(0,0,0,.38));opacity:.28;transition:opacity .45s ease}
-.brmis-showcase-image img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.83) contrast(1.02);transform:scale(1.01);transition:transform .75s cubic-bezier(.2,.7,.2,1),filter .5s ease}
-.brmis-showcase-card:hover .brmis-showcase-image img,.brmis-showcase-card:focus-visible .brmis-showcase-image img{transform:scale(1.07);filter:saturate(1) contrast(1.04)}
-.brmis-showcase-card:hover .brmis-showcase-image:after{opacity:.72}
-.brmis-showcase-meta{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;padding:.9rem 0 1rem;border-top:1px solid rgba(245,242,236,.18);transition:border-color .3s ease}
-.brmis-showcase-card:hover .brmis-showcase-meta{border-color:#f27a2b}
-.brmis-showcase-meta small{display:block;margin-bottom:.35rem;color:#f27a2b;font-size:.57rem;letter-spacing:.13em}
-.brmis-showcase-meta strong{font-family:Manrope,sans-serif;font-size:clamp(1rem,1.5vw,1.25rem);font-weight:500}
-.brmis-showcase-plus{font-size:1.2rem;color:rgba(245,242,236,.46);transform:translate(-3px,3px);transition:transform .3s ease,color .3s ease}
-.brmis-showcase-card:hover .brmis-showcase-plus{color:#f27a2b;transform:translate(2px,-2px)}
-.brmis-acervo-note{margin-top:.8rem;color:rgba(245,242,236,.38);font-size:.68rem;text-transform:uppercase;letter-spacing:.09em}
-.brmis-lightbox{position:fixed;inset:0;z-index:1000;display:grid;grid-template-columns:70px minmax(0,1fr) 70px;align-items:center;padding:clamp(1rem,3vw,3rem);background:rgba(7,7,6,.96);backdrop-filter:blur(18px);opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease}
+#brmis-acervo{position:relative;margin-top:clamp(6rem,11vw,10rem);padding-top:clamp(3rem,6vw,5.5rem);border-top:1px solid rgba(245,242,236,.18);color:#f5f2ec}
+#brmis-acervo:before{content:"";position:absolute;left:0;top:-1px;width:clamp(72px,10vw,150px);height:2px;background:#f27a2b;transform:translateY(-50%)}
+.brmis-acervo-head{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(250px,.55fr);gap:clamp(2.5rem,7vw,8rem);align-items:end}
+.brmis-acervo-title h3{max-width:950px;margin-top:1rem;font-family:Manrope,sans-serif;font-size:clamp(2.7rem,5.6vw,6.25rem);font-weight:500;line-height:.94;letter-spacing:-.05em;text-wrap:balance}
+.brmis-acervo-side{display:flex;flex-direction:column;gap:2.2rem;padding-bottom:.35rem}
+.brmis-acervo-side>p{max-width:360px;color:rgba(245,242,236,.58);font-size:.96rem;line-height:1.7}
+.brmis-acervo-stat{display:flex;align-items:flex-end;gap:1rem;padding-top:1.1rem;border-top:1px solid rgba(245,242,236,.16)}
+.brmis-acervo-stat strong{font-family:Manrope,sans-serif;font-size:clamp(3.4rem,5vw,5.8rem);font-weight:500;line-height:.78;letter-spacing:-.065em;color:#f27a2b}
+.brmis-acervo-stat span{padding-bottom:.15rem;color:rgba(245,242,236,.48);font-size:.62rem;line-height:1.45;letter-spacing:.11em;text-transform:uppercase}
+
+.brmis-gallery-topline{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:clamp(3.5rem,7vw,6rem);padding-top:1rem;border-top:1px solid rgba(245,242,236,.15)}
+.brmis-gallery-status{display:flex;align-items:center;gap:.65rem;font-family:Archivo,sans-serif;font-size:.67rem;letter-spacing:.14em;color:rgba(245,242,236,.45)}
+.brmis-gallery-current{color:#f5f2ec}
+.brmis-gallery-divider{width:36px;height:1px;background:rgba(245,242,236,.28)}
+.brmis-gallery-actions{display:flex;align-items:center;gap:.55rem}
+.brmis-gallery-nav,#brmis-carousel-toggle{display:grid;place-items:center;height:42px;border:1px solid rgba(245,242,236,.18);background:transparent;color:#f5f2ec;cursor:pointer;transition:background .28s ease,border-color .28s ease,color .28s ease,transform .28s ease}
+.brmis-gallery-nav{width:42px;border-radius:50%;font-size:1.05rem}
+.brmis-gallery-nav:hover,.brmis-gallery-nav:focus-visible{border-color:#f27a2b;background:#f27a2b;color:#11100f;transform:translateY(-2px)}
+#brmis-carousel-toggle{grid-auto-flow:column;gap:.55rem;padding:0 .9rem;border-radius:999px;font-family:Archivo,sans-serif;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase}
+#brmis-carousel-toggle:hover,#brmis-carousel-toggle:focus-visible{border-color:#f27a2b;color:#f27a2b}
+.brmis-pause-icon{font-size:.62rem}
+
+.brmis-gallery-progress{height:1px;margin-top:1rem;background:rgba(245,242,236,.12);overflow:hidden}
+.brmis-gallery-progress i{display:block;width:calc(100% / 8);height:100%;background:#f27a2b;transform:translateX(0);transition:transform .65s cubic-bezier(.2,.75,.2,1)}
+
+.brmis-gallery-shell{position:relative;margin-top:clamp(1.4rem,3vw,2.2rem)}
+.brmis-gallery-rail{display:flex;align-items:flex-start;gap:clamp(1rem,2.2vw,2rem);overflow-x:auto;overflow-y:hidden;padding:0 0 1.2rem;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;overscroll-behavior-x:contain;cursor:grab}
+.brmis-gallery-rail::-webkit-scrollbar{display:none}
+.brmis-gallery-rail.is-dragging{cursor:grabbing;scroll-snap-type:none;scroll-behavior:auto}
+.brmis-gallery-card{flex:0 0 min(68vw,900px);scroll-snap-align:start;scroll-snap-stop:always;opacity:.48;transform:scale(.975);transform-origin:left center;transition:opacity .55s ease,transform .7s cubic-bezier(.2,.75,.2,1)}
+.brmis-gallery-card.portrait{flex-basis:min(34vw,430px)}
+.brmis-gallery-card.wide{flex-basis:min(74vw,980px)}
+.brmis-gallery-card.is-active{opacity:1;transform:scale(1)}
+.brmis-gallery-open{display:block;width:100%;padding:0;border:0;background:transparent;color:inherit;text-align:left;cursor:zoom-in}
+.brmis-gallery-media{position:relative;width:100%;margin:0;overflow:hidden;background:#191816}
+.brmis-gallery-media img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;filter:none;transform:scale(1.001);transition:transform .85s cubic-bezier(.2,.75,.2,1),filter .5s ease}
+.brmis-gallery-overlay{position:absolute;inset:auto 1rem 1rem 1rem;display:flex;align-items:center;justify-content:space-between;padding:1rem 1.05rem;background:rgba(17,16,15,.76);border:1px solid rgba(245,242,236,.18);backdrop-filter:blur(12px);opacity:0;transform:translateY(12px);transition:opacity .35s ease,transform .42s ease}
+.brmis-gallery-overlay span{font-family:Archivo,sans-serif;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase}
+.brmis-gallery-overlay b{font-size:1.1rem;font-weight:400;color:#f27a2b}
+.brmis-gallery-card:hover .brmis-gallery-media img,.brmis-gallery-card:focus-within .brmis-gallery-media img{transform:scale(1.025)}
+.brmis-gallery-card:hover .brmis-gallery-overlay,.brmis-gallery-card:focus-within .brmis-gallery-overlay{opacity:1;transform:translateY(0)}
+.brmis-gallery-caption{display:grid;grid-template-columns:auto 1fr auto;align-items:start;gap:1rem;padding:1rem 0 .15rem;border-top:1px solid rgba(245,242,236,.17)}
+.brmis-gallery-count{padding-top:.18rem;font-family:Archivo,sans-serif;font-size:.58rem;letter-spacing:.12em;color:#f27a2b}
+.brmis-gallery-caption strong{display:block;font-family:Manrope,sans-serif;font-size:clamp(1rem,1.45vw,1.3rem);font-weight:500;line-height:1.2}
+.brmis-gallery-caption small{display:block;margin-top:.35rem;color:rgba(245,242,236,.45);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase}
+.brmis-gallery-arrow{color:rgba(245,242,236,.36);transition:color .25s ease,transform .25s ease}
+.brmis-gallery-card:hover .brmis-gallery-arrow{color:#f27a2b;transform:translate(3px,-3px)}
+.brmis-gallery-foot{display:flex;justify-content:space-between;gap:1.5rem;margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(245,242,236,.12);color:rgba(245,242,236,.34);font-family:Archivo,sans-serif;font-size:.57rem;letter-spacing:.105em;text-transform:uppercase}
+
+.brmis-lightbox{position:fixed;inset:0;z-index:1000;display:grid;grid-template-columns:64px minmax(0,1fr) 64px;align-items:center;padding:clamp(1rem,3vw,3rem);background:rgba(7,7,6,.97);backdrop-filter:blur(20px);opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease}
 .brmis-lightbox.is-open{opacity:1;visibility:visible}
-.brmis-lightbox figure{width:min(100%,1050px);margin:auto}
-.brmis-lightbox figure img{display:block;width:100%;max-height:78vh;object-fit:contain;background:#111}
-.brmis-lightbox figcaption{display:flex;align-items:baseline;gap:1rem;padding-top:1rem;color:#f5f2ec}
-.brmis-lightbox figcaption span{color:#f27a2b;font-size:.65rem;letter-spacing:.12em}
+.brmis-lightbox figure{width:min(100%,1280px);margin:auto}
+.brmis-lightbox-stage{display:flex;align-items:center;justify-content:center;min-height:0}
+.brmis-lightbox figure img{display:block;max-width:100%;max-height:78vh;width:auto;height:auto;object-fit:contain;background:#111}
+.brmis-lightbox figcaption{display:grid;grid-template-columns:auto 1fr auto;align-items:baseline;gap:1rem;padding-top:1rem;color:#f5f2ec;border-top:1px solid rgba(245,242,236,.14)}
+.brmis-lightbox figcaption span{color:#f27a2b;font-family:Archivo,sans-serif;font-size:.6rem;letter-spacing:.12em}
 .brmis-lightbox figcaption strong{font-family:Manrope,sans-serif;font-size:1.05rem;font-weight:500}
-.brmis-lightbox figcaption small{color:rgba(245,242,236,.48)}
-.brmis-lightbox-close{position:absolute;top:1.2rem;right:1.5rem;width:44px;height:44px;border:1px solid rgba(245,242,236,.2);border-radius:50%;background:rgba(17,16,15,.6);color:#f5f2ec;font-size:1.6rem;cursor:pointer;transition:background .25s,border-color .25s,transform .25s}
-.brmis-lightbox-close:hover{background:#f27a2b;border-color:#f27a2b;transform:rotate(90deg)}
-.brmis-lightbox-nav{width:48px;height:48px;margin:auto;border:1px solid rgba(245,242,236,.18);border-radius:50%;background:transparent;color:#f5f2ec;font-size:1.25rem;cursor:pointer;transition:background .25s,border-color .25s}
-.brmis-lightbox-nav:hover{background:#f27a2b;border-color:#f27a2b}
+.brmis-lightbox figcaption small{color:rgba(245,242,236,.45);text-transform:uppercase;letter-spacing:.08em}
+.brmis-lightbox-close{position:absolute;top:1.2rem;right:1.5rem;width:46px;height:46px;border:1px solid rgba(245,242,236,.2);border-radius:50%;background:rgba(17,16,15,.68);color:#f5f2ec;font-size:1.6rem;cursor:pointer;transition:background .25s,border-color .25s,transform .25s}
+.brmis-lightbox-close:hover{background:#f27a2b;border-color:#f27a2b;color:#11100f;transform:rotate(90deg)}
+.brmis-lightbox-nav{width:48px;height:48px;margin:auto;border:1px solid rgba(245,242,236,.18);border-radius:50%;background:transparent;color:#f5f2ec;font-size:1.2rem;cursor:pointer;transition:background .25s,border-color .25s,color .25s}
+.brmis-lightbox-nav:hover{background:#f27a2b;border-color:#f27a2b;color:#11100f}
 body.brmis-lightbox-open{overflow:hidden}
-@media(max-width:767px){
-  .brmis-acervo-head{grid-template-columns:1fr;gap:2rem}
-  .brmis-acervo-number{padding:1.5rem 0 0;border-left:0;border-top:1px solid rgba(245,242,236,.16)}
-  .brmis-acervo-number strong{font-size:4.5rem}
-  .brmis-showcase-viewport{-webkit-mask-image:none;mask-image:none}
-  .brmis-showcase-card{flex-basis:76vw}
-  .brmis-row-a{animation-duration:42s}.brmis-row-b{animation-duration:48s}
-  .brmis-acervo-note{display:none}
-  .brmis-lightbox{grid-template-columns:1fr;padding:4.5rem 1rem 1.25rem}
-  .brmis-lightbox-nav{position:absolute;bottom:1.2rem}
+
+@media(max-width:900px){
+  .brmis-acervo-head{grid-template-columns:1fr;gap:2.25rem}
+  .brmis-acervo-side{display:grid;grid-template-columns:1fr auto;align-items:end;gap:2rem}
+  .brmis-acervo-stat{min-width:230px}
+  .brmis-gallery-card{flex-basis:82vw}
+  .brmis-gallery-card.portrait{flex-basis:47vw}
+  .brmis-gallery-card.wide{flex-basis:86vw}
+}
+@media(max-width:640px){
+  #brmis-acervo{margin-top:6rem;padding-top:3.5rem}
+  .brmis-acervo-title h3{font-size:clamp(2.5rem,13vw,4rem)}
+  .brmis-acervo-side{grid-template-columns:1fr}
+  .brmis-acervo-side>p{font-size:.9rem}
+  .brmis-acervo-stat{min-width:0}
+  .brmis-gallery-card,.brmis-gallery-card.wide{flex-basis:86vw}
+  .brmis-gallery-card.portrait{flex-basis:64vw}
+  .brmis-gallery-foot span:last-child{display:none}
+  .brmis-toggle-label{display:none}
+  #brmis-carousel-toggle{width:42px;padding:0;border-radius:50%}
+  .brmis-lightbox{grid-template-columns:1fr;padding:4.5rem .85rem 1rem}
+  .brmis-lightbox-nav{position:absolute;bottom:1rem}
   .brmis-lightbox-prev{left:1rem}.brmis-lightbox-next{right:1rem}
-  .brmis-lightbox figure img{max-height:68vh}
-  .brmis-lightbox figcaption{padding-inline:.25rem;padding-bottom:4rem;flex-wrap:wrap}
+  .brmis-lightbox figure img{max-height:67vh}
+  .brmis-lightbox figcaption{grid-template-columns:auto 1fr;padding-bottom:4rem}
+  .brmis-lightbox figcaption small{grid-column:2}
 }
 @media(prefers-reduced-motion:reduce){
-  .brmis-showcase-track{animation:none!important}
-  .brmis-showcase-viewport{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-mask-image:none;mask-image:none}
-  .brmis-showcase-card{scroll-snap-align:start}
+  .brmis-gallery-rail{scroll-behavior:auto}
+  .brmis-gallery-card,.brmis-gallery-media img,.brmis-gallery-progress i{transition:none!important}
 }
 </style></head><body><!--$--><main class="overflow-hidden bg-background"><header class="fixed inset-x-0 top-0 z-50 border-b transition-all duration-500 border-paper/20 bg-transparent"><div class="section-shell flex h-20 items-center justify-between md:h-24"><a href="#inicio" aria-label="BRMIS Construtora — início" class="relative z-50 font-display text-xl font-bold tracking-[0.12em] text-paper"><span class="mr-1 text-signal">B</span>RMIS <span class="hidden text-[0.55rem] font-medium uppercase tracking-[0.18em] opacity-60 sm:inline">Construtora</span></a><nav aria-label="Navegação principal" class="hidden items-center gap-9 md:flex"><a href="#sobre" class="technical-label group flex items-center gap-2 text-paper/75 transition-colors hover:text-paper"><span class="text-signal">0<!-- -->1</span>Sobre</a><a href="#projetos" class="technical-label group flex items-center gap-2 text-paper/75 transition-colors hover:text-paper"><span class="text-signal">0<!-- -->2</span>Projetos</a><a href="#metodo" class="technical-label group flex items-center gap-2 text-paper/75 transition-colors hover:text-paper"><span class="text-signal">0<!-- -->3</span>Método</a><a href="#contato" class="technical-label group flex items-center gap-2 text-paper/75 transition-colors hover:text-paper"><span class="text-signal">0<!-- -->4</span>Contato</a></nav><button type="button" aria-label="Abrir menu" aria-expanded="false" class="relative z-50 grid size-11 place-items-center text-paper md:hidden"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu" aria-hidden="true"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg></button></div></header><section id="inicio" aria-labelledby="hero-title" class="relative min-h-[92svh] bg-night text-paper"><img src="assets/brmis-hero-Cc7zJqn8.jpg" alt="Residência contemporânea em concreto, pedra e vidro ao entardecer" width="1920" height="1280" fetchPriority="high" class="hero-drift absolute inset-0 size-full object-cover object-[65%_center]"/><div class="absolute inset-0 bg-gradient-to-r from-night via-night/60 to-night/5"></div><div class="absolute inset-0 architectural-grid opacity-25"></div><div class="section-shell relative flex min-h-[92svh] flex-col justify-end pb-10 pt-40 md:pb-14"><div class="mb-auto flex items-start justify-end pt-4"><div class="hidden w-44 border-l border-paper/30 pl-5 text-xs leading-relaxed text-paper/65 lg:block">Engenharia e gestão para obras que atravessam o tempo.</div></div><div class="max-w-5xl animate-fade-in"><div class="technical-label mb-6 flex items-center gap-4 text-paper/70"><span class="h-px w-12 bg-signal"></span> Construção civil de alto padrão</div><h1 id="hero-title" class="font-display text-[clamp(3.2rem,8vw,8rem)] font-medium leading-[0.92]">Construímos<br/><span class="text-paper/78">o que permanece.</span></h1></div><div class="mt-10 grid items-end gap-8 border-t border-paper/25 pt-6 md:grid-cols-12"><p class="max-w-md text-base leading-relaxed text-paper/75 md:col-span-5 md:text-lg">Há mais de 15 anos, transformamos projetos em obras executadas com método, precisão e responsabilidade.</p><div class="flex gap-9 md:col-span-4"><div><strong class="font-display text-2xl text-paper">+15</strong><span class="block text-xs text-paper/55">anos de mercado</span></div><div><strong class="font-display text-2xl text-paper">+45</strong><span class="block text-xs text-paper/55">obras realizadas</span></div></div><a href="#projetos" class="group flex items-center justify-between border-b border-signal pb-3 text-sm font-semibold md:col-span-3">Conheça nossa atuação <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-down size-4 transition-transform group-hover:translate-y-1" aria-hidden="true"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg></a></div></div></section><section id="sobre" class="architectural-grid py-24 md:py-36"><div class="section-shell"><div class="reveal grid gap-6 border-t pt-6 md:grid-cols-12 border-foreground/20"><div class="technical-label text-signal md:col-span-2">01<!-- --> / <!-- -->Nossa história</div><h2 class="max-w-4xl font-display text-4xl font-medium leading-[1.02] md:col-span-9 md:text-6xl lg:text-7xl text-foreground">Cinco trajetórias. Uma mesma forma de construir.</h2></div><div class="mt-16 grid gap-14 md:grid-cols-12 md:mt-24"><div class="reveal md:col-span-5 md:col-start-3"><p class="font-display text-2xl leading-snug md:text-3xl">A BRMIS nasceu da amizade e da parceria entre Bruno, Roberto, Marcos, Ilenildo e Silvio.</p></div><div class="reveal md:col-span-4"><p class="leading-relaxed text-muted-foreground">O que começou pela confiança entre cinco fundadores tornou-se uma construtora preparada para assumir cada etapa da obra. Unimos visão de projeto, controle técnico e presença constante no canteiro para entregar com clareza, qualidade e compromisso.</p></div></div><div class="mt-20 grid grid-cols-5 border-y border-foreground/20 md:mt-28"><div class="group reveal border-r border-foreground/20 py-7 text-center last:border-r-0 md:py-12" style="transition-delay:0ms"><span class="block font-display text-4xl font-medium transition-colors group-hover:text-signal md:text-7xl">B</span><span class="mt-3 hidden text-[0.65rem] uppercase tracking-[0.12em] text-muted-foreground sm:block">Bruno</span></div><div class="group reveal border-r border-foreground/20 py-7 text-center last:border-r-0 md:py-12" style="transition-delay:70ms"><span class="block font-display text-4xl font-medium transition-colors group-hover:text-signal md:text-7xl">R</span><span class="mt-3 hidden text-[0.65rem] uppercase tracking-[0.12em] text-muted-foreground sm:block">Roberto</span></div><div class="group reveal border-r border-foreground/20 py-7 text-center last:border-r-0 md:py-12" style="transition-delay:140ms"><span class="block font-display text-4xl font-medium transition-colors group-hover:text-signal md:text-7xl">M</span><span class="mt-3 hidden text-[0.65rem] uppercase tracking-[0.12em] text-muted-foreground sm:block">Marcos</span></div><div class="group reveal border-r border-foreground/20 py-7 text-center last:border-r-0 md:py-12" style="transition-delay:210ms"><span class="block font-display text-4xl font-medium transition-colors group-hover:text-signal md:text-7xl">I</span><span class="mt-3 hidden text-[0.65rem] uppercase tracking-[0.12em] text-muted-foreground sm:block">Ilenildo</span></div><div class="group reveal border-r border-foreground/20 py-7 text-center last:border-r-0 md:py-12" style="transition-delay:280ms"><span class="block font-display text-4xl font-medium transition-colors group-hover:text-signal md:text-7xl">S</span><span class="mt-3 hidden text-[0.65rem] uppercase tracking-[0.12em] text-muted-foreground sm:block">Silvio</span></div></div></div></section><section aria-label="Números da BRMIS" class="bg-signal py-12 text-primary-foreground md:py-16"><div class="section-shell grid gap-10 md:grid-cols-3 md:gap-0"><div class="reveal "><strong class="font-display text-6xl font-medium md:text-8xl"><span class="brmis-counter" data-target="15" data-prefix="+">+15</span></strong><p class="mt-2 max-w-52 text-sm font-medium">anos de experiência</p></div><div class="reveal md:border-l md:border-primary-foreground/30 md:pl-10"><strong class="font-display text-6xl font-medium md:text-8xl"><span class="brmis-counter" data-target="45" data-prefix="+">+45</span></strong><p class="mt-2 max-w-52 text-sm font-medium">obras construídas ou administradas</p></div><div class="reveal md:border-l md:border-primary-foreground/30 md:pl-10"><strong class="font-display text-6xl font-medium md:text-8xl"><span>0</span></strong><p class="mt-2 max-w-52 text-sm font-medium">fundadores, uma só visão</p></div></div></section><section id="projetos" class="bg-night py-24 text-paper md:py-36"><div class="section-shell"><div class="reveal grid gap-6 border-t pt-6 md:grid-cols-12 border-paper/20"><div class="technical-label text-signal md:col-span-2">02<!-- --> / <!-- -->Projetos</div><h2 class="max-w-4xl font-display text-4xl font-medium leading-[1.02] md:col-span-9 md:text-6xl lg:text-7xl text-paper">Arquitetura bem resolvida. Execução à altura.</h2></div><div class="mt-16 grid gap-x-8 gap-y-16 md:grid-cols-12 md:mt-24"><article class="group reveal md:col-span-5"><div class="overflow-hidden bg-concrete aspect-[4/5]"><img src="assets/brmis-project-residencial-BI43_NFC.jpg" alt="Arquitetura residencial" width="1408" height="1760" loading="lazy" class="image-cinematic size-full object-cover group-hover:scale-[1.025] group-hover:saturate-100"/></div><div class="mt-5 flex items-start justify-between gap-4 border-t border-paper/25 pt-4"><div><p class="technical-label mb-2 text-signal">01<!-- --> / Atuação</p><h3 class="font-display text-xl font-medium md:text-2xl">Arquitetura residencial</h3><p class="mt-1 text-sm text-paper/55">Construção de alto padrão</p></div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right mt-1 size-5 text-paper/50 transition-transform group-hover:translate-x-1 group-hover:text-signal" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div></article><article class="group reveal md:col-span-7 md:mt-32"><div class="overflow-hidden bg-concrete aspect-[4/3]"><img src="assets/brmis-project-interiores-BHf9gdDz.jpg" alt="Interiores e acabamento" width="1600" height="1200" loading="lazy" class="image-cinematic size-full object-cover group-hover:scale-[1.025] group-hover:saturate-100"/></div><div class="mt-5 flex items-start justify-between gap-4 border-t border-paper/25 pt-4"><div><p class="technical-label mb-2 text-signal">02<!-- --> / Atuação</p><h3 class="font-display text-xl font-medium md:text-2xl">Interiores e acabamento</h3><p class="mt-1 text-sm text-paper/55">Precisão em cada encontro</p></div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right mt-1 size-5 text-paper/50 transition-transform group-hover:translate-x-1 group-hover:text-signal" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div></article><article class="group reveal md:col-span-5 md:col-start-7 md:-mt-8"><div class="overflow-hidden bg-concrete aspect-[4/5]"><img src="assets/brmis-project-execucao-B_BvvvAK.jpg" alt="Execução e gestão" width="1408" height="1760" loading="lazy" class="image-cinematic size-full object-cover group-hover:scale-[1.025] group-hover:saturate-100"/></div><div class="mt-5 flex items-start justify-between gap-4 border-t border-paper/25 pt-4"><div><p class="technical-label mb-2 text-signal">03<!-- --> / Atuação</p><h3 class="font-display text-xl font-medium md:text-2xl">Execução e gestão</h3><p class="mt-1 text-sm text-paper/55">Canteiro organizado, obra controlada</p></div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right mt-1 size-5 text-paper/50 transition-transform group-hover:translate-x-1 group-hover:text-signal" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div></article></div><p class="mt-16 border-l border-signal pl-4 text-xs leading-relaxed text-paper/45">Residencial, interiores, execução e gestão integram as principais frentes de atuação da BRMIS.</p><div id="brmis-acervo" class="brmis-acervo reveal">
   <div class="brmis-acervo-head">
-    <div>
+    <div class="brmis-acervo-title">
       <p class="technical-label text-signal">ACERVO / PROJETOS E REALIZAÇÕES</p>
-      <h3>Uma trajetória construída projeto por projeto.</h3>
-      <p class="brmis-acervo-copy">Uma seleção visual do acervo BRMIS. Residências, interiores, áreas externas e estudos que mostram a variedade de trabalhos desenvolvidos ao longo da nossa trajetória.</p>
+      <h3>Obras que mostram<br/>o que a BRMIS entrega.</h3>
     </div>
-    <div class="brmis-acervo-number"><strong>+45</strong><span>obras construídas<br/>ou administradas</span></div>
+    <div class="brmis-acervo-side">
+      <p>Uma seleção do acervo original da BRMIS, preservada em alta resolução e em suas proporções reais.</p>
+      <div class="brmis-acervo-stat"><strong>+45</strong><span>obras construídas<br/>ou administradas</span></div>
+    </div>
   </div>
-  <div class="brmis-acervo-controls">
-    <span>Explore o acervo</span>
-    <button type="button" id="brmis-carousel-toggle" aria-pressed="false"><span class="brmis-pause-icon">Ⅱ</span><span class="brmis-toggle-label">Pausar movimento</span></button>
+
+  <div class="brmis-gallery-topline">
+    <div class="brmis-gallery-status">
+      <span class="brmis-gallery-current">01</span>
+      <span class="brmis-gallery-divider"></span>
+      <span class="brmis-gallery-total">08</span>
+    </div>
+    <div class="brmis-gallery-actions">
+      <button type="button" class="brmis-gallery-nav brmis-gallery-prev" aria-label="Projeto anterior">←</button>
+      <button type="button" class="brmis-gallery-nav brmis-gallery-next" aria-label="Próximo projeto">→</button>
+      <button type="button" id="brmis-carousel-toggle" aria-pressed="false" aria-label="Pausar reprodução automática"><span class="brmis-pause-icon">Ⅱ</span><span class="brmis-toggle-label">Auto</span></button>
+    </div>
   </div>
-  <div class="brmis-showcase-viewport" aria-label="Carrossel de projetos BRMIS">
-    <div class="brmis-showcase-track brmis-row-a"><button type="button" class="brmis-showcase-card" data-portfolio-image="assets/portfolio/p01.svg" data-portfolio-title="Projeto 01" data-portfolio-category="Residencial" aria-label="Abrir Projeto 01, Residencial">
-    <span class="brmis-showcase-image"><img src="assets/portfolio/p01.svg" alt="Projeto 01 do acervo BRMIS" loading="lazy"/></span>
-    <span class="brmis-showcase-meta"><span><small>01 / ACERVO BRMIS</small><strong>Residencial</strong></span><span class="brmis-showcase-plus" aria-hidden="true">↗</span></span>
-  </button><button type="button" class="brmis-showcase-card" data-portfolio-image="assets/portfolio/p06.svg" data-portfolio-title="Projeto 02" data-portfolio-category="Arquitetura" aria-label="Abrir Projeto 02, Arquitetura">
-    <span class="brmis-showcase-image"><img src="assets/portfolio/p06.svg" alt="Projeto 02 do acervo BRMIS" loading="lazy"/></span>
-    <span class="brmis-showcase-meta"><span><small>02 / ACERVO BRMIS</small><strong>Arquitetura</strong></span><span class="brmis-showcase-plus" aria-hidden="true">↗</span></span>
-  </button><button type="button" class="brmis-showcase-card" data-portfolio-image="assets/portfolio/p12.svg" data-portfolio-title="Projeto 03" data-portfolio-category="Interiores" aria-label="Abrir Projeto 03, Interiores">
-    <span class="brmis-showcase-image"><img src="assets/portfolio/p12.svg" alt="Projeto 03 do acervo BRMIS" loading="lazy"/></span>
-    <span class="brmis-showcase-meta"><span><small>03 / ACERVO BRMIS</small><strong>Interiores</strong></span><span class="brmis-showcase-plus" aria-hidden="true">↗</span></span>
-  </button><button type="button" class="brmis-showcase-card" data-portfolio-image="assets/portfolio/p15.svg" data-portfolio-title="Projeto 04" data-portfolio-category="Área externa" aria-label="Abrir Projeto 04, Área externa">
-    <span class="brmis-showcase-image"><img src="assets/portfolio/p15.svg" alt="Projeto 04 do acervo BRMIS" loading="lazy"/></span>
-    <span class="brmis-showcase-meta"><span><small>04 / ACERVO BRMIS</small><strong>Área externa</strong></span><span class="brmis-showcase-plus" aria-hidden="true">↗</span></span>
-  </button><button type="button" class="brmis-showcase-card" data-portfolio-image="assets/portfolio/p17.svg" data-portfolio-title="Projeto 05" data-portfolio-category="Interiores" aria-label="Abrir Projeto 05, Interiores">
-    <span class="brmis-showcase-image"><img src="assets/portfolio/p17.svg" alt="Projeto 05 do acervo BRMIS" loading="lazy"/></span>
-    <span class="brmis-showcase-meta"><span><small>05 / ACERVO BRMIS</small><strong>Interiores</strong></span><span class="brmis-showcase-plus" aria-hidden="true">↗</span></span>
-  </button><button type="button" class="brmis-showcase-card" data-portfolio-image="assets/portfolio/p19.svg" data-portfolio-title="Projeto 06" data-portfolio-category="Interiores" aria-label="Abrir Projeto 06, Interiores">
-    <span class="brmis-showcase-image"><img src="assets/portfolio/p19.svg" alt="Projeto 06 do acervo BRMIS" loading="lazy"/></span>
-    <span class="brmis-showcase-meta"><span><small>06 / ACERVO BRMIS</small><strong>Interiores</strong></span><span class="brmis-showcase-plus" aria-hidden="true">↗</span></span>
-  </button><button type="button" class="brmis-showcase-card" data-portfolio-image="assets/portfolio/p23.svg" data-portfolio-title="Projeto 07" data-portfolio-category="Estudo arquitetônico" aria-label="Abrir Projeto 07, Estudo arquitetônico">
-    <span class="brmis-showcase-image"><img src="assets/portfolio/p23.svg" alt="Projeto 07 do acervo BRMIS" loading="lazy"/></span>
-    <span class="brmis-showcase-meta"><span><small>07 / ACERVO BRMIS</small><strong>Estudo arquitetônico</strong></span><span class="brmis-showcase-plus" aria-hidden="true">↗</span></span>
-  </button><button type="button" class="brmis-showcase-card" data-portfolio-image="assets/portfolio/p01.svg" data-portfolio-title="Projeto 01" data-portfolio-category="Residencial" aria-label="Abrir Projeto 01, Residencial">
-    <span class="brmis-showcase-image"><img src="assets/portfolio/p01.svg" alt="Projeto 01 do acervo BRMIS" loading="lazy"/></span>
-    <span class="brmis-showcase-meta"><span><small>01 / ACERVO BRMIS</small><strong>Residencial</strong></span><span class="brmis-showcase-plus" aria-hidden="true">↗</span></span>
-  </button><button type="button" class="brmis-showcase-card" data-portfolio-image="assets/portfolio/p06.svg" data-portfolio-title="Projeto 02" data-portfolio-category="Arquitetura" aria-label="Abrir Projeto 02, Arquitetura">
-    <span class="brmis-showcase-image"><img src="assets/portfolio/p06.svg" alt="Projeto 02 do acervo BRMIS" loading="lazy"/></span>
-    <span class="brmis-showcase-meta"><span><small>02 / ACERVO BRMIS</small><strong>Arquitetura</strong></span><span class="brmis-showcase-plus" aria-hidden="true">↗</span></span>
-  </button><button type="button" class="brmis-showcase-card" data-portfolio-image="assets/portfolio/p12.svg" data-portfolio-title="Projeto 03" data-portfolio-category="Interiores" aria-label="Abrir Projeto 03, Interiores">
-    <span class="brmis-showcase-image"><img src="assets/portfolio/p12.svg" alt="Projeto 03 do acervo BRMIS" loading="lazy"/></span>
-    <span class="brmis-showcase-meta"><span><small>03 / ACERVO BRMIS</small><strong>Interiores</strong></span><span class="brmis-showcase-plus" aria-hidden="true">↗</span></span>
-  </button><button type="button" class="brmis-showcase-card" data-portfolio-image="assets/portfolio/p15.svg" data-portfolio-title="Projeto 04" data-portfolio-category="Área externa" aria-label="Abrir Projeto 04, Área externa">
-    <span class="brmis-showcase-image"><img src="assets/portfolio/p15.svg" alt="Projeto 04 do acervo BRMIS" loading="lazy"/></span>
-    <span class="brmis-showcase-meta"><span><small>04 / ACERVO BRMIS</small><strong>Área externa</strong></span><span class="brmis-showcase-plus" aria-hidden="true">↗</span></span>
-  </button><button type="button" class="brmis-showcase-card" data-portfolio-image="assets/portfolio/p17.svg" data-portfolio-title="Projeto 05" data-portfolio-category="Interiores" aria-label="Abrir Projeto 05, Interiores">
-    <span class="brmis-showcase-image"><img src="assets/portfolio/p17.svg" alt="Projeto 05 do acervo BRMIS" loading="lazy"/></span>
-    <span class="brmis-showcase-meta"><span><small>05 / ACERVO BRMIS</small><strong>Interiores</strong></span><span class="brmis-showcase-plus" aria-hidden="true">↗</span></span>
-  </button><button type="button" class="brmis-showcase-card" data-portfolio-image="assets/portfolio/p19.svg" data-portfolio-title="Projeto 06" data-portfolio-category="Interiores" aria-label="Abrir Projeto 06, Interiores">
-    <span class="brmis-showcase-image"><img src="assets/portfolio/p19.svg" alt="Projeto 06 do acervo BRMIS" loading="lazy"/></span>
-    <span class="brmis-showcase-meta"><span><small>06 / ACERVO BRMIS</small><strong>Interiores</strong></span><span class="brmis-showcase-plus" aria-hidden="true">↗</span></span>
-  </button><button type="button" class="brmis-showcase-card" data-portfolio-image="assets/portfolio/p23.svg" data-portfolio-title="Projeto 07" data-portfolio-category="Estudo arquitetônico" aria-label="Abrir Projeto 07, Estudo arquitetônico">
-    <span class="brmis-showcase-image"><img src="assets/portfolio/p23.svg" alt="Projeto 07 do acervo BRMIS" loading="lazy"/></span>
-    <span class="brmis-showcase-meta"><span><small>07 / ACERVO BRMIS</small><strong>Estudo arquitetônico</strong></span><span class="brmis-showcase-plus" aria-hidden="true">↗</span></span>
-  </button></div>
+
+  <div class="brmis-gallery-progress" aria-hidden="true"><i></i></div>
+
+  <div class="brmis-gallery-shell">
+    <div class="brmis-gallery-rail" tabindex="0" aria-label="Galeria de projetos BRMIS">
+      <article class="brmis-gallery-card landscape" data-index="0" data-portfolio-image="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/9d605587-d5cf-48bb-a67a-5c2bdc2e71e9.jpg" data-portfolio-title="Fachada residencial" data-portfolio-category="Residencial">
+  <button type="button" class="brmis-gallery-open" aria-label="Ampliar Fachada residencial">
+    <figure class="brmis-gallery-media" style="aspect-ratio:1125/900">
+      <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/9d605587-d5cf-48bb-a67a-5c2bdc2e71e9.jpg" alt="Fachada residencial do acervo BRMIS" loading="eager" decoding="async"/>
+      <span class="brmis-gallery-overlay" aria-hidden="true"><span>Ver projeto</span><b>↗</b></span>
+    </figure>
+    <div class="brmis-gallery-caption">
+      <span class="brmis-gallery-count">01</span>
+      <div><strong>Fachada residencial</strong><small>Residencial</small></div>
+      <span class="brmis-gallery-arrow" aria-hidden="true">↗</span>
+    </div>
+  </button>
+</article><article class="brmis-gallery-card landscape wide" data-index="1" data-portfolio-image="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/7f76a6b0-841e-42f2-86d3-c3097a4a7d6e.jpg" data-portfolio-title="Área externa e lazer" data-portfolio-category="Área externa">
+  <button type="button" class="brmis-gallery-open" aria-label="Ampliar Área externa e lazer">
+    <figure class="brmis-gallery-media" style="aspect-ratio:1240/675">
+      <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/7f76a6b0-841e-42f2-86d3-c3097a4a7d6e.jpg" alt="Área externa e lazer do acervo BRMIS" loading="eager" decoding="async"/>
+      <span class="brmis-gallery-overlay" aria-hidden="true"><span>Ver projeto</span><b>↗</b></span>
+    </figure>
+    <div class="brmis-gallery-caption">
+      <span class="brmis-gallery-count">02</span>
+      <div><strong>Área externa e lazer</strong><small>Área externa</small></div>
+      <span class="brmis-gallery-arrow" aria-hidden="true">↗</span>
+    </div>
+  </button>
+</article><article class="brmis-gallery-card landscape" data-index="2" data-portfolio-image="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/4ee240d6-fda2-4889-b3f7-b27646bc7b54.jpg" data-portfolio-title="Integração e convivência" data-portfolio-category="Área externa">
+  <button type="button" class="brmis-gallery-open" aria-label="Ampliar Integração e convivência">
+    <figure class="brmis-gallery-media" style="aspect-ratio:1240/697">
+      <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/4ee240d6-fda2-4889-b3f7-b27646bc7b54.jpg" alt="Integração e convivência do acervo BRMIS" loading="lazy" decoding="async"/>
+      <span class="brmis-gallery-overlay" aria-hidden="true"><span>Ver projeto</span><b>↗</b></span>
+    </figure>
+    <div class="brmis-gallery-caption">
+      <span class="brmis-gallery-count">03</span>
+      <div><strong>Integração e convivência</strong><small>Área externa</small></div>
+      <span class="brmis-gallery-arrow" aria-hidden="true">↗</span>
+    </div>
+  </button>
+</article><article class="brmis-gallery-card portrait" data-index="3" data-portfolio-image="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/9d0212a0-a649-45a9-9d95-ffc646fceffd.jpg" data-portfolio-title="Sala de estar" data-portfolio-category="Interiores">
+  <button type="button" class="brmis-gallery-open" aria-label="Ampliar Sala de estar">
+    <figure class="brmis-gallery-media" style="aspect-ratio:947/1338">
+      <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/9d0212a0-a649-45a9-9d95-ffc646fceffd.jpg" alt="Sala de estar do acervo BRMIS" loading="lazy" decoding="async"/>
+      <span class="brmis-gallery-overlay" aria-hidden="true"><span>Ver projeto</span><b>↗</b></span>
+    </figure>
+    <div class="brmis-gallery-caption">
+      <span class="brmis-gallery-count">04</span>
+      <div><strong>Sala de estar</strong><small>Interiores</small></div>
+      <span class="brmis-gallery-arrow" aria-hidden="true">↗</span>
+    </div>
+  </button>
+</article><article class="brmis-gallery-card portrait" data-index="4" data-portfolio-image="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/2d27a64a-7631-408e-94f9-a0d5981a7659.jpg" data-portfolio-title="Cozinha e jantar" data-portfolio-category="Interiores">
+  <button type="button" class="brmis-gallery-open" aria-label="Ampliar Cozinha e jantar">
+    <figure class="brmis-gallery-media" style="aspect-ratio:947/1338">
+      <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/2d27a64a-7631-408e-94f9-a0d5981a7659.jpg" alt="Cozinha e jantar do acervo BRMIS" loading="lazy" decoding="async"/>
+      <span class="brmis-gallery-overlay" aria-hidden="true"><span>Ver projeto</span><b>↗</b></span>
+    </figure>
+    <div class="brmis-gallery-caption">
+      <span class="brmis-gallery-count">05</span>
+      <div><strong>Cozinha e jantar</strong><small>Interiores</small></div>
+      <span class="brmis-gallery-arrow" aria-hidden="true">↗</span>
+    </div>
+  </button>
+</article><article class="brmis-gallery-card landscape" data-index="5" data-portfolio-image="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/fa476f9a-e3f4-43cf-8aa2-1e689fe9664c.jpg" data-portfolio-title="Fachada noturna" data-portfolio-category="Residencial">
+  <button type="button" class="brmis-gallery-open" aria-label="Ampliar Fachada noturna">
+    <figure class="brmis-gallery-media" style="aspect-ratio:1240/697">
+      <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/fa476f9a-e3f4-43cf-8aa2-1e689fe9664c.jpg" alt="Fachada noturna do acervo BRMIS" loading="lazy" decoding="async"/>
+      <span class="brmis-gallery-overlay" aria-hidden="true"><span>Ver projeto</span><b>↗</b></span>
+    </figure>
+    <div class="brmis-gallery-caption">
+      <span class="brmis-gallery-count">06</span>
+      <div><strong>Fachada noturna</strong><small>Residencial</small></div>
+      <span class="brmis-gallery-arrow" aria-hidden="true">↗</span>
+    </div>
+  </button>
+</article><article class="brmis-gallery-card landscape" data-index="6" data-portfolio-image="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/fee86992-dce2-4f85-b843-1a9390e44d2c.jpg" data-portfolio-title="Pátio contemporâneo" data-portfolio-category="Estudo arquitetônico">
+  <button type="button" class="brmis-gallery-open" aria-label="Ampliar Pátio contemporâneo">
+    <figure class="brmis-gallery-media" style="aspect-ratio:1422/800">
+      <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/fee86992-dce2-4f85-b843-1a9390e44d2c.jpg" alt="Pátio contemporâneo do acervo BRMIS" loading="lazy" decoding="async"/>
+      <span class="brmis-gallery-overlay" aria-hidden="true"><span>Ver projeto</span><b>↗</b></span>
+    </figure>
+    <div class="brmis-gallery-caption">
+      <span class="brmis-gallery-count">07</span>
+      <div><strong>Pátio contemporâneo</strong><small>Estudo arquitetônico</small></div>
+      <span class="brmis-gallery-arrow" aria-hidden="true">↗</span>
+    </div>
+  </button>
+</article><article class="brmis-gallery-card landscape wide" data-index="7" data-portfolio-image="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/916905f1-fb65-4d55-8d46-88daf5eca15b.jpg" data-portfolio-title="Piscina e paisagismo" data-portfolio-category="Estudo arquitetônico">
+  <button type="button" class="brmis-gallery-open" aria-label="Ampliar Piscina e paisagismo">
+    <figure class="brmis-gallery-media" style="aspect-ratio:1414/676">
+      <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/916905f1-fb65-4d55-8d46-88daf5eca15b.jpg" alt="Piscina e paisagismo do acervo BRMIS" loading="lazy" decoding="async"/>
+      <span class="brmis-gallery-overlay" aria-hidden="true"><span>Ver projeto</span><b>↗</b></span>
+    </figure>
+    <div class="brmis-gallery-caption">
+      <span class="brmis-gallery-count">08</span>
+      <div><strong>Piscina e paisagismo</strong><small>Estudo arquitetônico</small></div>
+      <span class="brmis-gallery-arrow" aria-hidden="true">↗</span>
+    </div>
+  </button>
+</article>
+    </div>
   </div>
-  <div class="brmis-showcase-viewport brmis-showcase-viewport-second" aria-hidden="true">
-    <div class="brmis-showcase-track brmis-row-b"><button type="button" class="brmis-showcase-card" data-portfolio-image="assets/portfolio/p15.svg" data-portfolio-title="Projeto 04" data-portfolio-category="Área externa" aria-label="Abrir Projeto 04, Área externa">
-    <span class="brmis-showcase-image"><img src="assets/portfolio/p15.svg" alt="Projeto 04 do acervo BRMIS" loading="lazy"/></span>
-    <span class="brmis-showcase-meta"><span><small>01 / ACERVO BRMIS</small><strong>Área externa</strong></span><span class="brmis-showcase-plus" aria-hidden="true">↗</span></span>
-  </button><button type="button" class="brmis-showcase-card" data-portfolio-image="assets/portfolio/p23.svg" data-portfolio-title="Projeto 07" data-portfolio-category="Estudo arquitetônico" aria-label="Abrir Projeto 07, Estudo arquitetônico">
-    <span class="brmis-showcase-image"><img src="assets/portfolio/p23.svg" alt="Projeto 07 do acervo BRMIS" loading="lazy"/></span>
-    <span class="brmis-showcase-meta"><span><small>02 / ACERVO BRMIS</small><strong>Estudo arquitetônico</strong></span><span class="brmis-showcase-plus" aria-hidden="true">↗</span></span>
-  </button><button type="button" class="brmis-showcase-card" data-portfolio-image="assets/portfolio/p06.svg" data-portfolio-title="Projeto 02" data-portfolio-category="Arquitetura" aria-label="Abrir Projeto 02, Arquitetura">
-    <span class="brmis-showcase-image"><img src="assets/portfolio/p06.svg" alt="Projeto 02 do acervo BRMIS" loading="lazy"/></span>
-    <span class="brmis-showcase-meta"><span><small>03 / ACERVO BRMIS</small><strong>Arquitetura</strong></span><span class="brmis-showcase-plus" aria-hidden="true">↗</span></span>
-  </button><button type="button" class="brmis-showcase-card" data-portfolio-image="assets/portfolio/p17.svg" data-portfolio-title="Projeto 05" data-portfolio-category="Interiores" aria-label="Abrir Projeto 05, Interiores">
-    <span class="brmis-showcase-image"><img src="assets/portfolio/p17.svg" alt="Projeto 05 do acervo BRMIS" loading="lazy"/></span>
-    <span class="brmis-showcase-meta"><span><small>04 / ACERVO BRMIS</small><strong>Interiores</strong></span><span class="brmis-showcase-plus" aria-hidden="true">↗</span></span>
-  </button><button type="button" class="brmis-showcase-card" data-portfolio-image="assets/portfolio/p01.svg" data-portfolio-title="Projeto 01" data-portfolio-category="Residencial" aria-label="Abrir Projeto 01, Residencial">
-    <span class="brmis-showcase-image"><img src="assets/portfolio/p01.svg" alt="Projeto 01 do acervo BRMIS" loading="lazy"/></span>
-    <span class="brmis-showcase-meta"><span><small>05 / ACERVO BRMIS</small><strong>Residencial</strong></span><span class="brmis-showcase-plus" aria-hidden="true">↗</span></span>
-  </button><button type="button" class="brmis-showcase-card" data-portfolio-image="assets/portfolio/p19.svg" data-portfolio-title="Projeto 06" data-portfolio-category="Interiores" aria-label="Abrir Projeto 06, Interiores">
-    <span class="brmis-showcase-image"><img src="assets/portfolio/p19.svg" alt="Projeto 06 do acervo BRMIS" loading="lazy"/></span>
-    <span class="brmis-showcase-meta"><span><small>06 / ACERVO BRMIS</small><strong>Interiores</strong></span><span class="brmis-showcase-plus" aria-hidden="true">↗</span></span>
-  </button><button type="button" class="brmis-showcase-card" data-portfolio-image="assets/portfolio/p12.svg" data-portfolio-title="Projeto 03" data-portfolio-category="Interiores" aria-label="Abrir Projeto 03, Interiores">
-    <span class="brmis-showcase-image"><img src="assets/portfolio/p12.svg" alt="Projeto 03 do acervo BRMIS" loading="lazy"/></span>
-    <span class="brmis-showcase-meta"><span><small>07 / ACERVO BRMIS</small><strong>Interiores</strong></span><span class="brmis-showcase-plus" aria-hidden="true">↗</span></span>
-  </button><button type="button" class="brmis-showcase-card" data-portfolio-image="assets/portfolio/p15.svg" data-portfolio-title="Projeto 04" data-portfolio-category="Área externa" aria-label="Abrir Projeto 04, Área externa">
-    <span class="brmis-showcase-image"><img src="assets/portfolio/p15.svg" alt="Projeto 04 do acervo BRMIS" loading="lazy"/></span>
-    <span class="brmis-showcase-meta"><span><small>01 / ACERVO BRMIS</small><strong>Área externa</strong></span><span class="brmis-showcase-plus" aria-hidden="true">↗</span></span>
-  </button><button type="button" class="brmis-showcase-card" data-portfolio-image="assets/portfolio/p23.svg" data-portfolio-title="Projeto 07" data-portfolio-category="Estudo arquitetônico" aria-label="Abrir Projeto 07, Estudo arquitetônico">
-    <span class="brmis-showcase-image"><img src="assets/portfolio/p23.svg" alt="Projeto 07 do acervo BRMIS" loading="lazy"/></span>
-    <span class="brmis-showcase-meta"><span><small>02 / ACERVO BRMIS</small><strong>Estudo arquitetônico</strong></span><span class="brmis-showcase-plus" aria-hidden="true">↗</span></span>
-  </button><button type="button" class="brmis-showcase-card" data-portfolio-image="assets/portfolio/p06.svg" data-portfolio-title="Projeto 02" data-portfolio-category="Arquitetura" aria-label="Abrir Projeto 02, Arquitetura">
-    <span class="brmis-showcase-image"><img src="assets/portfolio/p06.svg" alt="Projeto 02 do acervo BRMIS" loading="lazy"/></span>
-    <span class="brmis-showcase-meta"><span><small>03 / ACERVO BRMIS</small><strong>Arquitetura</strong></span><span class="brmis-showcase-plus" aria-hidden="true">↗</span></span>
-  </button><button type="button" class="brmis-showcase-card" data-portfolio-image="assets/portfolio/p17.svg" data-portfolio-title="Projeto 05" data-portfolio-category="Interiores" aria-label="Abrir Projeto 05, Interiores">
-    <span class="brmis-showcase-image"><img src="assets/portfolio/p17.svg" alt="Projeto 05 do acervo BRMIS" loading="lazy"/></span>
-    <span class="brmis-showcase-meta"><span><small>04 / ACERVO BRMIS</small><strong>Interiores</strong></span><span class="brmis-showcase-plus" aria-hidden="true">↗</span></span>
-  </button><button type="button" class="brmis-showcase-card" data-portfolio-image="assets/portfolio/p01.svg" data-portfolio-title="Projeto 01" data-portfolio-category="Residencial" aria-label="Abrir Projeto 01, Residencial">
-    <span class="brmis-showcase-image"><img src="assets/portfolio/p01.svg" alt="Projeto 01 do acervo BRMIS" loading="lazy"/></span>
-    <span class="brmis-showcase-meta"><span><small>05 / ACERVO BRMIS</small><strong>Residencial</strong></span><span class="brmis-showcase-plus" aria-hidden="true">↗</span></span>
-  </button><button type="button" class="brmis-showcase-card" data-portfolio-image="assets/portfolio/p19.svg" data-portfolio-title="Projeto 06" data-portfolio-category="Interiores" aria-label="Abrir Projeto 06, Interiores">
-    <span class="brmis-showcase-image"><img src="assets/portfolio/p19.svg" alt="Projeto 06 do acervo BRMIS" loading="lazy"/></span>
-    <span class="brmis-showcase-meta"><span><small>06 / ACERVO BRMIS</small><strong>Interiores</strong></span><span class="brmis-showcase-plus" aria-hidden="true">↗</span></span>
-  </button><button type="button" class="brmis-showcase-card" data-portfolio-image="assets/portfolio/p12.svg" data-portfolio-title="Projeto 03" data-portfolio-category="Interiores" aria-label="Abrir Projeto 03, Interiores">
-    <span class="brmis-showcase-image"><img src="assets/portfolio/p12.svg" alt="Projeto 03 do acervo BRMIS" loading="lazy"/></span>
-    <span class="brmis-showcase-meta"><span><small>07 / ACERVO BRMIS</small><strong>Interiores</strong></span><span class="brmis-showcase-plus" aria-hidden="true">↗</span></span>
-  </button></div>
+
+  <div class="brmis-gallery-foot">
+    <span>Arraste ou use as setas para explorar</span>
+    <span>Imagens do acervo BRMIS em proporção original</span>
   </div>
-  <p class="brmis-acervo-note">Passe o mouse para pausar e ver os detalhes. Clique em qualquer imagem para ampliar.</p>
 </div>
-<div id="brmis-lightbox" class="brmis-lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Visualização de projeto">
+
+<div id="brmis-lightbox" class="brmis-lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Visualização ampliada de projeto">
   <button type="button" class="brmis-lightbox-close" aria-label="Fechar visualização">×</button>
   <button type="button" class="brmis-lightbox-nav brmis-lightbox-prev" aria-label="Projeto anterior">←</button>
-  <figure><img alt=""/><figcaption><span class="brmis-lightbox-index"></span><strong></strong><small></small></figcaption></figure>
+  <figure><div class="brmis-lightbox-stage"><img alt=""/></div><figcaption><span class="brmis-lightbox-index"></span><strong></strong><small></small></figcaption></figure>
   <button type="button" class="brmis-lightbox-nav brmis-lightbox-next" aria-label="Próximo projeto">→</button>
 </div></div></section><section id="metodo" class="py-24 md:py-36"><div class="section-shell"><div class="reveal grid gap-6 border-t pt-6 md:grid-cols-12 border-foreground/20"><div class="technical-label text-signal md:col-span-2">03<!-- --> / <!-- -->Método</div><h2 class="max-w-4xl font-display text-4xl font-medium leading-[1.02] md:col-span-9 md:text-6xl lg:text-7xl text-foreground">Controle do primeiro traço à última entrega.</h2></div><div class="mt-16 border-t border-foreground/25 md:mt-24"><div class="group reveal grid gap-4 border-b border-foreground/25 py-8 md:grid-cols-12 md:items-start md:py-10"><span class="technical-label text-signal md:col-span-2">01</span><h3 class="font-display text-3xl font-medium md:col-span-4 md:text-4xl">Entender</h3><p class="max-w-lg leading-relaxed text-muted-foreground md:col-span-5">Escutamos necessidades, prioridades e limites para definir o caminho certo antes de avançar.</p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right hidden size-5 transition-transform group-hover:translate-x-1 md:block" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div><div class="group reveal grid gap-4 border-b border-foreground/25 py-8 md:grid-cols-12 md:items-start md:py-10"><span class="technical-label text-signal md:col-span-2">02</span><h3 class="font-display text-3xl font-medium md:col-span-4 md:text-4xl">Planejar</h3><p class="max-w-lg leading-relaxed text-muted-foreground md:col-span-5">Compatibilizamos escopo, etapas, recursos e decisões para reduzir desvios durante a obra.</p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right hidden size-5 transition-transform group-hover:translate-x-1 md:block" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div><div class="group reveal grid gap-4 border-b border-foreground/25 py-8 md:grid-cols-12 md:items-start md:py-10"><span class="technical-label text-signal md:col-span-2">03</span><h3 class="font-display text-3xl font-medium md:col-span-4 md:text-4xl">Executar</h3><p class="max-w-lg leading-relaxed text-muted-foreground md:col-span-5">Coordenamos equipes, materiais e cronograma com presença técnica e controle contínuo.</p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right hidden size-5 transition-transform group-hover:translate-x-1 md:block" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div><div class="group reveal grid gap-4 border-b border-foreground/25 py-8 md:grid-cols-12 md:items-start md:py-10"><span class="technical-label text-signal md:col-span-2">04</span><h3 class="font-display text-3xl font-medium md:col-span-4 md:text-4xl">Entregar</h3><p class="max-w-lg leading-relaxed text-muted-foreground md:col-span-5">Revisamos cada detalhe e concluímos a obra com organização, transparência e responsabilidade.</p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right hidden size-5 transition-transform group-hover:translate-x-1 md:block" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div></div></div></section><section class="bg-secondary py-24 text-secondary-foreground md:py-32"><div class="section-shell grid gap-16 md:grid-cols-12"><div class="reveal md:col-span-5"><p class="technical-label text-signal">O que sustenta uma boa obra</p><h2 class="mt-7 font-display text-4xl font-medium leading-tight md:text-6xl">Excelência não acontece por acaso.</h2><p class="mt-8 max-w-md leading-relaxed text-secondary-foreground/60">Ela é consequência de decisões bem tomadas, acompanhamento próximo e respeito pelo projeto em cada fase.</p></div><div class="grid gap-0 md:col-span-6 md:col-start-7"><div class="reveal border-t border-secondary-foreground/20 py-7 last:border-b"><div class="flex gap-5"><span class="technical-label mt-1 text-signal">0<!-- -->1</span><div><h3 class="font-display text-xl font-semibold">Planejamento</h3><p class="mt-3 text-sm leading-relaxed text-secondary-foreground/60">Antecipar interferências, organizar recursos e tornar o avanço da obra previsível.</p></div></div></div><div class="reveal border-t border-secondary-foreground/20 py-7 last:border-b"><div class="flex gap-5"><span class="technical-label mt-1 text-signal">0<!-- -->2</span><div><h3 class="font-display text-xl font-semibold">Execução</h3><p class="mt-3 text-sm leading-relaxed text-secondary-foreground/60">Transformar intenção arquitetônica em construção precisa, segura e tecnicamente coerente.</p></div></div></div><div class="reveal border-t border-secondary-foreground/20 py-7 last:border-b"><div class="flex gap-5"><span class="technical-label mt-1 text-signal">0<!-- -->3</span><div><h3 class="font-display text-xl font-semibold">Acabamento</h3><p class="mt-3 text-sm leading-relaxed text-secondary-foreground/60">Cuidar dos encontros, alinhamentos e materiais que definem a percepção final da obra.</p></div></div></div><div class="reveal border-t border-secondary-foreground/20 py-7 last:border-b"><div class="flex gap-5"><span class="technical-label mt-1 text-signal">0<!-- -->4</span><div><h3 class="font-display text-xl font-semibold">Gestão</h3><p class="mt-3 text-sm leading-relaxed text-secondary-foreground/60">Acompanhar prazos, fornecedores e decisões com comunicação clara do início ao fim.</p></div></div></div></div></div></section><section id="contato" class="bg-paper py-24 md:py-36"><div class="section-shell"><div class="reveal grid gap-6 border-t pt-6 md:grid-cols-12 border-foreground/20"><div class="technical-label text-signal md:col-span-2">04<!-- --> / <!-- -->Contato</div><h2 class="max-w-4xl font-display text-4xl font-medium leading-[1.02] md:col-span-9 md:text-6xl lg:text-7xl text-foreground">Vamos construir algo que permaneça?</h2></div><div class="mt-16 grid gap-16 md:grid-cols-12 md:mt-24"><div class="reveal md:col-span-4"><p class="max-w-sm text-lg leading-relaxed">Conte o que você pretende construir. A BRMIS entra em contato para entender o momento, o escopo e os próximos passos.</p><div class="mt-12 border-t border-foreground/20 pt-5"><p class="technical-label text-muted-foreground">Atendimento</p><p class="mt-4 text-sm text-muted-foreground">Projetos residenciais, comerciais, execução e gestão de obra.</p></div></div><div class="reveal md:col-span-7 md:col-start-6">
     <div class="border-y border-foreground/20 py-9 md:py-12">
@@ -361,61 +420,127 @@ body.brmis-lightbox-open{overflow:hidden}
 (()=>{
   const root=document.getElementById('brmis-acervo');
   if(!root)return;
-  const toggle=document.getElementById('brmis-carousel-toggle');
-  const label=toggle?.querySelector('.brmis-toggle-label');
-  const icon=toggle?.querySelector('.brmis-pause-icon');
-  toggle?.addEventListener('click',()=>{
-    const paused=root.classList.toggle('is-paused');
-    toggle.setAttribute('aria-pressed',String(paused));
-    if(label)label.textContent=paused?'Continuar movimento':'Pausar movimento';
-    if(icon)icon.textContent=paused?'▶':'Ⅱ';
-  });
+  const rail=root.querySelector('.brmis-gallery-rail');
+  const cards=[...root.querySelectorAll('.brmis-gallery-card')];
+  const prev=root.querySelector('.brmis-gallery-prev');
+  const next=root.querySelector('.brmis-gallery-next');
+  const toggle=root.querySelector('#brmis-carousel-toggle');
+  const currentLabel=root.querySelector('.brmis-gallery-current');
+  const progress=root.querySelector('.brmis-gallery-progress i');
+  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let active=0, paused=false, timer=null, dragging=false, moved=false, startX=0, startScroll=0;
 
-  const unique=[...root.querySelectorAll('.brmis-row-a .brmis-showcase-card')].slice(0,7);
-  const lightbox=document.getElementById('brmis-lightbox');
-  if(!lightbox)return;
-  const image=lightbox.querySelector('figure img');
-  const title=lightbox.querySelector('figcaption strong');
-  const category=lightbox.querySelector('figcaption small');
-  const indexLabel=lightbox.querySelector('.brmis-lightbox-index');
-  let current=0;
-
-  const render=()=>{
-    const card=unique[current];
-    if(!card)return;
-    image.src=card.dataset.portfolioImage||'';
-    image.alt=(card.dataset.portfolioTitle||'Projeto')+' — '+(card.dataset.portfolioCategory||'Acervo BRMIS');
-    title.textContent=card.dataset.portfolioTitle||'Projeto';
-    category.textContent=card.dataset.portfolioCategory||'Acervo BRMIS';
-    indexLabel.textContent=String(current+1).padStart(2,'0')+' / '+String(unique.length).padStart(2,'0');
+  const clampIndex=i=>(i+cards.length)%cards.length;
+  const updateUI=()=>{
+    cards.forEach((card,i)=>card.classList.toggle('is-active',i===active));
+    if(currentLabel)currentLabel.textContent=String(active+1).padStart(2,'0');
+    if(progress)progress.style.transform='translateX('+(active*100)+'%)';
   };
-  const open=(card)=>{
-    const src=card.dataset.portfolioImage;
-    const found=unique.findIndex(el=>el.dataset.portfolioImage===src);
-    current=found>=0?found:0;
-    render();
-    lightbox.classList.add('is-open');
-    lightbox.setAttribute('aria-hidden','false');
+  const go=(i,behavior='smooth')=>{
+    active=clampIndex(i);
+    const card=cards[active];
+    rail.scrollTo({left:card.offsetLeft-rail.offsetLeft,behavior:reduced?'auto':behavior});
+    updateUI();
+  };
+  const nearest=()=>{
+    const left=rail.scrollLeft;
+    let best=0,dist=Infinity;
+    cards.forEach((card,i)=>{
+      const d=Math.abs((card.offsetLeft-rail.offsetLeft)-left);
+      if(d<dist){dist=d;best=i}
+    });
+    active=best; updateUI();
+  };
+  let scrollEnd;
+  rail.addEventListener('scroll',()=>{
+    clearTimeout(scrollEnd);
+    scrollEnd=setTimeout(nearest,90);
+  },{passive:true});
+
+  const stopTimer=()=>{if(timer){clearInterval(timer);timer=null}};
+  const startTimer=()=>{
+    stopTimer();
+    if(paused||reduced||document.hidden)return;
+    timer=setInterval(()=>go(active+1),5200);
+  };
+  prev?.addEventListener('click',()=>{go(active-1);startTimer()});
+  next?.addEventListener('click',()=>{go(active+1);startTimer()});
+  toggle?.addEventListener('click',()=>{
+    paused=!paused;
+    toggle.setAttribute('aria-pressed',String(paused));
+    toggle.setAttribute('aria-label',paused?'Retomar reprodução automática':'Pausar reprodução automática');
+    const icon=toggle.querySelector('.brmis-pause-icon');
+    if(icon)icon.textContent=paused?'▶':'Ⅱ';
+    paused?stopTimer():startTimer();
+  });
+  root.addEventListener('mouseenter',stopTimer);
+  root.addEventListener('mouseleave',startTimer);
+  root.addEventListener('focusin',stopTimer);
+  root.addEventListener('focusout',()=>setTimeout(()=>{if(!root.contains(document.activeElement))startTimer()},0));
+  document.addEventListener('visibilitychange',()=>document.hidden?stopTimer():startTimer());
+
+  rail.addEventListener('pointerdown',e=>{
+    if(e.pointerType==='mouse' && e.button!==0)return;
+    dragging=true;moved=false;startX=e.clientX;startScroll=rail.scrollLeft;
+    rail.classList.add('is-dragging');rail.setPointerCapture?.(e.pointerId);stopTimer();
+  });
+  rail.addEventListener('pointermove',e=>{
+    if(!dragging)return;
+    const dx=e.clientX-startX;
+    if(Math.abs(dx)>5)moved=true;
+    rail.scrollLeft=startScroll-dx;
+  });
+  const endDrag=e=>{
+    if(!dragging)return;
+    dragging=false;rail.classList.remove('is-dragging');
+    rail.releasePointerCapture?.(e.pointerId);
+    setTimeout(nearest,20);startTimer();
+  };
+  rail.addEventListener('pointerup',endDrag);
+  rail.addEventListener('pointercancel',endDrag);
+
+  const lightbox=document.getElementById('brmis-lightbox');
+  const lbImage=lightbox?.querySelector('figure img');
+  const lbTitle=lightbox?.querySelector('figcaption strong');
+  const lbCat=lightbox?.querySelector('figcaption small');
+  const lbIndex=lightbox?.querySelector('.brmis-lightbox-index');
+  const renderLB=()=>{
+    const card=cards[active]; if(!card||!lbImage)return;
+    lbImage.src=card.dataset.portfolioImage||'';
+    lbImage.alt=(card.dataset.portfolioTitle||'Projeto')+' — '+(card.dataset.portfolioCategory||'Acervo BRMIS');
+    lbTitle.textContent=card.dataset.portfolioTitle||'Projeto';
+    lbCat.textContent=card.dataset.portfolioCategory||'Acervo BRMIS';
+    lbIndex.textContent=String(active+1).padStart(2,'0')+' / '+String(cards.length).padStart(2,'0');
+  };
+  const openLB=i=>{
+    if(moved)return;
+    active=i; updateUI(); renderLB(); stopTimer();
+    lightbox.classList.add('is-open');lightbox.setAttribute('aria-hidden','false');
     document.body.classList.add('brmis-lightbox-open');
-    root.classList.add('is-paused');
     lightbox.querySelector('.brmis-lightbox-close')?.focus();
   };
-  const close=()=>{
-    lightbox.classList.remove('is-open');
-    lightbox.setAttribute('aria-hidden','true');
-    document.body.classList.remove('brmis-lightbox-open');
-    if(toggle?.getAttribute('aria-pressed')!=='true')root.classList.remove('is-paused');
+  const closeLB=()=>{
+    lightbox.classList.remove('is-open');lightbox.setAttribute('aria-hidden','true');
+    document.body.classList.remove('brmis-lightbox-open');startTimer();
   };
-  root.querySelectorAll('.brmis-showcase-card').forEach(card=>card.addEventListener('click',()=>open(card)));
-  lightbox.querySelector('.brmis-lightbox-close')?.addEventListener('click',close);
-  lightbox.querySelector('.brmis-lightbox-prev')?.addEventListener('click',()=>{current=(current-1+unique.length)%unique.length;render()});
-  lightbox.querySelector('.brmis-lightbox-next')?.addEventListener('click',()=>{current=(current+1)%unique.length;render()});
-  lightbox.addEventListener('click',e=>{if(e.target===lightbox)close()});
+  cards.forEach((card,i)=>card.querySelector('.brmis-gallery-open')?.addEventListener('click',()=>openLB(i)));
+  lightbox?.querySelector('.brmis-lightbox-close')?.addEventListener('click',closeLB);
+  lightbox?.querySelector('.brmis-lightbox-prev')?.addEventListener('click',()=>{active=clampIndex(active-1);updateUI();renderLB()});
+  lightbox?.querySelector('.brmis-lightbox-next')?.addEventListener('click',()=>{active=clampIndex(active+1);updateUI();renderLB()});
+  lightbox?.addEventListener('click',e=>{if(e.target===lightbox)closeLB()});
   document.addEventListener('keydown',e=>{
-    if(!lightbox.classList.contains('is-open'))return;
-    if(e.key==='Escape')close();
-    if(e.key==='ArrowLeft'){current=(current-1+unique.length)%unique.length;render()}
-    if(e.key==='ArrowRight'){current=(current+1)%unique.length;render()}
+    if(lightbox?.classList.contains('is-open')){
+      if(e.key==='Escape')closeLB();
+      if(e.key==='ArrowLeft'){active=clampIndex(active-1);updateUI();renderLB()}
+      if(e.key==='ArrowRight'){active=clampIndex(active+1);updateUI();renderLB()}
+      return;
+    }
+    if(document.activeElement===rail){
+      if(e.key==='ArrowLeft'){e.preventDefault();go(active-1);startTimer()}
+      if(e.key==='ArrowRight'){e.preventDefault();go(active+1);startTimer()}
+    }
   });
+
+  updateUI();startTimer();
 })();
 </script></body></html>
