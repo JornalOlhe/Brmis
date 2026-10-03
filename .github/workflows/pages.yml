@@ -20,19 +20,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Setup Node
-        uses: actions/setup-node@v6
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          node-version: 22
+          bun-version: latest
 
       - name: Install dependencies
-        run: npm install --no-audit --no-fund
+        run: bun install --frozen-lockfile
 
       - name: Build static site
         env:
           GITHUB_ACTIONS: "true"
           NITRO_PRESET: node-server
-        run: npm run build
+        run: bun run build
 
       - name: Prepare Pages output
         shell: bash
