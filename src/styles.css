@@ -1,0 +1,130 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: "Archivo", sans-serif;
+  --font-display: "Manrope", sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-concrete: var(--concrete);
+  --color-signal: var(--signal);
+  --color-signal-soft: var(--signal-soft);
+  --color-night: var(--night);
+  --radius-sm: 0.125rem;
+  --radius-md: 0.25rem;
+  --radius-lg: 0.375rem;
+}
+
+:root {
+  --background: oklch(0.965 0.008 83);
+  --foreground: oklch(0.18 0.008 70);
+  --card: oklch(0.985 0.005 80);
+  --card-foreground: oklch(0.18 0.008 70);
+  --popover: oklch(0.985 0.005 80);
+  --popover-foreground: oklch(0.18 0.008 70);
+  --primary: oklch(0.63 0.19 42);
+  --primary-foreground: oklch(0.99 0.004 80);
+  --secondary: oklch(0.25 0.007 70);
+  --secondary-foreground: oklch(0.965 0.008 83);
+  --muted: oklch(0.91 0.008 80);
+  --muted-foreground: oklch(0.46 0.012 65);
+  --accent: oklch(0.63 0.19 42);
+  --accent-foreground: oklch(0.99 0.004 80);
+  --destructive: oklch(0.55 0.22 27);
+  --destructive-foreground: oklch(0.99 0.004 80);
+  --border: oklch(0.78 0.009 75);
+  --input: oklch(0.72 0.01 75);
+  --ring: oklch(0.63 0.19 42);
+  --ink: oklch(0.18 0.008 70);
+  --paper: oklch(0.965 0.008 83);
+  --concrete: oklch(0.59 0.015 70);
+  --signal: oklch(0.63 0.19 42);
+  --signal-soft: oklch(0.86 0.09 58);
+  --night: oklch(0.13 0.008 65);
+  --radius: 0.25rem;
+}
+
+* { border-color: var(--border); }
+html { scroll-behavior: smooth; background: var(--night); }
+body { margin: 0; background: var(--background); color: var(--foreground); font-family: var(--font-sans); }
+::selection { background: var(--signal); color: var(--primary-foreground); }
+
+@utility section-shell {
+  width: min(100% - 2rem, 88rem);
+  margin-inline: auto;
+}
+
+@utility technical-label {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  line-height: 1;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
+@utility architectural-grid {
+  background-image: linear-gradient(to right, color-mix(in oklab, var(--foreground) 7%, transparent) 1px, transparent 1px);
+  background-size: calc((100% - 2rem) / 6) 100%;
+}
+
+@utility image-cinematic {
+  filter: saturate(0.82) contrast(1.04);
+  transition: transform 900ms cubic-bezier(.2,.7,.2,1), filter 600ms ease;
+}
+
+@utility reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 800ms ease, transform 800ms cubic-bezier(.2,.7,.2,1);
+  &.is-visible { opacity: 1; transform: translateY(0); }
+}
+
+@utility line-reveal {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 900ms cubic-bezier(.2,.7,.2,1);
+  &.is-visible { transform: scaleX(1); }
+}
+
+@keyframes drift { from { transform: translate3d(0, -1.5%, 0) scale(1.03); } to { transform: translate3d(0, 1.5%, 0) scale(1.07); } }
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+
+.hero-drift { animation: drift 14s ease-in-out infinite alternate; }
+.ticker-track { animation: ticker 28s linear infinite; width: max-content; }
+.blueprint-line { stroke-dasharray: 800; stroke-dashoffset: 800; animation: draw 2.4s 600ms ease forwards; }
+
+@media (min-width: 768px) {
+  .section-shell { width: min(100% - 5rem, 88rem); }
+  .architectural-grid { background-size: calc((100% - 5rem) / 12) 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  .reveal { opacity: 1; transform: none; }
+  .line-reveal { transform: none; }
+}
