@@ -45,57 +45,329 @@ a[href="#projetos"],a[href="#inicio"]{transition:color .3s ease,border-color .3s
   #projetos article,#projetos article img,#metodo .group,#sobre .grid-cols-5>.group{transition:none!important;transform:none!important}
 }
 </style><style id="brmis-portfolio-carousel">
-#brmis-acervo{position:relative;margin-top:clamp(6rem,11vw,10rem);padding-top:clamp(3.5rem,6vw,5.5rem);border-top:1px solid rgba(245,242,236,.16);color:#f5f2ec}
-#brmis-acervo:before{content:"";position:absolute;left:0;top:-1px;width:clamp(72px,10vw,150px);height:2px;background:#f27a2b;transform:translateY(-50%)}
-.brmis-acervo-head{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(250px,.55fr);gap:clamp(2.5rem,7vw,8rem);align-items:end}
-.brmis-acervo-title h3{max-width:950px;margin-top:1rem;font-family:Manrope,sans-serif;font-size:clamp(2.8rem,5.7vw,6.3rem);font-weight:500;line-height:.94;letter-spacing:-.05em;text-wrap:balance}
-.brmis-acervo-side{display:flex;flex-direction:column;gap:2.2rem;padding-bottom:.35rem}
-.brmis-acervo-side>p{max-width:380px;color:rgba(245,242,236,.58);font-size:.96rem;line-height:1.72}
-.brmis-acervo-stat{display:flex;align-items:flex-end;gap:1rem;padding-top:1.1rem;border-top:1px solid rgba(245,242,236,.16)}
-.brmis-acervo-stat strong{font-family:Manrope,sans-serif;font-size:clamp(3.4rem,5vw,5.8rem);font-weight:500;line-height:.78;letter-spacing:-.065em;color:#f27a2b}
-.brmis-acervo-stat span{padding-bottom:.15rem;color:rgba(245,242,236,.48);font-size:.62rem;line-height:1.45;letter-spacing:.11em;text-transform:uppercase}
+#brmis-acervo{
+  position:relative;
+  margin-top:clamp(6rem,11vw,10rem);
+  padding-top:clamp(3.5rem,6vw,5.5rem);
+  border-top:1px solid rgba(245,242,236,.14);
+  color:#f5f2ec;
+}
+#brmis-acervo:before{
+  content:"";
+  position:absolute;
+  left:0;top:-1px;
+  width:clamp(72px,9vw,132px);
+  height:2px;
+  background:#f27a2b;
+  transform:translateY(-50%);
+}
+.brmis-acervo-head{
+  display:grid;
+  grid-template-columns:minmax(0,1.45fr) minmax(250px,.55fr);
+  gap:clamp(2.5rem,7vw,8rem);
+  align-items:end;
+}
+.brmis-acervo-title h3{
+  max-width:980px;
+  margin-top:1rem;
+  font-family:Manrope,sans-serif;
+  font-size:clamp(2.8rem,5.7vw,6.3rem);
+  font-weight:500;
+  line-height:.94;
+  letter-spacing:-.05em;
+  text-wrap:balance;
+}
+.brmis-acervo-side{
+  display:flex;
+  flex-direction:column;
+  gap:2.1rem;
+  padding-bottom:.3rem;
+}
+.brmis-acervo-side>p{
+  max-width:390px;
+  color:rgba(245,242,236,.58);
+  font-size:.97rem;
+  line-height:1.72;
+}
+.brmis-acervo-stat{
+  display:flex;
+  align-items:flex-end;
+  gap:1rem;
+  padding-top:1.1rem;
+  border-top:1px solid rgba(245,242,236,.15);
+}
+.brmis-acervo-stat strong{
+  font-family:Manrope,sans-serif;
+  font-size:clamp(3.4rem,5vw,5.8rem);
+  font-weight:500;
+  line-height:.78;
+  letter-spacing:-.065em;
+  color:#f27a2b;
+}
+.brmis-acervo-stat span{
+  padding-bottom:.15rem;
+  color:rgba(245,242,236,.46);
+  font-size:.62rem;
+  line-height:1.45;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+}
 
-.brmis-marquee-heading{display:flex;align-items:center;gap:.9rem;margin-top:clamp(3.8rem,7vw,6rem);font-family:Archivo,sans-serif;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,242,236,.42)}
-.brmis-marquee-heading i{flex:1;height:1px;background:rgba(245,242,236,.13)}
-.brmis-marquee-bleed{width:100vw;margin-left:calc(50% - 50vw);margin-top:1.15rem;overflow:hidden}
-.brmis-marquee-viewport{position:relative;overflow:hidden;padding:0 0 .25rem;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 3.5%,#000 96.5%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 3.5%,#000 96.5%,transparent 100%)}
-.brmis-marquee-track{display:flex;width:max-content;will-change:transform;animation:brmisMarqueeMove 84s linear infinite;transform:translate3d(0,0,0)}
-.brmis-marquee-group{display:flex;flex:none;align-items:stretch;gap:clamp(.8rem,1.4vw,1.25rem);padding-right:clamp(.8rem,1.4vw,1.25rem)}
-@keyframes brmisMarqueeMove{to{transform:translate3d(-50%,0,0)}}
+.brmis-marquee-rule{
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  margin-top:clamp(3.6rem,7vw,5.8rem);
+}
+.brmis-marquee-rule:before,.brmis-marquee-rule:after{
+  content:"";
+  height:1px;
+  background:rgba(245,242,236,.13);
+}
+.brmis-marquee-rule:before{width:clamp(42px,8vw,112px);background:#f27a2b}
+.brmis-marquee-rule:after{flex:1}
+.brmis-marquee-rule span{
+  font-family:Archivo,sans-serif;
+  font-size:.58rem;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  color:rgba(245,242,236,.42);
+  white-space:nowrap;
+}
 
-.brmis-marquee-card{position:relative;display:block;flex:none;height:clamp(285px,31vw,440px);aspect-ratio:var(--media-ratio);padding:0;border:0;background:#191816;color:#f5f2ec;overflow:hidden;cursor:zoom-in;text-align:left;isolation:isolate}
-.brmis-marquee-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;filter:none;transform:scale(1.001);transition:transform .9s cubic-bezier(.2,.75,.2,1),filter .55s ease}
-.brmis-marquee-shade{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(0,0,0,.68) 100%);opacity:.7;transition:opacity .45s ease}
-.brmis-marquee-meta{position:absolute;inset:auto 0 0 0;z-index:2;display:grid;grid-template-columns:auto 1fr auto;align-items:end;gap:.9rem;padding:1rem 1rem 1.05rem;color:#fff;transform:translateY(3px);transition:transform .45s cubic-bezier(.2,.75,.2,1)}
-.brmis-marquee-index{font-family:Archivo,sans-serif;font-size:.56rem;letter-spacing:.12em;color:#f27a2b;padding-bottom:.15rem}
-.brmis-marquee-meta strong{display:block;font-family:Manrope,sans-serif;font-size:clamp(.96rem,1.25vw,1.16rem);font-weight:500;line-height:1.12;text-shadow:0 1px 18px rgba(0,0,0,.4)}
-.brmis-marquee-meta small{display:block;margin-top:.28rem;font-family:Archivo,sans-serif;font-size:.54rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.63)}
-.brmis-marquee-meta b{display:grid;place-items:center;width:34px;height:34px;border:1px solid rgba(255,255,255,.35);border-radius:50%;font-family:Manrope,sans-serif;font-size:1.1rem;font-weight:300;transition:background .3s ease,border-color .3s ease,color .3s ease,transform .3s ease}
-.brmis-marquee-card:hover img,.brmis-marquee-card:focus-visible img{transform:scale(1.045);filter:saturate(1.04) contrast(1.02)}
-.brmis-marquee-card:hover .brmis-marquee-shade,.brmis-marquee-card:focus-visible .brmis-marquee-shade{opacity:.95}
-.brmis-marquee-card:hover .brmis-marquee-meta,.brmis-marquee-card:focus-visible .brmis-marquee-meta{transform:translateY(-3px)}
-.brmis-marquee-card:hover .brmis-marquee-meta b,.brmis-marquee-card:focus-visible .brmis-marquee-meta b{background:#f27a2b;border-color:#f27a2b;color:#11100f;transform:rotate(90deg)}
+.brmis-marquee-bleed{
+  width:100vw;
+  margin-left:calc(50% - 50vw);
+  margin-top:1.15rem;
+  overflow:hidden;
+}
+.brmis-marquee-viewport{
+  position:relative;
+  overflow:hidden;
+  padding:.1rem 0 .4rem;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 3%,#000 97%,transparent 100%);
+  mask-image:linear-gradient(90deg,transparent 0,#000 3%,#000 97%,transparent 100%);
+}
+.brmis-marquee-track{
+  display:flex;
+  width:max-content;
+  will-change:transform;
+  transform:translate3d(0,0,0);
+  animation:brmisMarqueeMove 112s linear infinite;
+}
+.brmis-marquee-group{
+  display:flex;
+  flex:none;
+  align-items:stretch;
+  gap:clamp(.75rem,1.15vw,1rem);
+  padding-right:clamp(.75rem,1.15vw,1rem);
+}
+@keyframes brmisMarqueeMove{
+  to{transform:translate3d(-50%,0,0)}
+}
 
-.brmis-marquee-foot{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(245,242,236,.12);font-family:Archivo,sans-serif;font-size:.56rem;letter-spacing:.11em;text-transform:uppercase;color:rgba(245,242,236,.36)}
+.brmis-marquee-card{
+  --card-h:clamp(300px,31vw,460px);
+  position:relative;
+  display:block;
+  flex:none;
+  height:var(--card-h);
+  aspect-ratio:var(--media-ratio);
+  padding:0;
+  border:0;
+  background:#171614;
+  color:#f5f2ec;
+  overflow:hidden;
+  cursor:zoom-in;
+  text-align:left;
+  isolation:isolate;
+  box-shadow:0 0 0 1px rgba(245,242,236,.05);
+}
+.brmis-marquee-card:focus-visible{
+  outline:1px solid #f27a2b;
+  outline-offset:4px;
+}
+.brmis-marquee-card img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  filter:none;
+  transform:scale(1.001);
+  transition:transform 1.05s cubic-bezier(.22,1,.36,1),filter .6s ease;
+}
+.brmis-marquee-shade{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  background:
+    linear-gradient(180deg,rgba(0,0,0,0) 48%,rgba(0,0,0,.12) 64%,rgba(0,0,0,.68) 100%);
+  opacity:.72;
+  transition:opacity .55s ease;
+}
+.brmis-marquee-meta{
+  position:absolute;
+  inset:auto 0 0 0;
+  z-index:2;
+  display:grid;
+  grid-template-columns:auto 1fr;
+  align-items:end;
+  gap:.85rem;
+  padding:1rem 1.05rem 1.05rem;
+  color:#fff;
+  transform:translateY(2px);
+  transition:transform .55s cubic-bezier(.22,1,.36,1);
+}
+.brmis-marquee-index{
+  font-family:Archivo,sans-serif;
+  font-size:.54rem;
+  letter-spacing:.12em;
+  color:#f27a2b;
+  padding-bottom:.18rem;
+}
+.brmis-marquee-meta strong{
+  display:block;
+  font-family:Manrope,sans-serif;
+  font-size:clamp(.96rem,1.2vw,1.15rem);
+  font-weight:500;
+  line-height:1.12;
+  text-shadow:0 2px 18px rgba(0,0,0,.35);
+}
+.brmis-marquee-meta small{
+  display:block;
+  margin-top:.28rem;
+  font-family:Archivo,sans-serif;
+  font-size:.52rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.62);
+}
+.brmis-marquee-meta b{display:none}
+.brmis-marquee-card:hover img,.brmis-marquee-card:focus-visible img{
+  transform:scale(1.028);
+  filter:saturate(1.025) contrast(1.01);
+}
+.brmis-marquee-card:hover .brmis-marquee-shade,.brmis-marquee-card:focus-visible .brmis-marquee-shade{
+  opacity:.9;
+}
+.brmis-marquee-card:hover .brmis-marquee-meta,.brmis-marquee-card:focus-visible .brmis-marquee-meta{
+  transform:translateY(-3px);
+}
+.brmis-marquee-foot{
+  margin-top:1rem;
+  padding-top:.9rem;
+  border-top:1px solid rgba(245,242,236,.1);
+}
+.brmis-marquee-foot span{
+  font-family:Archivo,sans-serif;
+  font-size:.55rem;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+  color:rgba(245,242,236,.32);
+}
+.brmis-marquee-foot span:last-child{display:none}
 
-.brmis-lightbox{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:clamp(1rem,3vw,3rem);background:rgba(7,7,6,.97);backdrop-filter:blur(20px);opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease}
-.brmis-lightbox.is-open{opacity:1;visibility:visible}
-.brmis-lightbox figure{width:min(100%,1320px);margin:auto}
-.brmis-lightbox-stage{display:flex;align-items:center;justify-content:center;min-height:0}
-.brmis-lightbox figure img{display:block;max-width:100%;max-height:80vh;width:auto;height:auto;object-fit:contain;background:#111}
-.brmis-lightbox figcaption{display:grid;grid-template-columns:auto 1fr auto;align-items:baseline;gap:1rem;padding-top:1rem;color:#f5f2ec;border-top:1px solid rgba(245,242,236,.14)}
-.brmis-lightbox figcaption span{color:#f27a2b;font-family:Archivo,sans-serif;font-size:.6rem;letter-spacing:.12em}
-.brmis-lightbox figcaption strong{font-family:Manrope,sans-serif;font-size:1.05rem;font-weight:500}
-.brmis-lightbox figcaption small{color:rgba(245,242,236,.45);text-transform:uppercase;letter-spacing:.08em}
-.brmis-lightbox-close{position:absolute;top:1.2rem;right:1.5rem;width:46px;height:46px;border:1px solid rgba(245,242,236,.2);border-radius:50%;background:rgba(17,16,15,.68);color:#f5f2ec;font-size:1.6rem;cursor:pointer;transition:background .25s,border-color .25s,transform .25s,color .25s}
-.brmis-lightbox-close:hover{background:#f27a2b;border-color:#f27a2b;color:#11100f;transform:rotate(90deg)}
+/* Lightbox */
+.brmis-lightbox{
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  display:grid;
+  place-items:center;
+  padding:clamp(1rem,3vw,3rem);
+  background:rgba(7,7,6,.965);
+  backdrop-filter:blur(18px);
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .34s ease,visibility .34s ease;
+}
+.brmis-lightbox.is-open{
+  opacity:1;
+  visibility:visible;
+}
+.brmis-lightbox figure{
+  width:min(100%,1380px);
+  margin:auto;
+  opacity:0;
+  transform:translateY(10px) scale(.986);
+  transition:opacity .42s ease,transform .5s cubic-bezier(.22,1,.36,1);
+}
+.brmis-lightbox.is-open figure{
+  opacity:1;
+  transform:translateY(0) scale(1);
+}
+.brmis-lightbox-stage{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:0;
+}
+.brmis-lightbox figure img{
+  display:block;
+  max-width:100%;
+  max-height:82vh;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+  background:#0f0f0e;
+  box-shadow:0 24px 80px rgba(0,0,0,.35);
+}
+.brmis-lightbox figcaption{
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:baseline;
+  gap:1rem;
+  padding-top:1rem;
+  color:#f5f2ec;
+  border-top:1px solid rgba(245,242,236,.12);
+}
+.brmis-lightbox figcaption span{
+  color:#f27a2b;
+  font-family:Archivo,sans-serif;
+  font-size:.58rem;
+  letter-spacing:.12em;
+}
+.brmis-lightbox figcaption strong{
+  font-family:Manrope,sans-serif;
+  font-size:1.03rem;
+  font-weight:500;
+}
+.brmis-lightbox figcaption small{
+  color:rgba(245,242,236,.42);
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+.brmis-lightbox-close{
+  position:absolute;
+  top:1.25rem;
+  right:1.5rem;
+  width:46px;
+  height:46px;
+  border:1px solid rgba(245,242,236,.18);
+  border-radius:50%;
+  background:rgba(17,16,15,.62);
+  color:#f5f2ec;
+  font-size:1.55rem;
+  font-weight:300;
+  line-height:1;
+  cursor:pointer;
+  transition:background .25s,border-color .25s,transform .3s,color .25s;
+}
+.brmis-lightbox-close:hover,.brmis-lightbox-close:focus-visible{
+  background:#f27a2b;
+  border-color:#f27a2b;
+  color:#11100f;
+  transform:rotate(90deg);
+}
 body.brmis-lightbox-open{overflow:hidden}
 
 @media(max-width:900px){
   .brmis-acervo-head{grid-template-columns:1fr;gap:2.25rem}
   .brmis-acervo-side{display:grid;grid-template-columns:1fr auto;align-items:end;gap:2rem}
   .brmis-acervo-stat{min-width:230px}
-  .brmis-marquee-track{animation-duration:76s}
+  .brmis-marquee-track{animation-duration:102s}
 }
 @media(max-width:640px){
   #brmis-acervo{margin-top:6rem;padding-top:3.5rem}
@@ -103,12 +375,11 @@ body.brmis-lightbox-open{overflow:hidden}
   .brmis-acervo-side{grid-template-columns:1fr}
   .brmis-acervo-side>p{font-size:.9rem}
   .brmis-acervo-stat{min-width:0}
-  .brmis-marquee-heading span:last-child{display:none}
-  .brmis-marquee-card{height:clamp(230px,66vw,310px)}
-  .brmis-marquee-track{animation-duration:68s}
-  .brmis-marquee-foot span:last-child{display:none}
-  .brmis-lightbox{padding:4.5rem .85rem 1rem}
-  .brmis-lightbox figure img{max-height:72vh}
+  .brmis-marquee-card{--card-h:clamp(235px,67vw,315px)}
+  .brmis-marquee-track{animation-duration:94s}
+  .brmis-marquee-viewport{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 1.8%,#000 98.2%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 1.8%,#000 98.2%,transparent 100%)}
+  .brmis-lightbox{padding:4.6rem .8rem 1rem}
+  .brmis-lightbox figure img{max-height:73vh}
   .brmis-lightbox figcaption{grid-template-columns:auto 1fr}
   .brmis-lightbox figcaption small{grid-column:2}
 }
@@ -117,16 +388,64 @@ body.brmis-lightbox-open{overflow:hidden}
   .brmis-marquee-viewport::-webkit-scrollbar{display:none}
   .brmis-marquee-track{animation:none!important}
   .brmis-marquee-group[aria-hidden="true"]{display:none}
-  .brmis-marquee-card img,.brmis-marquee-meta,.brmis-marquee-meta b{transition:none!important}
+  .brmis-marquee-card img,.brmis-marquee-meta,.brmis-lightbox figure{transition:none!important}
+}
+</style><style id="brmis-professional-polish">
+/* calmer, more architectural motion language */
+.brmis-js .reveal{
+  opacity:0;
+  filter:blur(2px);
+  transform:translateY(18px);
+  transition:
+    opacity .82s ease var(--reveal-delay,0ms),
+    transform .95s cubic-bezier(.22,1,.36,1) var(--reveal-delay,0ms),
+    filter .8s ease var(--reveal-delay,0ms);
+}
+.brmis-js .reveal.is-visible{opacity:1;filter:blur(0);transform:translateY(0)}
+.brmis-js .line-reveal{
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform 1s cubic-bezier(.22,1,.36,1);
+}
+.brmis-js .line-reveal.is-visible{transform:scaleX(1)}
+header{
+  transition:
+    background-color .45s ease,
+    border-color .45s ease,
+    backdrop-filter .45s ease,
+    box-shadow .45s ease;
+}
+header.brmis-header-scrolled{
+  background:rgba(17,16,15,.9)!important;
+  border-color:rgba(245,242,236,.11)!important;
+  backdrop-filter:blur(16px);
+  box-shadow:0 10px 36px rgba(0,0,0,.11);
+}
+nav[aria-label="Navegação principal"] a:after{
+  bottom:-8px;
+  height:1px;
+  background:#f27a2b;
+  transition:transform .38s cubic-bezier(.22,1,.36,1);
+}
+#projetos article{transition:transform .5s cubic-bezier(.22,1,.36,1)}
+#projetos article:hover{transform:translateY(-4px)}
+#projetos article img{transition:transform .85s cubic-bezier(.22,1,.36,1),filter .6s ease}
+#projetos article:hover img{transform:scale(1.035);filter:saturate(1.02) contrast(1.01)}
+#metodo .group{transition:transform .45s cubic-bezier(.22,1,.36,1),background-color .35s ease}
+#metodo .group:hover{transform:translateX(4px);background:rgba(242,122,43,.025)}
+#sobre .grid-cols-5>.group{transition:transform .4s cubic-bezier(.22,1,.36,1),background-color .35s ease}
+#sobre .grid-cols-5>.group:hover{transform:translateY(-3px);background:rgba(242,122,43,.028)}
+@media(prefers-reduced-motion:reduce){
+  .brmis-js .reveal{opacity:1!important;filter:none!important;transform:none!important;transition:none!important}
 }
 </style></head><body><!--$--><main class="overflow-hidden bg-background"><header class="fixed inset-x-0 top-0 z-50 border-b transition-all duration-500 border-paper/20 bg-transparent"><div class="section-shell flex h-20 items-center justify-between md:h-24"><a href="#inicio" aria-label="BRMIS Construtora — início" class="relative z-50 font-display text-xl font-bold tracking-[0.12em] text-paper"><span class="mr-1 text-signal">B</span>RMIS <span class="hidden text-[0.55rem] font-medium uppercase tracking-[0.18em] opacity-60 sm:inline">Construtora</span></a><nav aria-label="Navegação principal" class="hidden items-center gap-9 md:flex"><a href="#sobre" class="technical-label group flex items-center gap-2 text-paper/75 transition-colors hover:text-paper"><span class="text-signal">0<!-- -->1</span>Sobre</a><a href="#projetos" class="technical-label group flex items-center gap-2 text-paper/75 transition-colors hover:text-paper"><span class="text-signal">0<!-- -->2</span>Projetos</a><a href="#metodo" class="technical-label group flex items-center gap-2 text-paper/75 transition-colors hover:text-paper"><span class="text-signal">0<!-- -->3</span>Método</a><a href="#contato" class="technical-label group flex items-center gap-2 text-paper/75 transition-colors hover:text-paper"><span class="text-signal">0<!-- -->4</span>Contato</a></nav><button type="button" aria-label="Abrir menu" aria-expanded="false" class="relative z-50 grid size-11 place-items-center text-paper md:hidden"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu" aria-hidden="true"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg></button></div></header><section id="inicio" aria-labelledby="hero-title" class="relative min-h-[92svh] bg-night text-paper"><img src="assets/brmis-hero-Cc7zJqn8.jpg" alt="Residência contemporânea em concreto, pedra e vidro ao entardecer" width="1920" height="1280" fetchPriority="high" class="hero-drift absolute inset-0 size-full object-cover object-[65%_center]"/><div class="absolute inset-0 bg-gradient-to-r from-night via-night/60 to-night/5"></div><div class="absolute inset-0 architectural-grid opacity-25"></div><div class="section-shell relative flex min-h-[92svh] flex-col justify-end pb-10 pt-40 md:pb-14"><div class="mb-auto flex items-start justify-end pt-4"><div class="hidden w-44 border-l border-paper/30 pl-5 text-xs leading-relaxed text-paper/65 lg:block">Engenharia e gestão para obras que atravessam o tempo.</div></div><div class="max-w-5xl animate-fade-in"><div class="technical-label mb-6 flex items-center gap-4 text-paper/70"><span class="h-px w-12 bg-signal"></span> Construção civil de alto padrão</div><h1 id="hero-title" class="font-display text-[clamp(3.2rem,8vw,8rem)] font-medium leading-[0.92]">Construímos<br/><span class="text-paper/78">o que permanece.</span></h1></div><div class="mt-10 grid items-end gap-8 border-t border-paper/25 pt-6 md:grid-cols-12"><p class="max-w-md text-base leading-relaxed text-paper/75 md:col-span-5 md:text-lg">Há mais de 15 anos, transformamos projetos em obras executadas com método, precisão e responsabilidade.</p><div class="flex gap-9 md:col-span-4"><div><strong class="font-display text-2xl text-paper">+15</strong><span class="block text-xs text-paper/55">anos de mercado</span></div><div><strong class="font-display text-2xl text-paper">+45</strong><span class="block text-xs text-paper/55">obras realizadas</span></div></div><a href="#projetos" class="group flex items-center justify-between border-b border-signal pb-3 text-sm font-semibold md:col-span-3">Conheça nossa atuação <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-down size-4 transition-transform group-hover:translate-y-1" aria-hidden="true"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg></a></div></div></section><section id="sobre" class="architectural-grid py-24 md:py-36"><div class="section-shell"><div class="reveal grid gap-6 border-t pt-6 md:grid-cols-12 border-foreground/20"><div class="technical-label text-signal md:col-span-2">01<!-- --> / <!-- -->Nossa história</div><h2 class="max-w-4xl font-display text-4xl font-medium leading-[1.02] md:col-span-9 md:text-6xl lg:text-7xl text-foreground">Cinco trajetórias. Uma mesma forma de construir.</h2></div><div class="mt-16 grid gap-14 md:grid-cols-12 md:mt-24"><div class="reveal md:col-span-5 md:col-start-3"><p class="font-display text-2xl leading-snug md:text-3xl">A BRMIS nasceu da amizade e da parceria entre Bruno, Roberto, Marcos, Ilenildo e Silvio.</p></div><div class="reveal md:col-span-4"><p class="leading-relaxed text-muted-foreground">O que começou pela confiança entre cinco fundadores tornou-se uma construtora preparada para assumir cada etapa da obra. Unimos visão de projeto, controle técnico e presença constante no canteiro para entregar com clareza, qualidade e compromisso.</p></div></div><div class="mt-20 grid grid-cols-5 border-y border-foreground/20 md:mt-28"><div class="group reveal border-r border-foreground/20 py-7 text-center last:border-r-0 md:py-12" style="transition-delay:0ms"><span class="block font-display text-4xl font-medium transition-colors group-hover:text-signal md:text-7xl">B</span><span class="mt-3 hidden text-[0.65rem] uppercase tracking-[0.12em] text-muted-foreground sm:block">Bruno</span></div><div class="group reveal border-r border-foreground/20 py-7 text-center last:border-r-0 md:py-12" style="transition-delay:70ms"><span class="block font-display text-4xl font-medium transition-colors group-hover:text-signal md:text-7xl">R</span><span class="mt-3 hidden text-[0.65rem] uppercase tracking-[0.12em] text-muted-foreground sm:block">Roberto</span></div><div class="group reveal border-r border-foreground/20 py-7 text-center last:border-r-0 md:py-12" style="transition-delay:140ms"><span class="block font-display text-4xl font-medium transition-colors group-hover:text-signal md:text-7xl">M</span><span class="mt-3 hidden text-[0.65rem] uppercase tracking-[0.12em] text-muted-foreground sm:block">Marcos</span></div><div class="group reveal border-r border-foreground/20 py-7 text-center last:border-r-0 md:py-12" style="transition-delay:210ms"><span class="block font-display text-4xl font-medium transition-colors group-hover:text-signal md:text-7xl">I</span><span class="mt-3 hidden text-[0.65rem] uppercase tracking-[0.12em] text-muted-foreground sm:block">Ilenildo</span></div><div class="group reveal border-r border-foreground/20 py-7 text-center last:border-r-0 md:py-12" style="transition-delay:280ms"><span class="block font-display text-4xl font-medium transition-colors group-hover:text-signal md:text-7xl">S</span><span class="mt-3 hidden text-[0.65rem] uppercase tracking-[0.12em] text-muted-foreground sm:block">Silvio</span></div></div></div></section><section aria-label="Números da BRMIS" class="bg-signal py-12 text-primary-foreground md:py-16"><div class="section-shell grid gap-10 md:grid-cols-3 md:gap-0"><div class="reveal "><strong class="font-display text-6xl font-medium md:text-8xl"><span class="brmis-counter" data-target="15" data-prefix="+">+15</span></strong><p class="mt-2 max-w-52 text-sm font-medium">anos de experiência</p></div><div class="reveal md:border-l md:border-primary-foreground/30 md:pl-10"><strong class="font-display text-6xl font-medium md:text-8xl"><span class="brmis-counter" data-target="45" data-prefix="+">+45</span></strong><p class="mt-2 max-w-52 text-sm font-medium">obras construídas ou administradas</p></div><div class="reveal md:border-l md:border-primary-foreground/30 md:pl-10"><strong class="font-display text-6xl font-medium md:text-8xl"><span>0</span></strong><p class="mt-2 max-w-52 text-sm font-medium">fundadores, uma só visão</p></div></div></section><section id="projetos" class="bg-night py-24 text-paper md:py-36"><div class="section-shell"><div class="reveal grid gap-6 border-t pt-6 md:grid-cols-12 border-paper/20"><div class="technical-label text-signal md:col-span-2">02<!-- --> / <!-- -->Projetos</div><h2 class="max-w-4xl font-display text-4xl font-medium leading-[1.02] md:col-span-9 md:text-6xl lg:text-7xl text-paper">Arquitetura bem resolvida. Execução à altura.</h2></div><div class="mt-16 grid gap-x-8 gap-y-16 md:grid-cols-12 md:mt-24"><article class="group reveal md:col-span-5"><div class="overflow-hidden bg-concrete aspect-[4/5]"><img src="assets/brmis-project-residencial-BI43_NFC.jpg" alt="Arquitetura residencial" width="1408" height="1760" loading="lazy" class="image-cinematic size-full object-cover group-hover:scale-[1.025] group-hover:saturate-100"/></div><div class="mt-5 flex items-start justify-between gap-4 border-t border-paper/25 pt-4"><div><p class="technical-label mb-2 text-signal">01<!-- --> / Atuação</p><h3 class="font-display text-xl font-medium md:text-2xl">Arquitetura residencial</h3><p class="mt-1 text-sm text-paper/55">Construção de alto padrão</p></div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right mt-1 size-5 text-paper/50 transition-transform group-hover:translate-x-1 group-hover:text-signal" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div></article><article class="group reveal md:col-span-7 md:mt-32"><div class="overflow-hidden bg-concrete aspect-[4/3]"><img src="assets/brmis-project-interiores-BHf9gdDz.jpg" alt="Interiores e acabamento" width="1600" height="1200" loading="lazy" class="image-cinematic size-full object-cover group-hover:scale-[1.025] group-hover:saturate-100"/></div><div class="mt-5 flex items-start justify-between gap-4 border-t border-paper/25 pt-4"><div><p class="technical-label mb-2 text-signal">02<!-- --> / Atuação</p><h3 class="font-display text-xl font-medium md:text-2xl">Interiores e acabamento</h3><p class="mt-1 text-sm text-paper/55">Precisão em cada encontro</p></div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right mt-1 size-5 text-paper/50 transition-transform group-hover:translate-x-1 group-hover:text-signal" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div></article><article class="group reveal md:col-span-5 md:col-start-7 md:-mt-8"><div class="overflow-hidden bg-concrete aspect-[4/5]"><img src="assets/brmis-project-execucao-B_BvvvAK.jpg" alt="Execução e gestão" width="1408" height="1760" loading="lazy" class="image-cinematic size-full object-cover group-hover:scale-[1.025] group-hover:saturate-100"/></div><div class="mt-5 flex items-start justify-between gap-4 border-t border-paper/25 pt-4"><div><p class="technical-label mb-2 text-signal">03<!-- --> / Atuação</p><h3 class="font-display text-xl font-medium md:text-2xl">Execução e gestão</h3><p class="mt-1 text-sm text-paper/55">Canteiro organizado, obra controlada</p></div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right mt-1 size-5 text-paper/50 transition-transform group-hover:translate-x-1 group-hover:text-signal" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div></article></div><p class="mt-16 border-l border-signal pl-4 text-xs leading-relaxed text-paper/45">Residencial, interiores, execução e gestão integram as principais frentes de atuação da BRMIS.</p><div id="brmis-acervo" class="brmis-acervo reveal">
   <div class="brmis-acervo-head">
     <div class="brmis-acervo-title">
       <p class="technical-label text-signal">ACERVO / PROJETOS E REALIZAÇÕES</p>
-      <h3>Projetos que falam<br/>por si.</h3>
+      <h3>Uma trajetória vista<br/>em projetos.</h3>
     </div>
     <div class="brmis-acervo-side">
-      <p>Um recorte do acervo BRMIS, com diferentes escalas, ambientes e soluções desenvolvidas ao longo da nossa trajetória.</p>
+      <p>Residências, interiores e áreas externas que traduzem nossa atenção à execução, aos materiais e ao detalhe.</p>
       <div class="brmis-acervo-stat"><strong>+45</strong><span>obras construídas<br/>ou administradas</span></div>
     </div>
   </div>
@@ -141,68 +460,68 @@ body.brmis-lightbox-open{overflow:hidden}
         <div class="brmis-marquee-group"><button type="button" class="brmis-marquee-card" style="--media-ratio:1125 / 900" data-portfolio-image="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/9d605587-d5cf-48bb-a67a-5c2bdc2e71e9.jpg" data-portfolio-title="Fachada residencial" data-portfolio-category="Residencial" aria-label="Ampliar Fachada residencial">
   <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/9d605587-d5cf-48bb-a67a-5c2bdc2e71e9.jpg" alt="Fachada residencial do acervo BRMIS" loading="eager" decoding="async"/>
   <span class="brmis-marquee-shade" aria-hidden="true"></span>
-  <span class="brmis-marquee-meta"><span class="brmis-marquee-index">01</span><span><strong>Fachada residencial</strong><small>Residencial</small></span><b>+</b></span>
+  <span class="brmis-marquee-meta"><span class="brmis-marquee-index">01</span><span><strong>Fachada residencial</strong><small>Residencial</small></span></span>
 </button><button type="button" class="brmis-marquee-card" style="--media-ratio:1240 / 675" data-portfolio-image="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/7f76a6b0-841e-42f2-86d3-c3097a4a7d6e.jpg" data-portfolio-title="Área externa e lazer" data-portfolio-category="Área externa" aria-label="Ampliar Área externa e lazer">
   <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/7f76a6b0-841e-42f2-86d3-c3097a4a7d6e.jpg" alt="Área externa e lazer do acervo BRMIS" loading="eager" decoding="async"/>
   <span class="brmis-marquee-shade" aria-hidden="true"></span>
-  <span class="brmis-marquee-meta"><span class="brmis-marquee-index">02</span><span><strong>Área externa e lazer</strong><small>Área externa</small></span><b>+</b></span>
+  <span class="brmis-marquee-meta"><span class="brmis-marquee-index">02</span><span><strong>Área externa e lazer</strong><small>Área externa</small></span></span>
 </button><button type="button" class="brmis-marquee-card" style="--media-ratio:1240 / 697" data-portfolio-image="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/4ee240d6-fda2-4889-b3f7-b27646bc7b54.jpg" data-portfolio-title="Integração e convivência" data-portfolio-category="Área externa" aria-label="Ampliar Integração e convivência">
   <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/4ee240d6-fda2-4889-b3f7-b27646bc7b54.jpg" alt="Integração e convivência do acervo BRMIS" loading="lazy" decoding="async"/>
   <span class="brmis-marquee-shade" aria-hidden="true"></span>
-  <span class="brmis-marquee-meta"><span class="brmis-marquee-index">03</span><span><strong>Integração e convivência</strong><small>Área externa</small></span><b>+</b></span>
+  <span class="brmis-marquee-meta"><span class="brmis-marquee-index">03</span><span><strong>Integração e convivência</strong><small>Área externa</small></span></span>
 </button><button type="button" class="brmis-marquee-card" style="--media-ratio:947 / 1338" data-portfolio-image="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/9d0212a0-a649-45a9-9d95-ffc646fceffd.jpg" data-portfolio-title="Sala de estar" data-portfolio-category="Interiores" aria-label="Ampliar Sala de estar">
   <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/9d0212a0-a649-45a9-9d95-ffc646fceffd.jpg" alt="Sala de estar do acervo BRMIS" loading="lazy" decoding="async"/>
   <span class="brmis-marquee-shade" aria-hidden="true"></span>
-  <span class="brmis-marquee-meta"><span class="brmis-marquee-index">04</span><span><strong>Sala de estar</strong><small>Interiores</small></span><b>+</b></span>
+  <span class="brmis-marquee-meta"><span class="brmis-marquee-index">04</span><span><strong>Sala de estar</strong><small>Interiores</small></span></span>
 </button><button type="button" class="brmis-marquee-card" style="--media-ratio:947 / 1338" data-portfolio-image="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/2d27a64a-7631-408e-94f9-a0d5981a7659.jpg" data-portfolio-title="Cozinha e jantar" data-portfolio-category="Interiores" aria-label="Ampliar Cozinha e jantar">
   <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/2d27a64a-7631-408e-94f9-a0d5981a7659.jpg" alt="Cozinha e jantar do acervo BRMIS" loading="lazy" decoding="async"/>
   <span class="brmis-marquee-shade" aria-hidden="true"></span>
-  <span class="brmis-marquee-meta"><span class="brmis-marquee-index">05</span><span><strong>Cozinha e jantar</strong><small>Interiores</small></span><b>+</b></span>
+  <span class="brmis-marquee-meta"><span class="brmis-marquee-index">05</span><span><strong>Cozinha e jantar</strong><small>Interiores</small></span></span>
 </button><button type="button" class="brmis-marquee-card" style="--media-ratio:1240 / 697" data-portfolio-image="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/fa476f9a-e3f4-43cf-8aa2-1e689fe9664c.jpg" data-portfolio-title="Fachada noturna" data-portfolio-category="Residencial" aria-label="Ampliar Fachada noturna">
   <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/fa476f9a-e3f4-43cf-8aa2-1e689fe9664c.jpg" alt="Fachada noturna do acervo BRMIS" loading="lazy" decoding="async"/>
   <span class="brmis-marquee-shade" aria-hidden="true"></span>
-  <span class="brmis-marquee-meta"><span class="brmis-marquee-index">06</span><span><strong>Fachada noturna</strong><small>Residencial</small></span><b>+</b></span>
+  <span class="brmis-marquee-meta"><span class="brmis-marquee-index">06</span><span><strong>Fachada noturna</strong><small>Residencial</small></span></span>
 </button><button type="button" class="brmis-marquee-card" style="--media-ratio:1422 / 800" data-portfolio-image="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/fee86992-dce2-4f85-b843-1a9390e44d2c.jpg" data-portfolio-title="Pátio contemporâneo" data-portfolio-category="Estudo arquitetônico" aria-label="Ampliar Pátio contemporâneo">
   <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/fee86992-dce2-4f85-b843-1a9390e44d2c.jpg" alt="Pátio contemporâneo do acervo BRMIS" loading="lazy" decoding="async"/>
   <span class="brmis-marquee-shade" aria-hidden="true"></span>
-  <span class="brmis-marquee-meta"><span class="brmis-marquee-index">07</span><span><strong>Pátio contemporâneo</strong><small>Estudo arquitetônico</small></span><b>+</b></span>
+  <span class="brmis-marquee-meta"><span class="brmis-marquee-index">07</span><span><strong>Pátio contemporâneo</strong><small>Estudo arquitetônico</small></span></span>
 </button><button type="button" class="brmis-marquee-card" style="--media-ratio:1414 / 676" data-portfolio-image="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/916905f1-fb65-4d55-8d46-88daf5eca15b.jpg" data-portfolio-title="Piscina e paisagismo" data-portfolio-category="Estudo arquitetônico" aria-label="Ampliar Piscina e paisagismo">
   <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/916905f1-fb65-4d55-8d46-88daf5eca15b.jpg" alt="Piscina e paisagismo do acervo BRMIS" loading="lazy" decoding="async"/>
   <span class="brmis-marquee-shade" aria-hidden="true"></span>
-  <span class="brmis-marquee-meta"><span class="brmis-marquee-index">08</span><span><strong>Piscina e paisagismo</strong><small>Estudo arquitetônico</small></span><b>+</b></span>
+  <span class="brmis-marquee-meta"><span class="brmis-marquee-index">08</span><span><strong>Piscina e paisagismo</strong><small>Estudo arquitetônico</small></span></span>
 </button></div>
         <div class="brmis-marquee-group" aria-hidden="true"><button type="button" class="brmis-marquee-card" style="--media-ratio:1125 / 900" data-portfolio-image="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/9d605587-d5cf-48bb-a67a-5c2bdc2e71e9.jpg" data-portfolio-title="Fachada residencial" data-portfolio-category="Residencial" aria-label="Ampliar Fachada residencial">
   <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/9d605587-d5cf-48bb-a67a-5c2bdc2e71e9.jpg" alt="Fachada residencial do acervo BRMIS" loading="eager" decoding="async"/>
   <span class="brmis-marquee-shade" aria-hidden="true"></span>
-  <span class="brmis-marquee-meta"><span class="brmis-marquee-index">01</span><span><strong>Fachada residencial</strong><small>Residencial</small></span><b>+</b></span>
+  <span class="brmis-marquee-meta"><span class="brmis-marquee-index">01</span><span><strong>Fachada residencial</strong><small>Residencial</small></span></span>
 </button><button type="button" class="brmis-marquee-card" style="--media-ratio:1240 / 675" data-portfolio-image="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/7f76a6b0-841e-42f2-86d3-c3097a4a7d6e.jpg" data-portfolio-title="Área externa e lazer" data-portfolio-category="Área externa" aria-label="Ampliar Área externa e lazer">
   <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/7f76a6b0-841e-42f2-86d3-c3097a4a7d6e.jpg" alt="Área externa e lazer do acervo BRMIS" loading="eager" decoding="async"/>
   <span class="brmis-marquee-shade" aria-hidden="true"></span>
-  <span class="brmis-marquee-meta"><span class="brmis-marquee-index">02</span><span><strong>Área externa e lazer</strong><small>Área externa</small></span><b>+</b></span>
+  <span class="brmis-marquee-meta"><span class="brmis-marquee-index">02</span><span><strong>Área externa e lazer</strong><small>Área externa</small></span></span>
 </button><button type="button" class="brmis-marquee-card" style="--media-ratio:1240 / 697" data-portfolio-image="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/4ee240d6-fda2-4889-b3f7-b27646bc7b54.jpg" data-portfolio-title="Integração e convivência" data-portfolio-category="Área externa" aria-label="Ampliar Integração e convivência">
   <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/4ee240d6-fda2-4889-b3f7-b27646bc7b54.jpg" alt="Integração e convivência do acervo BRMIS" loading="lazy" decoding="async"/>
   <span class="brmis-marquee-shade" aria-hidden="true"></span>
-  <span class="brmis-marquee-meta"><span class="brmis-marquee-index">03</span><span><strong>Integração e convivência</strong><small>Área externa</small></span><b>+</b></span>
+  <span class="brmis-marquee-meta"><span class="brmis-marquee-index">03</span><span><strong>Integração e convivência</strong><small>Área externa</small></span></span>
 </button><button type="button" class="brmis-marquee-card" style="--media-ratio:947 / 1338" data-portfolio-image="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/9d0212a0-a649-45a9-9d95-ffc646fceffd.jpg" data-portfolio-title="Sala de estar" data-portfolio-category="Interiores" aria-label="Ampliar Sala de estar">
   <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/9d0212a0-a649-45a9-9d95-ffc646fceffd.jpg" alt="Sala de estar do acervo BRMIS" loading="lazy" decoding="async"/>
   <span class="brmis-marquee-shade" aria-hidden="true"></span>
-  <span class="brmis-marquee-meta"><span class="brmis-marquee-index">04</span><span><strong>Sala de estar</strong><small>Interiores</small></span><b>+</b></span>
+  <span class="brmis-marquee-meta"><span class="brmis-marquee-index">04</span><span><strong>Sala de estar</strong><small>Interiores</small></span></span>
 </button><button type="button" class="brmis-marquee-card" style="--media-ratio:947 / 1338" data-portfolio-image="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/2d27a64a-7631-408e-94f9-a0d5981a7659.jpg" data-portfolio-title="Cozinha e jantar" data-portfolio-category="Interiores" aria-label="Ampliar Cozinha e jantar">
   <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/2d27a64a-7631-408e-94f9-a0d5981a7659.jpg" alt="Cozinha e jantar do acervo BRMIS" loading="lazy" decoding="async"/>
   <span class="brmis-marquee-shade" aria-hidden="true"></span>
-  <span class="brmis-marquee-meta"><span class="brmis-marquee-index">05</span><span><strong>Cozinha e jantar</strong><small>Interiores</small></span><b>+</b></span>
+  <span class="brmis-marquee-meta"><span class="brmis-marquee-index">05</span><span><strong>Cozinha e jantar</strong><small>Interiores</small></span></span>
 </button><button type="button" class="brmis-marquee-card" style="--media-ratio:1240 / 697" data-portfolio-image="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/fa476f9a-e3f4-43cf-8aa2-1e689fe9664c.jpg" data-portfolio-title="Fachada noturna" data-portfolio-category="Residencial" aria-label="Ampliar Fachada noturna">
   <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/fa476f9a-e3f4-43cf-8aa2-1e689fe9664c.jpg" alt="Fachada noturna do acervo BRMIS" loading="lazy" decoding="async"/>
   <span class="brmis-marquee-shade" aria-hidden="true"></span>
-  <span class="brmis-marquee-meta"><span class="brmis-marquee-index">06</span><span><strong>Fachada noturna</strong><small>Residencial</small></span><b>+</b></span>
+  <span class="brmis-marquee-meta"><span class="brmis-marquee-index">06</span><span><strong>Fachada noturna</strong><small>Residencial</small></span></span>
 </button><button type="button" class="brmis-marquee-card" style="--media-ratio:1422 / 800" data-portfolio-image="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/fee86992-dce2-4f85-b843-1a9390e44d2c.jpg" data-portfolio-title="Pátio contemporâneo" data-portfolio-category="Estudo arquitetônico" aria-label="Ampliar Pátio contemporâneo">
   <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/fee86992-dce2-4f85-b843-1a9390e44d2c.jpg" alt="Pátio contemporâneo do acervo BRMIS" loading="lazy" decoding="async"/>
   <span class="brmis-marquee-shade" aria-hidden="true"></span>
-  <span class="brmis-marquee-meta"><span class="brmis-marquee-index">07</span><span><strong>Pátio contemporâneo</strong><small>Estudo arquitetônico</small></span><b>+</b></span>
+  <span class="brmis-marquee-meta"><span class="brmis-marquee-index">07</span><span><strong>Pátio contemporâneo</strong><small>Estudo arquitetônico</small></span></span>
 </button><button type="button" class="brmis-marquee-card" style="--media-ratio:1414 / 676" data-portfolio-image="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/916905f1-fb65-4d55-8d46-88daf5eca15b.jpg" data-portfolio-title="Piscina e paisagismo" data-portfolio-category="Estudo arquitetônico" aria-label="Ampliar Piscina e paisagismo">
   <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_3JO7rcNQJnTibrgL3Y8nEXK0Eva/916905f1-fb65-4d55-8d46-88daf5eca15b.jpg" alt="Piscina e paisagismo do acervo BRMIS" loading="lazy" decoding="async"/>
   <span class="brmis-marquee-shade" aria-hidden="true"></span>
-  <span class="brmis-marquee-meta"><span class="brmis-marquee-index">08</span><span><strong>Piscina e paisagismo</strong><small>Estudo arquitetônico</small></span><b>+</b></span>
+  <span class="brmis-marquee-meta"><span class="brmis-marquee-index">08</span><span><strong>Piscina e paisagismo</strong><small>Estudo arquitetônico</small></span></span>
 </button></div>
       </div>
     </div>
@@ -233,25 +552,19 @@ body.brmis-lightbox-open{overflow:hidden}
 (()=> {
   const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const header=document.querySelector('header');
-  const progress=document.createElement('div');
-  progress.id='brmis-progress';
-  document.body.appendChild(progress);
 
-  const updateScroll=()=>{
-    const y=window.scrollY||0;
-    if(header) header.classList.toggle('brmis-header-scrolled',y>24);
-    const max=Math.max(document.documentElement.scrollHeight-window.innerHeight,1);
-    progress.style.width=Math.min(100,(y/max)*100)+'%';
+  const updateHeader=()=>{
+    if(header) header.classList.toggle('brmis-header-scrolled',(window.scrollY||0)>24);
   };
-  updateScroll();
-  window.addEventListener('scroll',updateScroll,{passive:true});
+  updateHeader();
+  window.addEventListener('scroll',updateHeader,{passive:true});
 
   document.querySelectorAll('a[href^="#"]').forEach(a=>{
     a.addEventListener('click',e=>{
       const id=a.getAttribute('href');
-      if(!id||id==='#') return;
+      if(!id||id==='#')return;
       const target=document.querySelector(id);
-      if(!target) return;
+      if(!target)return;
       e.preventDefault();
       target.scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'});
       history.replaceState(null,'',id);
@@ -260,18 +573,19 @@ body.brmis-lightbox-open{overflow:hidden}
   });
 
   const reveals=[...document.querySelectorAll('.reveal,.line-reveal')];
+  reveals.forEach((el,i)=>el.style.setProperty('--reveal-delay',Math.min((i%4)*55,165)+'ms'));
   if(reduced){
     reveals.forEach(el=>el.classList.add('is-visible'));
   }else{
-    const ro=new IntersectionObserver(entries=>{
+    const observer=new IntersectionObserver(entries=>{
       entries.forEach(entry=>{
         if(entry.isIntersecting){
           entry.target.classList.add('is-visible');
-          ro.unobserve(entry.target);
+          observer.unobserve(entry.target);
         }
       });
-    },{threshold:.12,rootMargin:'0px 0px -7% 0px'});
-    reveals.forEach(el=>ro.observe(el));
+    },{threshold:.1,rootMargin:'0px 0px -6% 0px'});
+    reveals.forEach(el=>observer.observe(el));
   }
 
   const counters=[...document.querySelectorAll('.brmis-counter')];
@@ -279,46 +593,48 @@ body.brmis-lightbox-open{overflow:hidden}
     const target=Number(el.dataset.target||0);
     const prefix=el.dataset.prefix||'';
     if(reduced){el.textContent=prefix+target;return}
-    const start=performance.now();
-    const duration=1150;
+    const start=performance.now(),duration=1050;
     const tick=now=>{
       const p=Math.min(1,(now-start)/duration);
       const eased=1-Math.pow(1-p,3);
       el.textContent=prefix+Math.round(target*eased);
-      if(p<1) requestAnimationFrame(tick);
+      if(p<1)requestAnimationFrame(tick);
     };
     requestAnimationFrame(tick);
   };
-  const co=new IntersectionObserver(entries=>{
+  const counterObserver=new IntersectionObserver(entries=>{
     entries.forEach(entry=>{
       if(entry.isIntersecting){
         animateCounter(entry.target);
-        co.unobserve(entry.target);
+        counterObserver.unobserve(entry.target);
       }
     });
-  },{threshold:.55});
-  counters.forEach(el=>{el.textContent=(el.dataset.prefix||'')+'0';co.observe(el)});
+  },{threshold:.5});
+  counters.forEach(el=>{
+    el.textContent=(el.dataset.prefix||'')+'0';
+    counterObserver.observe(el);
+  });
 
   const sections=[...document.querySelectorAll('section[id]')];
   const links=[...document.querySelectorAll('nav[aria-label="Navegação principal"] a[href^="#"]')];
   const spy=new IntersectionObserver(entries=>{
     entries.forEach(entry=>{
-      if(!entry.isIntersecting) return;
+      if(!entry.isIntersecting)return;
       const id='#'+entry.target.id;
       links.forEach(a=>a.classList.toggle('is-active',a.getAttribute('href')===id));
     });
   },{rootMargin:'-35% 0px -55% 0px',threshold:0});
-  sections.forEach(s=>spy.observe(s));
+  sections.forEach(section=>spy.observe(section));
 
   const button=document.querySelector('header button[aria-label="Abrir menu"],header button[aria-label="Fechar menu"]');
   let panel=null;
   const makePanel=()=>{
-    if(panel) return panel;
+    if(panel)return panel;
     panel=document.createElement('div');
     panel.className='brmis-mobile-panel';
     panel.innerHTML='<nav aria-label="Navegação móvel"><a href="#sobre">Sobre <span>01</span></a><a href="#projetos">Projetos <span>02</span></a><a href="#metodo">Método <span>03</span></a><a href="#contato">Contato <span>04</span></a></nav>';
     document.body.appendChild(panel);
-    panel.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>closeMenu()));
+    panel.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
     return panel;
   };
   const openMenu=()=>{
@@ -344,18 +660,8 @@ body.brmis-lightbox-open{overflow:hidden}
       button.innerHTML='<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg>';
     }
   }
-  if(button) button.addEventListener('click',()=>document.body.classList.contains('brmis-menu-open')?closeMenu():openMenu());
+  if(button)button.addEventListener('click',()=>document.body.classList.contains('brmis-menu-open')?closeMenu():openMenu());
   window.addEventListener('resize',()=>{if(window.innerWidth>=768)closeMenu()});
-
-  if(!reduced){
-    const hero=document.querySelector('#inicio img');
-    window.addEventListener('pointermove',e=>{
-      if(!hero||window.innerWidth<900) return;
-      const dx=(e.clientX/window.innerWidth-.5)*8;
-      const dy=(e.clientY/window.innerHeight-.5)*5;
-      hero.style.objectPosition=`calc(65% + ${dx}px) calc(50% + ${dy}px)`;
-    },{passive:true});
-  }
 })();
 </script><script id="brmis-carousel-script">
 (()=>{
@@ -363,11 +669,15 @@ body.brmis-lightbox-open{overflow:hidden}
   const lightbox=document.getElementById('brmis-lightbox');
   if(!root||!lightbox)return;
 
+  const track=root.querySelector('.brmis-marquee-track');
   const image=lightbox.querySelector('figure img');
   const title=lightbox.querySelector('figcaption strong');
   const category=lightbox.querySelector('figcaption small');
   const index=lightbox.querySelector('.brmis-lightbox-index');
   const primary=[...root.querySelector('.brmis-marquee-group:not([aria-hidden])').querySelectorAll('.brmis-marquee-card')];
+
+  const pause=()=>{if(track)track.style.animationPlayState='paused'};
+  const resume=()=>{if(track)track.style.animationPlayState='running'};
 
   const open=(card)=>{
     const src=card.dataset.portfolioImage||'';
@@ -377,6 +687,7 @@ body.brmis-lightbox-open{overflow:hidden}
     title.textContent=card.dataset.portfolioTitle||'Projeto';
     category.textContent=card.dataset.portfolioCategory||'Acervo BRMIS';
     index.textContent=String(originalIndex+1).padStart(2,'0')+' / '+String(primary.length).padStart(2,'0');
+    pause();
     lightbox.classList.add('is-open');
     lightbox.setAttribute('aria-hidden','false');
     document.body.classList.add('brmis-lightbox-open');
@@ -387,11 +698,16 @@ body.brmis-lightbox-open{overflow:hidden}
     lightbox.classList.remove('is-open');
     lightbox.setAttribute('aria-hidden','true');
     document.body.classList.remove('brmis-lightbox-open');
+    resume();
   };
 
-  root.querySelectorAll('.brmis-marquee-card').forEach(card=>card.addEventListener('click',()=>open(card)));
+  root.querySelectorAll('.brmis-marquee-card').forEach(card=>{
+    card.addEventListener('click',()=>open(card));
+  });
   lightbox.querySelector('.brmis-lightbox-close')?.addEventListener('click',close);
   lightbox.addEventListener('click',e=>{if(e.target===lightbox)close()});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&lightbox.classList.contains('is-open'))close()});
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'&&lightbox.classList.contains('is-open'))close();
+  });
 })();
 </script></body></html>
