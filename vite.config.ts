@@ -29,10 +29,6 @@ export default defineConfig({
         vite: {
           base: "/Brmis/",
         },
-        // A Node-compatible Nitro build is required for TanStack Start prerendering.
-        nitro: {
-          preset: "node-server",
-        },
       }
     : {}),
 });
