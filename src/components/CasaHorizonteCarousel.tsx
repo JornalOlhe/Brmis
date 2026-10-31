@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, Pause, Play } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useCallback, useEffect, useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
 
 const modules = import.meta.glob("../assets/casa-horizonte/ch-*.jpg", { eager: true, query: "?url", import: "default" }) as Record<string, string>;
@@ -29,7 +29,6 @@ const wrap = (i: number) => (i + total) % total;
 
 export function CasaHorizonteCarousel() {
   const [active, setActive] = useState(0);
-  const [playing, setPlaying] = useState(true);
   const [inView, setInView] = useState(false);
   const [loaded, setLoaded] = useState<Set<number>>(() => new Set([0, 1, total - 1]));
   const sectionRef = useRef<HTMLElement>(null);
@@ -37,7 +36,7 @@ export function CasaHorizonteCarousel() {
   const pointerX = useRef<number | null>(null);
 
   const go = useCallback((i: number) => setActive(wrap(i)), []);
-  const running = playing && inView;
+  const running = inView;
 
   useEffect(() => {
     setLoaded((prev) => {
@@ -51,7 +50,6 @@ export function CasaHorizonteCarousel() {
   }, [active]);
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) setPlaying(false);
     const node = sectionRef.current;
     if (!node) return;
     const observer = new IntersectionObserver(([entry]) => setInView(Boolean(entry?.isIntersecting)), { threshold: 0.2 });
@@ -131,7 +129,6 @@ export function CasaHorizonteCarousel() {
             <div className="flex items-center justify-between gap-5 md:justify-end">
               <p className="font-display text-lg tabular-nums text-paper/60" aria-live="polite"><span className="text-paper">{pad(active + 1)}</span> / {pad(total)}</p>
               <div className="flex gap-2">
-                <button type="button" aria-label={playing ? "Pausar apresentação" : "Reproduzir apresentação"} onClick={() => setPlaying((p) => !p)} className="grid size-11 place-items-center border border-paper/30 bg-night/30 backdrop-blur-sm transition-colors hover:border-signal hover:text-signal focus-visible:outline-2 focus-visible:outline-signal">{playing ? <Pause className="size-4" /> : <Play className="size-4" />}</button>
                 <button type="button" aria-label="Ambiente anterior" onClick={() => go(active - 1)} className="grid size-11 place-items-center border border-paper/30 bg-night/30 backdrop-blur-sm transition-colors hover:border-signal hover:text-signal focus-visible:outline-2 focus-visible:outline-signal"><ArrowLeft className="size-5" /></button>
                 <button type="button" aria-label="Próximo ambiente" onClick={() => go(active + 1)} className="grid size-11 place-items-center border border-signal bg-signal text-primary-foreground transition-colors hover:bg-transparent hover:text-signal focus-visible:outline-2 focus-visible:outline-signal"><ArrowRight className="size-5" /></button>
               </div>
