@@ -30,7 +30,6 @@ const wrap = (i: number) => (i + total) % total;
 export function CasaHorizonteCarousel() {
   const [active, setActive] = useState(0);
   const [playing, setPlaying] = useState(true);
-  const [hovered, setHovered] = useState(false);
   const [inView, setInView] = useState(false);
   const [loaded, setLoaded] = useState<Set<number>>(() => new Set([0, 1, total - 1]));
   const sectionRef = useRef<HTMLElement>(null);
@@ -38,7 +37,7 @@ export function CasaHorizonteCarousel() {
   const pointerX = useRef<number | null>(null);
 
   const go = useCallback((i: number) => setActive(wrap(i)), []);
-  const running = playing && !hovered && inView;
+  const running = playing && inView;
 
   useEffect(() => {
     setLoaded((prev) => {
@@ -55,7 +54,7 @@ export function CasaHorizonteCarousel() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) setPlaying(false);
     const node = sectionRef.current;
     if (!node) return;
-    const observer = new IntersectionObserver(([entry]) => setInView(Boolean(entry?.isIntersecting)), { threshold: 0.35 });
+    const observer = new IntersectionObserver(([entry]) => setInView(Boolean(entry?.isIntersecting)), { threshold: 0.2 });
     observer.observe(node);
     const onVisibility = () => setInView(document.visibilityState === "visible" && node.getBoundingClientRect().top < window.innerHeight);
     document.addEventListener("visibilitychange", onVisibility);
@@ -96,8 +95,6 @@ export function CasaHorizonteCarousel() {
           aria-label="Ambientes da Casa Horizonte"
           tabIndex={0}
           onKeyDown={onKeyDown}
-          onMouseEnter={() => setHovered(true)}
-          onMouseLeave={() => setHovered(false)}
           onPointerDown={onPointerDown}
           onPointerUp={onPointerUp}
           onPointerCancel={() => { pointerX.current = null; }}
