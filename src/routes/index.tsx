@@ -9,6 +9,7 @@ import heroImage from "@/assets/brmis-hero.jpg";
 import projectResidential from "@/assets/brmis-project-residencial.jpg";
 import projectInteriors from "@/assets/brmis-project-interiores.jpg";
 import projectExecution from "@/assets/brmis-project-execucao.jpg";
+import { CasaHorizonteCarousel } from "@/components/CasaHorizonteCarousel";
 
 const description = "Há mais de 15 anos, a BRMIS transforma projetos em obras de alto padrão com planejamento, gestão técnica e excelência de execução.";
 
@@ -118,7 +119,7 @@ function Index() {
   const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<FormData>({ resolver: zodResolver(formSchema), defaultValues: { name: "", phone: "", email: "", projectType: "", message: "" } });
   const onSubmit = async () => { await new Promise((resolve) => setTimeout(resolve, 500)); setSubmitted(true); reset(); };
 
-  return <main className="overflow-hidden bg-background">
+  return <main className="overflow-x-clip bg-background">
     <Header />
     <section id="inicio" aria-labelledby="hero-title" className="relative min-h-[92svh] bg-night text-paper">
       <img src={heroImage} alt="Residência contemporânea em concreto, pedra e vidro ao entardecer" width={1920} height={1280} fetchPriority="high" className="hero-drift absolute inset-0 size-full object-cover object-[65%_center]" />
@@ -169,6 +170,8 @@ function Index() {
         <p className="mt-16 border-l border-signal pl-4 text-xs leading-relaxed text-paper/45">Residencial, interiores, execução e gestão integram as principais frentes de atuação da BRMIS.</p>
       </div>
     </section>
+
+    <CasaHorizonteCarousel />
 
     <section id="metodo" className="py-24 md:py-36">
       <div className="section-shell">
