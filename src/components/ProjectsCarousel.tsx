@@ -1,5 +1,5 @@
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import { useState, type KeyboardEvent, type PointerEvent, useRef } from "react";
+import { ArrowLeft, ArrowRight, Pause, Play } from "lucide-react";
+import { useEffect, useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
 
 import projectResidential from "@/assets/brmis-project-residencial.jpg";
 import projectInteriors from "@/assets/brmis-project-interiores.jpg";
@@ -12,11 +12,28 @@ const items = [
 ] as const;
 
 const pad = (n: number) => String(n).padStart(2, "0");
+const DURATION = 5000;
 
 export function ProjectsCarousel() {
   const [active, setActive] = useState(0);
+  const [playing, setPlaying] = useState(true);
+  const [hovered, setHovered] = useState(false);
+  const [inView, setInView] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
   const pointerX = useRef<number | null>(null);
   const go = (i: number) => setActive((i + items.length) % items.length);
+  const running = playing && !hovered && inView;
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) setPlaying(false);
+    const node = rootRef.current;
+    if (!node) return;
+    const observer = new IntersectionObserver(([entry]) => setInView(Boolean(entry?.isIntersecting)), { threshold: 0.3 });
+    observer.observe(node);
+    const onVisibility = () => { if (document.visibilityState !== "visible") setInView(false); else { const r = node.getBoundingClientRect(); setInView(r.top < window.innerHeight && r.bottom > 0); } };
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => { observer.disconnect(); document.removeEventListener("visibilitychange", onVisibility); };
+  }, []);
   const current = items[active] ?? items[0];
 
   const onKeyDown = (e: KeyboardEvent) => {
@@ -32,7 +49,7 @@ export function ProjectsCarousel() {
   };
 
   return (
-    <div className="reveal mt-16 grid gap-8 md:mt-24 lg:grid-cols-12 lg:gap-12">
+    <div ref={rootRef} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} className="reveal mt-16 grid gap-8 md:mt-24 lg:grid-cols-12 lg:gap-12">
       <div
         role="region"
         aria-roledescription="carrossel"
@@ -48,6 +65,7 @@ export function ProjectsCarousel() {
           <img key={item.number} src={item.image} alt={i === active ? `${item.title} — imagem conceitual de referência` : ""} aria-hidden={i !== active} width={item.width} height={item.height} loading={i === 0 ? "eager" : "lazy"} decoding="async" draggable={false} className={`image-cinematic absolute inset-0 size-full object-cover transition-[opacity,transform] duration-[900ms] ease-out ${i === active ? "scale-100 opacity-100" : "scale-[1.04] opacity-0"}`} />
         ))}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-night/80 via-transparent to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 z-[2] h-[2px] bg-paper/20"><div key={active} className="ch-progress h-full origin-left bg-signal" style={{ animationDuration: `${DURATION}ms`, animationPlayState: running ? "running" : "paused" }} onAnimationEnd={() => go(active + 1)} /></div>
         <div key={current.number} className="absolute inset-x-0 bottom-0 p-5 duration-700 animate-in fade-in slide-in-from-bottom-3 md:p-8">
           <p className="technical-label text-signal">{current.number} / Atuação</p>
           <h3 className="mt-3 font-display text-3xl font-medium md:text-4xl">{current.title}</h3>
@@ -74,6 +92,7 @@ export function ProjectsCarousel() {
         <div className="mt-8 flex items-center justify-between lg:mt-auto lg:pt-8">
           <p className="font-display text-lg tabular-nums text-paper/50" aria-live="polite"><span className="text-paper">{pad(active + 1)}</span> / {pad(items.length)}</p>
           <div className="flex gap-2">
+            <button type="button" aria-label={playing ? "Pausar apresentação" : "Reproduzir apresentação"} onClick={() => setPlaying((p) => !p)} className="grid size-11 place-items-center border border-paper/30 transition-colors hover:border-signal hover:text-signal focus-visible:outline-2 focus-visible:outline-signal">{playing ? <Pause className="size-4" /> : <Play className="size-4" />}</button>
             <button type="button" aria-label="Frente anterior" onClick={() => go(active - 1)} className="grid size-11 place-items-center border border-paper/30 transition-colors hover:border-signal hover:text-signal focus-visible:outline-2 focus-visible:outline-signal"><ArrowLeft className="size-5" /></button>
             <button type="button" aria-label="Próxima frente" onClick={() => go(active + 1)} className="grid size-11 place-items-center border border-signal bg-signal text-primary-foreground transition-colors hover:bg-transparent hover:text-signal focus-visible:outline-2 focus-visible:outline-signal"><ArrowRight className="size-5" /></button>
           </div>
