@@ -6,8 +6,10 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import heroImage from "@/assets/brmis-hero.jpg";
+import projectResidential from "@/assets/brmis-project-residencial.jpg";
+import projectInteriors from "@/assets/brmis-project-interiores.jpg";
+import projectExecution from "@/assets/brmis-project-execucao.jpg";
 import { CasaHorizonteCarousel } from "@/components/CasaHorizonteCarousel";
-import { ProjectsCarousel } from "@/components/ProjectsCarousel";
 
 const description = "Há mais de 15 anos, a BRMIS transforma projetos em obras de alto padrão com planejamento, gestão técnica e excelência de execução.";
 
@@ -29,6 +31,12 @@ export const Route = createFileRoute("/")({
 
 const navigation = [
   ["Sobre", "#sobre"], ["Projetos", "#projetos"], ["Método", "#metodo"], ["Contato", "#contato"],
+] as const;
+
+const projectData = [
+  { number: "01", title: "Arquitetura residencial", category: "Construção de alto padrão", image: projectResidential, width: 1408, height: 1760, className: "md:col-span-5" },
+  { number: "02", title: "Interiores e acabamento", category: "Precisão em cada encontro", image: projectInteriors, width: 1600, height: 1200, className: "md:col-span-7 md:mt-32" },
+  { number: "03", title: "Execução e gestão", category: "Canteiro organizado, obra controlada", image: projectExecution, width: 1408, height: 1760, className: "md:col-span-5 md:col-start-7 md:-mt-8" },
 ] as const;
 
 const formSchema = z.object({
@@ -111,7 +119,7 @@ function Index() {
   const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<FormData>({ resolver: zodResolver(formSchema), defaultValues: { name: "", phone: "", email: "", projectType: "", message: "" } });
   const onSubmit = async () => { await new Promise((resolve) => setTimeout(resolve, 500)); setSubmitted(true); reset(); };
 
-  return <main className="overflow-x-clip bg-background">
+  return <main className="overflow-hidden bg-background">
     <Header />
     <section id="inicio" aria-labelledby="hero-title" className="relative min-h-[92svh] bg-night text-paper">
       <img src={heroImage} alt="Residência contemporânea em concreto, pedra e vidro ao entardecer" width={1920} height={1280} fetchPriority="high" className="hero-drift absolute inset-0 size-full object-cover object-[65%_center]" />
@@ -150,10 +158,15 @@ function Index() {
       </div>
     </section>
 
-    <section id="projetos" className="bg-night pb-20 pt-24 text-paper md:pb-28 md:pt-36">
+    <section id="projetos" className="bg-night py-24 text-paper md:py-36">
       <div className="section-shell">
         <SectionHeading number="02" eyebrow="Projetos" title="Arquitetura bem resolvida. Execução à altura." light />
-        <ProjectsCarousel />
+        <div className="mt-16 grid gap-x-8 gap-y-16 md:grid-cols-12 md:mt-24">
+          {projectData.map((project) => <article key={project.number} className={`group reveal ${project.className}`}>
+            <div className={`overflow-hidden bg-concrete ${project.number === "02" ? "aspect-[4/3]" : "aspect-[4/5]"}`}><img src={project.image} alt={`${project.title} — imagem conceitual de referência`} width={project.width} height={project.height} loading="lazy" className="image-cinematic size-full object-cover group-hover:scale-[1.025] group-hover:saturate-100" /></div>
+            <div className="mt-5 flex items-start justify-between gap-4 border-t border-paper/25 pt-4"><div><p className="technical-label mb-2 text-signal">{project.number} / Atuação</p><h3 className="font-display text-xl font-medium md:text-2xl">{project.title}</h3><p className="mt-1 text-sm text-paper/55">{project.category}</p></div><ArrowRight className="mt-1 size-5 text-paper/50 transition-transform group-hover:translate-x-1 group-hover:text-signal" /></div>
+          </article>)}
+        </div>
         <p className="mt-16 border-l border-signal pl-4 text-xs leading-relaxed text-paper/45">Residencial, interiores, execução e gestão integram as principais frentes de atuação da BRMIS.</p>
       </div>
     </section>
