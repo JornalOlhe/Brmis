@@ -1,12 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ArrowDown, ArrowRight, Check, Menu, X } from "lucide-react";
+import { ArrowDown, ArrowRight, ArrowUpRight, AtSign, Check, MapPin, Menu, X } from "lucide-react";
 import { useEffect, useRef, useState, type ButtonHTMLAttributes } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import heroImage from "@/assets/brmis-hero.jpg";
 import { CasaHorizonteSection, ObrasCarousel } from "@/components/ProjectGalleries";
+
+const INSTAGRAM = "https://www.instagram.com/brmis_construtora/";
+const projectTypes: Record<string, string> = { residencial: "Residencial", comercial: "Comercial", gestao: "Gestão de obra", outro: "Outro" };
 
 const description = "Há mais de 15 anos, a BRMIS transforma projetos em obras de alto padrão com planejamento, gestão técnica e excelência de execução.";
 
@@ -108,7 +111,13 @@ function Index() {
   useReveal();
   const [submitted, setSubmitted] = useState(false);
   const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<FormData>({ resolver: zodResolver(formSchema), defaultValues: { name: "", phone: "", email: "", projectType: "", message: "" } });
-  const onSubmit = async () => { await new Promise((resolve) => setTimeout(resolve, 500)); setSubmitted(true); reset(); };
+  const onSubmit = async (data: FormData) => {
+    const text = `Olá, BRMIS! Meu nome é ${data.name}.\nTipo de projeto: ${projectTypes[data.projectType] ?? data.projectType}\nTelefone: ${data.phone}\nE-mail: ${data.email}\n\n${data.message}`;
+    try { await navigator.clipboard.writeText(text); } catch { /* clipboard indisponível */ }
+    window.open(INSTAGRAM, "_blank", "noopener");
+    setSubmitted(true);
+    reset();
+  };
 
   return <main className="overflow-x-clip bg-background">
     <Header />
@@ -179,21 +188,44 @@ function Index() {
     <section id="contato" className="bg-paper py-24 md:py-36">
       <div className="section-shell">
         <SectionHeading number="04" eyebrow="Contato" title="Vamos construir algo que permaneça?" />
-        <div className="mt-16 grid gap-16 md:grid-cols-12 md:mt-24">
-          <div className="reveal md:col-span-4"><p className="max-w-sm text-lg leading-relaxed">Conte o que você pretende construir. A BRMIS entra em contato para entender o momento, o escopo e os próximos passos.</p><div className="mt-12 border-t border-foreground/20 pt-5"><p className="technical-label text-muted-foreground">Contato direto</p><p className="mt-4 text-sm text-muted-foreground">Projetos residenciais, comerciais, execução e gestão de obra.</p></div></div>
-          <form onSubmit={handleSubmit(onSubmit)} noValidate className="reveal grid gap-7 md:col-span-7 md:col-start-6" aria-label="Formulário para solicitar projeto">
-            {submitted && <div role="status" className="flex items-start gap-3 border border-signal bg-signal/10 p-4 text-sm"><Check className="mt-0.5 size-5 shrink-0 text-signal" /><span><strong className="block">Dados conferidos.</strong>Para concluir o atendimento, utilize os canais oficiais da BRMIS.</span></div>}
-            <div className="grid gap-7 sm:grid-cols-2"><Field label="Nome" error={errors.name?.message}><input {...register("name")} autoComplete="name" placeholder="Seu nome" /></Field><Field label="Telefone / WhatsApp" error={errors.phone?.message}><input {...register("phone")} autoComplete="tel" inputMode="tel" placeholder="(00) 00000-0000" /></Field></div>
-            <div className="grid gap-7 sm:grid-cols-2"><Field label="E-mail" error={errors.email?.message}><input {...register("email")} autoComplete="email" inputMode="email" placeholder="voce@exemplo.com.br" /></Field><Field label="Tipo de projeto" error={errors.projectType?.message}><select {...register("projectType")} defaultValue=""><option value="" disabled>Selecione</option><option value="residencial">Residencial</option><option value="comercial">Comercial</option><option value="gestao">Gestão de obra</option><option value="outro">Outro</option></select></Field></div>
-            <Field label="Mensagem" error={errors.message?.message}><textarea {...register("message")} rows={4} placeholder="Conte brevemente sobre o projeto, localização e momento atual." /></Field>
-            <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center"><ActionButton type="submit" disabled={isSubmitting}>Solicitar projeto <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" /></ActionButton><span className="text-xs text-muted-foreground">Atendimento a projetos residenciais, comerciais e gestão de obra.</span></div>
-          </form>
+        <div className="mt-16 grid gap-12 md:mt-24 lg:grid-cols-12 lg:gap-16">
+          <div className="reveal lg:col-span-5">
+            <p className="max-w-md font-display text-2xl leading-snug md:text-3xl">Conte o que você pretende construir. A BRMIS retorna para entender o momento, o escopo e os próximos passos.</p>
+            <ol className="mt-12 border-t border-foreground/15">
+              {[["01","Você envia o projeto","Tipo de obra, localização e o que já está definido."],["02","Conversa inicial","Entendemos prioridades, prazos e expectativas."],["03","Proposta","Escopo, etapas e investimento apresentados com clareza."]].map(([n,t,d]) => <li key={n} className="flex gap-5 border-b border-foreground/15 py-5"><span className="technical-label mt-1 text-signal">{n}</span><div><p className="font-display text-lg font-semibold">{t}</p><p className="mt-1 text-sm leading-relaxed text-muted-foreground">{d}</p></div></li>)}
+            </ol>
+            <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+              <a href={INSTAGRAM} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-4 border border-foreground/15 bg-card p-5 transition-colors hover:border-signal"><span className="grid size-11 shrink-0 place-items-center bg-night text-paper transition-colors group-hover:bg-signal"><AtSign className="size-5" /></span><span className="min-w-0 flex-1"><span className="technical-label block text-muted-foreground">Instagram</span><span className="mt-1.5 block truncate font-semibold">@brmis_construtora</span></span><ArrowUpRight className="size-4 shrink-0 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-signal" /></a>
+              <div className="flex items-center gap-4 border border-foreground/15 bg-card p-5"><span className="grid size-11 shrink-0 place-items-center bg-night text-paper"><MapPin className="size-5" /></span><span><span className="technical-label block text-muted-foreground">Atuação</span><span className="mt-1.5 block font-semibold">Indaiatuba e região · SP</span></span></div>
+            </div>
+          </div>
+
+          <div className="reveal lg:col-span-7">
+            <form onSubmit={handleSubmit(onSubmit)} noValidate className="grid gap-7 border border-foreground/15 bg-card p-6 shadow-[0_30px_60px_-40px_rgba(0,0,0,0.35)] sm:p-10" aria-label="Formulário para solicitar projeto">
+              <div className="flex flex-col gap-2 border-b border-foreground/15 pb-6 sm:flex-row sm:items-end sm:justify-between">
+                <div><p className="technical-label text-signal">Solicitar orçamento</p><h3 className="mt-3 font-display text-2xl font-semibold md:text-3xl">Fale sobre a sua obra</h3></div>
+                <p className="text-xs text-muted-foreground">Leva menos de 2 minutos.</p>
+              </div>
+              {submitted && <div role="status" className="flex items-start gap-3 border border-signal bg-signal/10 p-4 text-sm"><Check className="mt-0.5 size-5 shrink-0 text-signal" /><span><strong className="block">Mensagem pronta e copiada.</strong>Abrimos o Instagram da BRMIS: cole a mensagem no Direct para enviar.</span></div>}
+              <div className="grid gap-7 sm:grid-cols-2"><Field label="Nome" error={errors.name?.message}><input {...register("name")} autoComplete="name" placeholder="Seu nome" /></Field><Field label="Telefone / WhatsApp" error={errors.phone?.message}><input {...register("phone")} autoComplete="tel" inputMode="tel" placeholder="(00) 00000-0000" /></Field></div>
+              <div className="grid gap-7 sm:grid-cols-2"><Field label="E-mail" error={errors.email?.message}><input {...register("email")} autoComplete="email" inputMode="email" placeholder="voce@exemplo.com.br" /></Field><Field label="Tipo de projeto" error={errors.projectType?.message}><select {...register("projectType")} defaultValue=""><option value="" disabled>Selecione</option><option value="residencial">Residencial</option><option value="comercial">Comercial</option><option value="gestao">Gestão de obra</option><option value="outro">Outro</option></select></Field></div>
+              <Field label="Mensagem" error={errors.message?.message}><textarea {...register("message")} rows={4} placeholder="Conte brevemente sobre o projeto, localização e momento atual." /></Field>
+              <div className="flex flex-col items-stretch gap-4 pt-2 sm:flex-row sm:items-center sm:justify-between"><span className="text-xs leading-relaxed text-muted-foreground sm:max-w-xs">Residencial, comercial e gestão de obra. Seus dados são usados apenas para este atendimento.</span><ActionButton type="submit" disabled={isSubmitting}>Enviar solicitação <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" /></ActionButton></div>
+            </form>
+          </div>
         </div>
       </div>
     </section>
 
-    <footer className="bg-night py-14 text-paper">
-      <div className="section-shell"><div className="flex flex-col gap-10 border-b border-paper/20 pb-12 md:flex-row md:items-end md:justify-between"><div><BrandMark light /><p className="mt-5 font-display text-xl text-paper/55">Ideias. Projetos. Realizações.</p></div><a href="#inicio" className="group flex items-center gap-3 text-sm">Voltar ao início <ArrowDown className="size-4 rotate-180 transition-transform group-hover:-translate-y-1" /></a></div><div className="grid gap-8 pt-7 text-xs text-paper/45 md:grid-cols-2"><p>Bruno · Roberto · Marcos · Ilenildo · Silvio</p><p className="md:text-right">© 2026 BRMIS Construtora. Todos os direitos reservados.</p></div></div>
+    <footer className="bg-night pt-16 pb-10 text-paper md:pt-24">
+      <div className="section-shell">
+        <div className="grid gap-12 border-b border-paper/15 pb-14 md:grid-cols-12">
+          <div className="md:col-span-5"><BrandMark light /><p className="mt-6 max-w-sm font-display text-2xl leading-snug text-paper/70">Ideias. Projetos. Realizações.</p><a href="#contato" className="group mt-8 inline-flex items-center gap-3 border-b border-signal pb-2 text-sm font-semibold">Solicitar orçamento <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" /></a></div>
+          <nav aria-label="Rodapé" className="md:col-span-3 md:col-start-7"><p className="technical-label text-paper/40">Navegação</p><ul className="mt-5 grid gap-3 text-sm">{navigation.map(([label, href]) => <li key={href}><a href={href} className="text-paper/70 transition-colors hover:text-signal">{label}</a></li>)}</ul></nav>
+          <div className="md:col-span-3"><p className="technical-label text-paper/40">Contato</p><ul className="mt-5 grid gap-3 text-sm text-paper/70"><li><a href={INSTAGRAM} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 transition-colors hover:text-signal"><AtSign className="size-4" />@brmis_construtora</a></li><li className="inline-flex items-center gap-2"><MapPin className="size-4" />Indaiatuba e região · SP</li></ul></div>
+        </div>
+        <div className="flex flex-col gap-4 pt-7 text-xs text-paper/40 md:flex-row md:items-center md:justify-between"><p>© 2026 BRMIS Construtora · Bruno · Roberto · Marcos · Ilenildo · Silvio</p><a href="#inicio" className="group inline-flex items-center gap-2 text-paper/60 hover:text-paper">Voltar ao início <ArrowDown className="size-4 rotate-180 transition-transform group-hover:-translate-y-1" /></a></div>
+      </div>
     </footer>
   </main>;
 }

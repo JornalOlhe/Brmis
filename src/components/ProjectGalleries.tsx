@@ -64,12 +64,16 @@ export function CasaHorizonteSection() {
       <div className="section-shell">
         <div className="reveal grid gap-8 border-t border-paper/20 pt-6 md:grid-cols-12 md:items-end">
           <div className="md:col-span-7">
-            <p className="technical-label text-signal">Projeto em destaque</p>
-            <h2 id="casa-horizonte-title" className="mt-6 font-display text-4xl font-medium leading-[1.02] md:text-6xl">Conheça um de nossos projetos.</h2>
+            <p className="technical-label flex items-center gap-3 text-signal"><span className="relative flex size-2"><span className="absolute inline-flex size-full animate-ping rounded-full bg-signal opacity-60" /><span className="relative inline-flex size-2 rounded-full bg-signal" /></span>Projeto mais recente</p>
+            <h2 id="casa-horizonte-title" className="mt-6 font-display text-5xl font-medium leading-[0.98] md:text-7xl">Casa Horizonte</h2>
           </div>
           <div className="md:col-span-4 md:col-start-9">
-            <p className="font-display text-2xl font-medium">Casa Horizonte</p>
-            <p className="mt-2 text-sm leading-relaxed text-paper/60">Residência de alto padrão com interiores em madeira, pedra natural e luz difusa.</p>
+            <p className="text-sm leading-relaxed text-paper/65">Residência de alto padrão com interiores em madeira, pedra natural e luz difusa. Conheça os ambientes do projeto que a BRMIS está construindo agora.</p>
+            <dl className="mt-6 grid grid-cols-3 border-t border-paper/15 pt-4 text-xs">
+              <div><dt className="technical-label text-paper/40">Tipo</dt><dd className="mt-2 text-paper/85">Residencial</dd></div>
+              <div><dt className="technical-label text-paper/40">Ano</dt><dd className="mt-2 text-paper/85">2026</dd></div>
+              <div><dt className="technical-label text-paper/40">Status</dt><dd className="mt-2 text-signal">Em obra</dd></div>
+            </dl>
           </div>
         </div>
         <div className="mt-10 md:mt-14">
