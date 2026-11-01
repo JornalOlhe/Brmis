@@ -7,7 +7,6 @@ import { z } from "zod";
 
 import heroImage from "@/assets/brmis-hero.jpg";
 import { CasaHorizonteCarousel } from "@/components/CasaHorizonteCarousel";
-import { ProjectsCarousel } from "@/components/ProjectsCarousel";
 
 const description = "Há mais de 15 anos, a BRMIS transforma projetos em obras de alto padrão com planejamento, gestão técnica e excelência de execução.";
 
@@ -150,15 +149,12 @@ function Index() {
       </div>
     </section>
 
-    <section id="projetos" className="bg-night pb-20 pt-24 text-paper md:pb-28 md:pt-36">
+    <section id="projetos" className="bg-night py-24 text-paper md:py-36">
       <div className="section-shell">
         <SectionHeading number="02" eyebrow="Projetos" title="Arquitetura bem resolvida. Execução à altura." light />
-        <ProjectsCarousel />
-        <p className="mt-16 border-l border-signal pl-4 text-xs leading-relaxed text-paper/45">Residencial, interiores, execução e gestão integram as principais frentes de atuação da BRMIS.</p>
+        <CasaHorizonteCarousel />
       </div>
     </section>
-
-    <CasaHorizonteCarousel />
 
     <section id="metodo" className="py-24 md:py-36">
       <div className="section-shell">

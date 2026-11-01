@@ -31,7 +31,7 @@ export function CasaHorizonteCarousel() {
   const [active, setActive] = useState(0);
   const [inView, setInView] = useState(false);
   const [loaded, setLoaded] = useState<Set<number>>(() => new Set([0, 1, total - 1]));
-  const sectionRef = useRef<HTMLElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
   const thumbsRef = useRef<HTMLDivElement>(null);
   const pointerX = useRef<number | null>(null);
 
@@ -74,17 +74,14 @@ export function CasaHorizonteCarousel() {
   const current = slides[active] ?? slides[0];
 
   return (
-    <section ref={sectionRef} id="casa-horizonte" aria-labelledby="casa-horizonte-title" className="bg-night pb-24 text-paper md:pb-36">
-      <div className="section-shell">
-        <div className="reveal grid gap-8 border-t border-paper/20 pt-6 md:grid-cols-12 md:items-end">
-          <div className="md:col-span-7">
-            <p className="technical-label text-signal">Projeto em destaque</p>
-            <h2 id="casa-horizonte-title" className="mt-6 font-display text-4xl font-medium leading-[1.02] md:text-6xl">Conheça um de nossos projetos.</h2>
+    <div ref={sectionRef} id="casa-horizonte" className="mt-16 md:mt-24">
+      <div>
+        <div className="reveal flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="technical-label text-signal">Conheça um de nossos projetos</p>
+            <h3 className="mt-4 font-display text-3xl font-medium md:text-4xl">Casa Horizonte</h3>
           </div>
-          <div className="md:col-span-4 md:col-start-9">
-            <p className="font-display text-2xl font-medium">Casa Horizonte</p>
-            <p className="mt-2 text-sm leading-relaxed text-paper/60">Residência de alto padrão com interiores em madeira, pedra natural e luz difusa. Percorra os ambientes do projeto.</p>
-          </div>
+          <p className="max-w-sm text-sm leading-relaxed text-paper/60">Residência de alto padrão com interiores em madeira, pedra natural e luz difusa.</p>
         </div>
 
         <div
@@ -96,7 +93,7 @@ export function CasaHorizonteCarousel() {
           onPointerDown={onPointerDown}
           onPointerUp={onPointerUp}
           onPointerCancel={() => { pointerX.current = null; }}
-          className="reveal relative mt-12 aspect-[4/5] touch-pan-y select-none overflow-hidden bg-concrete outline-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-signal sm:aspect-[16/10] md:mt-16 lg:aspect-[2/1]"
+          className="reveal relative mt-8 aspect-[4/5] touch-pan-y select-none overflow-hidden bg-concrete outline-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-signal sm:aspect-[16/10] md:mt-10 lg:aspect-[2/1]"
         >
           {slides.map((s, i) => {
             const isActive = i === active;
@@ -150,6 +147,6 @@ export function CasaHorizonteCarousel() {
           <a href="#contato" className="group inline-flex items-center gap-3 border-b border-signal pb-2 text-sm font-semibold">Quero um projeto assim <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" /></a>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
