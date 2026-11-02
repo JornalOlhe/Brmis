@@ -23,3 +23,13 @@ https://jornalolhe.github.io/Brmis/
 - TypeScript
 - React
 - Tailwind CSS
+
+## Domínio próprio (Cloudflare Pages)
+
+Configuração do projeto no Cloudflare Pages (branch `main`):
+
+- Build command: `bun install && bun run build`
+- Build output directory: `.output/public`
+- Variáveis de ambiente:
+  - `STATIC_EXPORT` = `true`
+  - `VITE_SITE_URL` = `https://SEU-DOMINIO` (ex.: `https://brmis.com.br`)

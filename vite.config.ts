@@ -7,12 +7,14 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 const isGitHubPages = process.env.GITHUB_ACTIONS === "true";
+// Static export for any host at the domain root (e.g. Cloudflare Pages): set STATIC_EXPORT=true.
+const isStatic = isGitHubPages || process.env.STATIC_EXPORT === "true";
 
 export default defineConfig({
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     server: { entry: "server" },
-    ...(isGitHubPages
+    ...(isStatic
       ? {
           prerender: {
             enabled: true,

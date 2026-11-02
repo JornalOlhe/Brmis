@@ -9,8 +9,9 @@ import heroImage from "@/assets/brmis-hero.jpg";
 import { CasaHorizonteSection, ObrasCarousel } from "@/components/ProjectGalleries";
 
 const INSTAGRAM = "https://www.instagram.com/brmis_construtora/";
-const SITE_ORIGIN = "https://jornalolhe.github.io";
-const SITE_URL = `${SITE_ORIGIN}/Brmis`;
+// Public address of the site. Set VITE_SITE_URL (e.g. https://brmis.com.br) when hosting on a custom domain.
+const SITE_URL = (import.meta.env["VITE_SITE_URL"] || "https://jornalolhe.github.io/Brmis").replace(/\/$/, "");
+const SITE_ORIGIN = new URL(SITE_URL).origin;
 const projectTypes: Record<string, string> = { residencial: "Residencial", comercial: "Comercial", gestao: "Gestão de obra", outro: "Outro" };
 
 const description = "Há mais de 15 anos, a BRMIS transforma projetos em obras de alto padrão com planejamento, gestão técnica e excelência de execução.";
