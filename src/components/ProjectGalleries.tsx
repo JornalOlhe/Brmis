@@ -2,10 +2,10 @@ import { ArrowRight } from "lucide-react";
 
 import { AutoCarousel, type Slide } from "@/components/AutoCarousel";
 
-const obras = import.meta.glob("../assets/projetos/obra-*.jpg", { eager: true, query: "?url", import: "default" }) as Record<string, string>;
-const casa = import.meta.glob("../assets/casa-horizonte/ch-*.jpg", { eager: true, query: "?url", import: "default" }) as Record<string, string>;
-const obra = (n: string) => obras[`../assets/projetos/obra-${n}.jpg`] ?? "";
-const ch = (n: string) => casa[`../assets/casa-horizonte/ch-${n}.jpg`] ?? "";
+const obras = import.meta.glob("../assets/projetos/obra-*.webp", { eager: true, query: "?url", import: "default" }) as Record<string, string>;
+const casa = import.meta.glob("../assets/casa-horizonte/ch-*.webp", { eager: true, query: "?url", import: "default" }) as Record<string, string>;
+const obra = (n: string) => obras[`../assets/projetos/obra-${n}.webp`] ?? "";
+const ch = (n: string) => casa[`../assets/casa-horizonte/ch-${n}.webp`] ?? "";
 
 const obraSlides: Slide[] = [
   { src: obra("02"), area: "Fachada", title: "Residência com cobertura em madeira" },

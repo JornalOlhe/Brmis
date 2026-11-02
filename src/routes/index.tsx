@@ -9,6 +9,8 @@ import heroImage from "@/assets/brmis-hero.jpg";
 import { CasaHorizonteSection, ObrasCarousel } from "@/components/ProjectGalleries";
 
 const INSTAGRAM = "https://www.instagram.com/brmis_construtora/";
+const SITE_ORIGIN = "https://jornalolhe.github.io";
+const SITE_URL = `${SITE_ORIGIN}/Brmis`;
 const projectTypes: Record<string, string> = { residencial: "Residencial", comercial: "Comercial", gestao: "Gestão de obra", outro: "Outro" };
 
 const description = "Há mais de 15 anos, a BRMIS transforma projetos em obras de alto padrão com planejamento, gestão técnica e excelência de execução.";
@@ -21,10 +23,14 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "BRMIS Construtora — Construímos o que permanece" },
       { property: "og:description", content: description },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: `${SITE_URL}/` },
+      { property: "og:image", content: new URL(heroImage, SITE_ORIGIN).href },
+      { property: "og:image:alt", content: "Residência contemporânea construída pela BRMIS" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: new URL(heroImage, SITE_ORIGIN).href },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/` }],
+    scripts: [{ type: "application/ld+json", children: JSON.stringify({ "@context": "https://schema.org", "@type": "GeneralContractor", name: "BRMIS Construtora", slogan: "Ideias. Projetos. Realizações.", description, url: `${SITE_URL}/`, image: new URL(heroImage, SITE_ORIGIN).href, areaServed: "Indaiatuba e região, SP", address: { "@type": "PostalAddress", addressLocality: "Indaiatuba", addressRegion: "SP", addressCountry: "BR" }, sameAs: [INSTAGRAM], founder: ["Bruno", "Roberto", "Marcos", "Ilenildo", "Silvio"].map((name) => ({ "@type": "Person", name })) }) }],
   }),
   component: Index,
 });
@@ -57,22 +63,63 @@ function BrandMark({ light = false }: { light?: boolean }) {
 function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [current, setCurrent] = useState("");
+  const barRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    const update = () => setScrolled(window.scrollY > 40);
+    const update = () => {
+      setScrolled(window.scrollY > 40);
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      if (barRef.current) barRef.current.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`;
+      const mid = window.innerHeight * 0.4;
+      let found = "";
+      navigation.forEach(([, href]) => { const el = document.querySelector(href); if (el && el.getBoundingClientRect().top <= mid) found = href; });
+      setCurrent(found);
+    };
+    update(); window.addEventListener("scroll", update, { passive: true }); window.addEventListener("resize", update);
+    return () => { window.removeEventListener("scroll", update); window.removeEventListener("resize", update); };
+  }, []);
+  useEffect(() => {
+    if (!open) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setOpen(false); };
+    window.addEventListener("keydown", onKey);
+    return () => { document.body.style.overflow = prev; window.removeEventListener("keydown", onKey); };
+  }, [open]);
+  return (
+    <header className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-500 ${scrolled || open ? "border-paper/10 bg-night/90 backdrop-blur-md" : "border-paper/20 bg-transparent"}`}>
+      <div className={`section-shell flex items-center justify-between transition-[height] duration-500 ${scrolled ? "h-16 md:h-20" : "h-20 md:h-24"}`}>
+        <BrandMark light />
+        <nav aria-label="Navegação principal" className="hidden items-center gap-9 md:flex">
+          {navigation.map(([label, href], index) => {
+            const on = current === href;
+            return <a key={href} href={href} aria-current={on ? "true" : undefined} className={`technical-label group relative flex items-center gap-2 py-2 transition-colors ${on ? "text-paper" : "text-paper/65 hover:text-paper"}`}><span className="text-signal">0{index + 1}</span>{label}<span className={`absolute inset-x-0 -bottom-0.5 h-px origin-left bg-signal transition-transform duration-500 ${on ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`} /></a>;
+          })}
+          <a href="#contato" className="group inline-flex items-center gap-2 border border-signal px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.14em] text-paper transition-colors hover:bg-signal">Orçamento <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" /></a>
+        </nav>
+        <button type="button" aria-label={open ? "Fechar menu" : "Abrir menu"} aria-expanded={open} onClick={() => setOpen(!open)} className="relative z-50 grid size-11 place-items-center text-paper md:hidden">{open ? <X /> : <Menu />}</button>
+      </div>
+      <div className="absolute inset-x-0 bottom-0 h-px"><div ref={barRef} className="h-full origin-left bg-signal" style={{ transform: "scaleX(0)" }} /></div>
+      {open && <nav aria-label="Navegação móvel" className="absolute inset-x-0 top-full flex h-[calc(100svh-4rem)] flex-col overflow-y-auto bg-night px-6 pb-10 pt-10 duration-300 animate-in fade-in md:hidden">{navigation.map(([label, href], index) => <a key={href} href={href} onClick={() => setOpen(false)} className="ch-fade-up flex items-center justify-between border-b border-paper/15 py-5 font-display text-3xl font-medium text-paper" style={{ animationDelay: `${index * 70}ms` }}><span>{label}</span><span className="technical-label text-signal">0{index + 1}</span></a>)}<a href="#contato" onClick={() => setOpen(false)} className="mt-auto inline-flex min-h-14 items-center justify-center gap-3 bg-signal text-sm font-semibold text-primary-foreground">Solicitar orçamento <ArrowRight className="size-4" /></a></nav>}
+    </header>
+  );
+}
+
+function FloatingCta() {
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    const update = () => {
+      const contact = document.querySelector("#contato")?.getBoundingClientRect();
+      const nearContact = contact ? contact.top < window.innerHeight : false;
+      setShow(window.scrollY > window.innerHeight * 0.8 && !nearContact);
+    };
     update(); window.addEventListener("scroll", update, { passive: true });
     return () => window.removeEventListener("scroll", update);
   }, []);
   return (
-    <header className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-500 ${scrolled || open ? "border-border/30 bg-night/95 backdrop-blur-md" : "border-paper/20 bg-transparent"}`}>
-      <div className="section-shell flex h-20 items-center justify-between md:h-24">
-        <BrandMark light />
-        <nav aria-label="Navegação principal" className="hidden items-center gap-9 md:flex">
-          {navigation.map(([label, href], index) => <a key={href} href={href} className="technical-label group flex items-center gap-2 text-paper/75 transition-colors hover:text-paper"><span className="text-signal">0{index + 1}</span>{label}</a>)}
-        </nav>
-        <button type="button" aria-label={open ? "Fechar menu" : "Abrir menu"} aria-expanded={open} onClick={() => setOpen(!open)} className="relative z-50 grid size-11 place-items-center text-paper md:hidden">{open ? <X /> : <Menu />}</button>
-      </div>
-      {open && <nav aria-label="Navegação móvel" className="absolute inset-x-0 top-20 flex min-h-[calc(100vh-5rem)] flex-col bg-night px-6 pb-12 pt-14 md:hidden">{navigation.map(([label, href], index) => <a key={href} href={href} onClick={() => setOpen(false)} className="flex items-center justify-between border-b border-paper/15 py-5 font-display text-3xl font-medium text-paper"><span>{label}</span><span className="technical-label text-signal">0{index + 1}</span></a>)}</nav>}
-    </header>
+    <a href="#contato" aria-hidden={!show} tabIndex={show ? 0 : -1} className={`fixed inset-x-4 bottom-4 z-40 inline-flex min-h-14 items-center justify-center gap-3 bg-signal text-sm font-semibold text-primary-foreground shadow-[0_18px_40px_-12px_rgba(0,0,0,0.6)] transition-all duration-500 md:hidden ${show ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-24 opacity-0"}`} style={{ marginBottom: "env(safe-area-inset-bottom)" }}>
+      Solicitar orçamento <ArrowRight className="size-4" />
+    </a>
   );
 }
 
@@ -119,19 +166,21 @@ function Index() {
     reset();
   };
 
-  return <main className="overflow-x-clip bg-background">
+  return <main id="conteudo" className="overflow-x-clip bg-background">
+    <a href="#projetos" className="sr-only z-[60] bg-signal px-4 py-3 text-sm font-semibold text-primary-foreground focus:not-sr-only focus:fixed focus:left-4 focus:top-4">Pular para os projetos</a>
     <Header />
+    <FloatingCta />
     <section id="inicio" aria-labelledby="hero-title" className="relative min-h-[92svh] bg-night text-paper">
       <img src={heroImage} alt="Residência contemporânea em concreto, pedra e vidro ao entardecer" width={1920} height={1280} fetchPriority="high" className="hero-drift absolute inset-0 size-full object-cover object-[65%_center]" />
       <div className="absolute inset-0 bg-gradient-to-r from-night via-night/60 to-night/5" />
       <div className="absolute inset-0 architectural-grid opacity-25" />
       <div className="section-shell relative flex min-h-[92svh] flex-col justify-end pb-10 pt-40 md:pb-14">
         <div className="mb-auto flex items-start justify-end pt-4"><div className="hidden w-44 border-l border-paper/30 pl-5 text-xs leading-relaxed text-paper/65 lg:block">Engenharia e gestão para obras que atravessam o tempo.</div></div>
-        <div className="max-w-5xl animate-fade-in">
-          <div className="technical-label mb-6 flex items-center gap-4 text-paper/70"><span className="h-px w-12 bg-signal" /> Construção civil de alto padrão</div>
-          <h1 id="hero-title" className="font-display text-[clamp(3.2rem,8vw,8rem)] font-medium leading-[0.92]">Construímos<br/><span className="text-paper/78">o que permanece.</span></h1>
+        <div className="max-w-5xl">
+          <div className="technical-label ch-fade-up mb-6 flex items-center gap-4 text-paper/70" style={{ animationDelay: "150ms" }}><span className="ch-line h-px w-12 origin-left bg-signal" /> Construção civil de alto padrão</div>
+          <h1 id="hero-title" className="font-display text-[clamp(3.2rem,8vw,8rem)] font-medium leading-[0.92]"><span className="block overflow-hidden pb-[0.06em]"><span className="ch-rise block" style={{ animationDelay: "250ms" }}>Construímos</span></span><span className="block overflow-hidden pb-[0.08em]"><span className="ch-rise block text-paper/78" style={{ animationDelay: "400ms" }}>o que permanece.</span></span></h1>
         </div>
-        <div className="mt-10 grid items-end gap-8 border-t border-paper/25 pt-6 md:grid-cols-12">
+        <div className="ch-fade-up mt-10 grid items-end gap-8 border-t border-paper/25 pt-6 md:grid-cols-12" style={{ animationDelay: "650ms" }}>
           <p className="max-w-md text-base leading-relaxed text-paper/75 md:col-span-5 md:text-lg">Há mais de 15 anos, transformamos projetos em obras executadas com método, precisão e responsabilidade.</p>
           <div className="flex gap-9 md:col-span-4"><div><strong className="font-display text-2xl text-paper">+15</strong><span className="block text-xs text-paper/55">anos de mercado</span></div><div><strong className="font-display text-2xl text-paper">+45</strong><span className="block text-xs text-paper/55">obras realizadas</span></div></div>
           <a href="#projetos" className="group flex items-center justify-between border-b border-signal pb-3 text-sm font-semibold md:col-span-3">Conheça nossa atuação <ArrowDown className="size-4 transition-transform group-hover:translate-y-1" /></a>
