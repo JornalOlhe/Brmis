@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import heroImage from "@/assets/brmis-hero.jpg";
-import { CasaHorizonteSection, ProjetosCarousel } from "@/components/ProjectGalleries";
+import { ProjetosCarousel } from "@/components/ProjectGalleries";
 
 const INSTAGRAM = "https://www.instagram.com/brmis_construtora/";
 // Public address of the site. Set VITE_SITE_URL (e.g. https://brmis.com.br) when hosting on a custom domain.
@@ -214,8 +214,6 @@ function Index() {
         <ProjetosCarousel />
       </div>
     </section>
-
-    <CasaHorizonteSection />
 
     <section id="metodo" className="py-24 md:py-36">
       <div className="section-shell">

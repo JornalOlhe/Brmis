@@ -1,5 +1,5 @@
 import { ArrowRight } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { AutoCarousel, type Slide } from "@/components/AutoCarousel";
 
@@ -50,60 +50,56 @@ const casaSlides: Slide[] = [
   { src: ch("15"), area: "Banhos", title: "Banheiro da suíte", text: "Cuba suspensa, nicho iluminado e acabamentos de alto padrão." },
 ];
 
-const projetoTabs = [
-  { id: "projetos", label: "Projetos", carousel: "Projetos da BRMIS", slides: projetoSlides },
-  { id: "em-obra", label: "Em obra", carousel: "Obra em andamento da BRMIS", slides: emObraSlides },
-] as const;
+type CategoriaId = "projetos" | "em-obra" | "casa-horizonte";
+
+const categorias: { id: CategoriaId; label: string; carousel: string; slides: Slide[]; altSuffix: string; texto: string }[] = [
+  { id: "projetos", label: "Projetos", carousel: "Projetos da BRMIS", slides: projetoSlides, altSuffix: "", texto: "Residências de alto padrão em projeto: fachadas, áreas de lazer e interiores." },
+  { id: "em-obra", label: "Em obra", carousel: "Obra em andamento da BRMIS", slides: emObraSlides, altSuffix: "", texto: "Fotos reais do canteiro de uma residência em fase final de obra." },
+  { id: "casa-horizonte", label: "Casa Horizonte", carousel: "Ambientes da Casa Horizonte", slides: casaSlides, altSuffix: " — Casa Horizonte", texto: "Residência de alto padrão com interiores em madeira, pedra natural e luz difusa. Conheça os ambientes do projeto que a BRMIS está construindo agora." },
+];
 
 export function ProjetosCarousel() {
-  const [tab, setTab] = useState<(typeof projetoTabs)[number]["id"]>("projetos");
+  const [cat, setCat] = useState<CategoriaId>("projetos");
+  const painel = useRef<HTMLDivElement>(null);
+  const primeira = useRef(true);
+  // O carrossel é remontado a cada categoria: marca os elementos novos como visíveis, já que a seção está na tela.
+  useEffect(() => {
+    if (primeira.current) { primeira.current = false; return; }
+    painel.current?.querySelectorAll(".reveal").forEach((el) => el.classList.add("is-visible"));
+  }, [cat]);
+  const atual = categorias.find((c) => c.id === cat);
+  if (!atual) return null;
+  const casa = atual.id === "casa-horizonte";
+
   return (
     <div id="obras" className="mt-16 md:mt-24">
-      <div role="tablist" aria-label="Tipo de projeto" className="mb-6 flex flex-wrap gap-3">
-        {projetoTabs.map((t) => {
-          const on = tab === t.id;
+      <div role="tablist" aria-label="Categoria de obras" className="mb-8 flex flex-wrap gap-3">
+        {categorias.map((c) => {
+          const on = c.id === cat;
           return (
-            <button key={t.id} type="button" role="tab" id={`tab-${t.id}`} aria-selected={on} aria-controls={`painel-${t.id}`} tabIndex={on ? 0 : -1} onClick={() => setTab(t.id)} className={`technical-label inline-flex min-h-11 items-center gap-3 border px-5 transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-signal ${on ? "border-signal bg-signal text-primary-foreground" : "border-paper/25 text-paper/65 hover:border-paper/60 hover:text-paper"}`}>
-              {t.label}<span className="tabular-nums opacity-70">{String(t.slides.length).padStart(2, "0")}</span>
+            <button key={c.id} type="button" role="tab" id={`tab-${c.id}`} aria-selected={on} aria-controls="painel-obras" tabIndex={on ? 0 : -1} onClick={() => setCat(c.id)} className={`technical-label inline-flex min-h-11 items-center gap-3 border px-5 transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-signal ${on ? "border-signal bg-signal text-primary-foreground" : "border-paper/25 text-paper/65 hover:border-paper/60 hover:text-paper"}`}>
+              {c.label}<span className="tabular-nums opacity-70">{String(c.slides.length).padStart(2, "0")}</span>
             </button>
           );
         })}
       </div>
-      {projetoTabs.map((t) => (
-        <div key={t.id} role="tabpanel" id={`painel-${t.id}`} aria-labelledby={`tab-${t.id}`} hidden={tab !== t.id}>
-          <AutoCarousel label={t.carousel} slides={[...t.slides]} duration={5000} />
-        </div>
-      ))}
-    </div>
-  );
-}
-
-export function CasaHorizonteSection() {
-  return (
-    <section id="casa-horizonte" aria-labelledby="casa-horizonte-title" className="bg-night pb-24 text-paper md:pb-36">
-      <div className="section-shell">
-        <div className="reveal grid gap-8 border-t border-paper/20 pt-6 md:grid-cols-12 md:items-end">
-          <div className="md:col-span-7">
-            <p className="technical-label flex items-center gap-3 text-signal"><span className="relative flex size-2"><span className="absolute inline-flex size-full animate-ping rounded-full bg-signal opacity-60" /><span className="relative inline-flex size-2 rounded-full bg-signal" /></span>Projeto mais recente</p>
-            <h2 id="casa-horizonte-title" className="mt-6 font-display text-5xl font-medium leading-[0.98] md:text-7xl">Casa Horizonte</h2>
-          </div>
-          <div className="md:col-span-4 md:col-start-9">
-            <p className="text-sm leading-relaxed text-paper/65">Residência de alto padrão com interiores em madeira, pedra natural e luz difusa. Conheça os ambientes do projeto que a BRMIS está construindo agora.</p>
-            <dl className="mt-6 grid grid-cols-3 border-t border-paper/15 pt-4 text-xs">
+      <div ref={painel} role="tabpanel" id="painel-obras" aria-labelledby={`tab-${atual.id}`}>
+        <div className="mb-8 grid gap-6 md:grid-cols-12 md:items-end">
+          <p className="max-w-xl text-sm leading-relaxed text-paper/65 md:col-span-7 md:text-base">{atual.texto}</p>
+          {casa && (
+            <dl className="grid grid-cols-3 border-t border-paper/15 pt-4 text-xs md:col-span-4 md:col-start-9">
               <div><dt className="technical-label text-paper/40">Tipo</dt><dd className="mt-2 text-paper/85">Residencial</dd></div>
               <div><dt className="technical-label text-paper/40">Ano</dt><dd className="mt-2 text-paper/85">2026</dd></div>
               <div><dt className="technical-label text-paper/40">Status</dt><dd className="mt-2 text-signal">Em obra</dd></div>
             </dl>
-          </div>
+          )}
         </div>
-        <div className="mt-10 md:mt-14">
-          <AutoCarousel label="Ambientes da Casa Horizonte" slides={casaSlides} altSuffix=" — Casa Horizonte" />
-        </div>
-        <div className="reveal mt-10 flex flex-col gap-6 border-t border-paper/20 pt-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="max-w-md text-xs leading-relaxed text-paper/40">Imagens ilustrativas do projeto de interiores Casa Horizonte, por Mawé Arquitetura.</p>
-          <a href="#contato" className="group inline-flex items-center gap-3 border-b border-signal pb-2 text-sm font-semibold">Quero um projeto assim <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" /></a>
+        <AutoCarousel key={atual.id} label={atual.carousel} slides={atual.slides} altSuffix={atual.altSuffix} duration={5000} />
+        <div className="mt-10 flex flex-col gap-6 border-t border-paper/20 pt-6 sm:flex-row sm:items-center sm:justify-between">
+          {casa && <p className="max-w-md text-xs leading-relaxed text-paper/40">Imagens ilustrativas do projeto de interiores Casa Horizonte, por Mawé Arquitetura.</p>}
+          <a href="#contato" className="group inline-flex items-center gap-3 border-b border-signal pb-2 text-sm font-semibold sm:ml-auto">Quero um projeto assim <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" /></a>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
