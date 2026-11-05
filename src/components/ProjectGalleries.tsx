@@ -30,6 +30,20 @@ const obraSlides: Slide[] = [
   { src: obra("24"), area: "Lazer", title: "Fachada posterior" },
   { src: obra("25"), area: "Lazer", title: "Área externa" },
   { src: obra("26"), area: "Fachada", title: "Vista lateral" },
+  { src: obra("27"), area: "Em obra", title: "Fachada em fase final" },
+  { src: obra("28"), area: "Em obra", title: "Acesso e paisagismo em execução" },
+  { src: obra("29"), area: "Em obra", title: "Balanço, pedra e pórtico de entrada" },
+  { src: obra("30"), area: "Em obra", title: "Pé-direito duplo e parede em pedra" },
+  { src: obra("31"), area: "Em obra", title: "Living e escada em execução" },
+  { src: obra("32"), area: "Em obra", title: "Área de lazer com deck e piscina" },
+  { src: obra("33"), area: "Em obra", title: "Vista do terraço" },
+  { src: obra("34"), area: "Em obra", title: "Painel em pedra natural" },
+  { src: obra("35"), area: "Em obra", title: "Lavabo em porcelanato", portrait: true },
+  { src: obra("36"), area: "Em obra", title: "Banho com luz natural", portrait: true },
+  { src: obra("37"), area: "Em obra", title: "Acabamento com automação", portrait: true },
+  { src: obra("38"), area: "Em obra", title: "Painel touch de iluminação", portrait: true },
+  { src: obra("39"), area: "Em obra", title: "Lavabo com cuba de apoio", portrait: true },
+  { src: obra("40"), area: "Em obra", title: "Bancada e espelho", portrait: true },
 ];
 
 const casaSlides: Slide[] = [
