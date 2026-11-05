@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import { useState } from "react";
 
 import { AutoCarousel, type Slide } from "@/components/AutoCarousel";
 
@@ -7,43 +8,28 @@ const casa = import.meta.glob("../assets/casa-horizonte/ch-*.webp", { eager: tru
 const obra = (n: string) => obras[`../assets/projetos/obra-${n}.webp`] ?? "";
 const ch = (n: string) => casa[`../assets/casa-horizonte/ch-${n}.webp`] ?? "";
 
-const obraSlides: Slide[] = [
+const projetoSlides: Slide[] = [
   { src: obra("02"), area: "Fachada", title: "Residência com cobertura em madeira" },
-  { src: obra("03"), area: "Fachada", title: "Volumes leves e garagem integrada" },
   { src: obra("04"), area: "Fachada noturna", title: "Iluminação que valoriza a arquitetura" },
   { src: obra("08"), area: "Fachada", title: "Linhas retas e paisagismo", portrait: true },
-  { src: obra("09"), area: "Lazer", title: "Piscina e deck", portrait: true },
-  { src: obra("10"), area: "Interiores", title: "Living integrado", portrait: true },
-  { src: obra("11"), area: "Interiores", title: "Cozinha em tons claros", portrait: true },
-  { src: obra("12"), area: "Interiores", title: "Escada e circulação", portrait: true },
-  { src: obra("13"), area: "Interiores", title: "Cozinha com ilha", portrait: true },
-  { src: obra("14"), area: "Interiores", title: "Sala de estar", portrait: true },
-  { src: obra("15"), area: "Interiores", title: "Cozinha e jantar", portrait: true },
-  { src: obra("16"), area: "Lazer", title: "Área gourmet e piscina ao entardecer" },
-  { src: obra("17"), area: "Fachada", title: "Residência contemporânea" },
   { src: obra("18"), area: "Fachada", title: "Madeira, vidro e jardim" },
-  { src: obra("19"), area: "Fachada", title: "Acesso social" },
-  { src: obra("20"), area: "Fachada", title: "Detalhe da fachada" },
-  { src: obra("21"), area: "Fachada", title: "Garagem coberta" },
-  { src: obra("22"), area: "Fachada", title: "Garagem e varanda" },
-  { src: obra("23"), area: "Lazer", title: "Piscina e jardim" },
+  { src: obra("09"), area: "Lazer", title: "Piscina e deck", portrait: true },
+  { src: obra("16"), area: "Lazer", title: "Área gourmet e piscina ao entardecer" },
   { src: obra("24"), area: "Lazer", title: "Fachada posterior" },
-  { src: obra("25"), area: "Lazer", title: "Área externa" },
-  { src: obra("26"), area: "Fachada", title: "Vista lateral" },
+  { src: obra("10"), area: "Interiores", title: "Living integrado", portrait: true },
+  { src: obra("13"), area: "Interiores", title: "Cozinha com ilha", portrait: true },
+  { src: obra("12"), area: "Interiores", title: "Escada e circulação", portrait: true },
+];
+
+const emObraSlides: Slide[] = [
   { src: obra("27"), area: "Em obra", title: "Fachada em fase final" },
-  { src: obra("28"), area: "Em obra", title: "Acesso e paisagismo em execução" },
   { src: obra("29"), area: "Em obra", title: "Balanço, pedra e pórtico de entrada" },
   { src: obra("30"), area: "Em obra", title: "Pé-direito duplo e parede em pedra" },
   { src: obra("31"), area: "Em obra", title: "Living e escada em execução" },
   { src: obra("32"), area: "Em obra", title: "Área de lazer com deck e piscina" },
-  { src: obra("33"), area: "Em obra", title: "Vista do terraço" },
-  { src: obra("34"), area: "Em obra", title: "Painel em pedra natural" },
   { src: obra("35"), area: "Em obra", title: "Lavabo em porcelanato", portrait: true },
   { src: obra("36"), area: "Em obra", title: "Banho com luz natural", portrait: true },
-  { src: obra("37"), area: "Em obra", title: "Acabamento com automação", portrait: true },
-  { src: obra("38"), area: "Em obra", title: "Painel touch de iluminação", portrait: true },
   { src: obra("39"), area: "Em obra", title: "Lavabo com cuba de apoio", portrait: true },
-  { src: obra("40"), area: "Em obra", title: "Bancada e espelho", portrait: true },
 ];
 
 const casaSlides: Slide[] = [
@@ -64,10 +50,30 @@ const casaSlides: Slide[] = [
   { src: ch("15"), area: "Banhos", title: "Banheiro da suíte", text: "Cuba suspensa, nicho iluminado e acabamentos de alto padrão." },
 ];
 
-export function ObrasCarousel() {
+const projetoTabs = [
+  { id: "projetos", label: "Projetos", carousel: "Projetos da BRMIS", slides: projetoSlides },
+  { id: "em-obra", label: "Em obra", carousel: "Obra em andamento da BRMIS", slides: emObraSlides },
+] as const;
+
+export function ProjetosCarousel() {
+  const [tab, setTab] = useState<(typeof projetoTabs)[number]["id"]>("projetos");
   return (
-    <div className="mt-16 md:mt-24">
-      <AutoCarousel id="obras" label="Projetos e obras da BRMIS" slides={obraSlides} duration={5000} />
+    <div id="obras" className="mt-16 md:mt-24">
+      <div role="tablist" aria-label="Tipo de projeto" className="mb-6 flex flex-wrap gap-3">
+        {projetoTabs.map((t) => {
+          const on = tab === t.id;
+          return (
+            <button key={t.id} type="button" role="tab" id={`tab-${t.id}`} aria-selected={on} aria-controls={`painel-${t.id}`} tabIndex={on ? 0 : -1} onClick={() => setTab(t.id)} className={`technical-label inline-flex min-h-11 items-center gap-3 border px-5 transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-signal ${on ? "border-signal bg-signal text-primary-foreground" : "border-paper/25 text-paper/65 hover:border-paper/60 hover:text-paper"}`}>
+              {t.label}<span className="tabular-nums opacity-70">{String(t.slides.length).padStart(2, "0")}</span>
+            </button>
+          );
+        })}
+      </div>
+      {projetoTabs.map((t) => (
+        <div key={t.id} role="tabpanel" id={`painel-${t.id}`} aria-labelledby={`tab-${t.id}`} hidden={tab !== t.id}>
+          <AutoCarousel label={t.carousel} slides={[...t.slides]} duration={5000} />
+        </div>
+      ))}
     </div>
   );
 }
