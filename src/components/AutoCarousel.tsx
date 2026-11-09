@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, Maximize2, Pause, Play, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, Maximize2, X } from "lucide-react";
 import {
   useCallback,
   useEffect,
@@ -10,12 +10,13 @@ import {
 
 import { prefersReducedMotion, useScrollVar } from "@/lib/motion";
 
+/** Every slide is a 1920×1200 (16:10) photo plus a small thumbnail. */
 export type Slide = {
   src: string;
+  thumb: string;
   title: string;
   area: string;
   text?: string;
-  portrait?: boolean;
 };
 
 type Props = {
@@ -45,9 +46,8 @@ export function AutoCarousel({
     dir: 0,
   });
   const [inView, setInView] = useState(false);
-  const [hovered, setHovered] = useState(false);
   const [keyboard, setKeyboard] = useState(false);
-  const [paused, setPaused] = useState(false);
+  const [auto, setAuto] = useState(true);
   const [zoomed, setZoomed] = useState(false);
   const [dragX, setDragX] = useState(0);
   const stageRef = useRef<HTMLDivElement>(null);
@@ -77,9 +77,9 @@ export function AutoCarousel({
     (rect, viewport) => (viewport - rect.top) / (viewport * 0.55),
   );
 
-  // People who asked for less motion start with autoplay off.
+  // People who asked for less motion change photos themselves.
   useEffect(() => {
-    if (prefersReducedMotion()) setPaused(true);
+    if (prefersReducedMotion()) setAuto(false);
   }, []);
 
   const updateRail = useCallback(() => {
@@ -214,13 +214,7 @@ export function AutoCarousel({
   const current = slides[active] ?? slides[0];
   if (!current) return null;
   const running =
-    total > 1 &&
-    inView &&
-    !paused &&
-    !hovered &&
-    !keyboard &&
-    !zoomed &&
-    dragX === 0;
+    auto && total > 1 && inView && !keyboard && !zoomed && dragX === 0;
   const playState = running ? "running" : "paused";
 
   return (
@@ -232,25 +226,24 @@ export function AutoCarousel({
         aria-label={label}
         tabIndex={0}
         onKeyDown={onKeyDown}
-        onPointerDown={onPointerDown}
-        onPointerMove={onPointerMove}
-        onPointerUp={(e) => endDrag(e, true)}
-        onPointerEnter={(e) => e.pointerType === "mouse" && setHovered(true)}
-        onPointerLeave={(e) => {
-          setHovered(false);
-          endDrag(e, false);
-        }}
-        onPointerCancel={() => {
-          pointer.current = null;
-          setDragX(0);
-        }}
         onFocus={(e) =>
           setKeyboard((e.target as HTMLElement).matches(":focus-visible"))
         }
         onBlur={() => setKeyboard(false)}
-        className="relative aspect-[4/5] cursor-zoom-in touch-pan-y select-none outline-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-signal sm:aspect-[16/10] lg:aspect-[2/1]"
+        className="relative outline-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-signal"
       >
-        <div className="stage-enter absolute inset-0 overflow-hidden bg-night">
+        {/* Every photo is 16:10, so the frame is too and nothing is cut off. */}
+        <div
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={(e) => endDrag(e, true)}
+          onPointerLeave={(e) => endDrag(e, false)}
+          onPointerCancel={() => {
+            pointer.current = null;
+            setDragX(0);
+          }}
+          className="stage-enter relative aspect-[16/10] max-h-[82svh] w-full cursor-zoom-in touch-pan-y select-none overflow-hidden bg-night"
+        >
           <div className="stage-zoom absolute inset-0">
             <div
               className="absolute inset-0 transition-transform ease-out"
@@ -262,16 +255,12 @@ export function AutoCarousel({
               {slides.map((s, i) => {
                 const isActive = i === active;
                 if (!isActive && i !== prev) return null;
+                // The new photo dissolves in over the previous one, drifting in from the side it came from.
                 const layer = isActive
                   ? dir === 0
                     ? "z-[2]"
-                    : `z-[2] ${dir > 0 ? "ch-in-next" : "ch-in-prev"}`
+                    : "z-[2] ch-in"
                   : "z-[1] ch-out";
-                const motion = isActive
-                  ? dir === 0
-                    ? "ch-kenburns"
-                    : "ch-settle"
-                  : "";
                 const alt = isActive ? `${s.title}${altSuffix}` : "";
                 return (
                   <div
@@ -280,48 +269,25 @@ export function AutoCarousel({
                     className={`absolute inset-0 overflow-hidden ${layer}`}
                     style={{ ["--ch-dir" as string]: dir }}
                   >
-                    {s.portrait ? (
-                      <>
-                        <img
-                          src={s.src}
-                          alt=""
-                          aria-hidden
-                          decoding="async"
-                          draggable={false}
-                          className="absolute inset-0 size-full scale-110 object-cover opacity-60 blur-2xl"
-                        />
-                        <img
-                          src={s.src}
-                          alt={alt}
-                          decoding="async"
-                          draggable={false}
-                          className={`relative mx-auto h-full w-auto max-w-full object-contain ${motion}`}
-                          style={{
-                            animationPlayState: isActive
-                              ? playState
-                              : undefined,
-                          }}
-                        />
-                      </>
-                    ) : (
-                      <img
-                        src={s.src}
-                        alt={alt}
-                        decoding="async"
-                        draggable={false}
-                        className={`size-full object-cover ${motion}`}
-                        style={{
-                          animationPlayState: isActive ? playState : undefined,
-                        }}
-                      />
-                    )}
+                    <img
+                      src={s.src}
+                      alt={alt}
+                      width={1920}
+                      height={1200}
+                      decoding="async"
+                      draggable={false}
+                      className={`size-full object-cover ${isActive ? "ch-kenburns" : ""}`}
+                      style={{
+                        animationPlayState: isActive ? playState : undefined,
+                      }}
+                    />
                   </div>
                 );
               })}
             </div>
           </div>
 
-          <div className="pointer-events-none absolute inset-0 z-[3] bg-gradient-to-t from-night/90 via-night/10 to-night/25" />
+          <div className="pointer-events-none absolute inset-0 z-[3] bg-gradient-to-t from-transparent to-night/25 sm:from-night/90 sm:via-night/10" />
 
           <div className="absolute inset-x-0 top-0 z-[4] h-[2px] bg-paper/15">
             <div
@@ -343,88 +309,72 @@ export function AutoCarousel({
           >
             <Maximize2 className="size-4 transition-transform duration-300 group-hover/btn:scale-110" />
           </button>
+        </div>
 
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[4] flex flex-col gap-5 p-5 md:flex-row md:items-end md:justify-between md:p-10">
-            <div key={active} className="max-w-xl">
-              <p
-                className="technical-label ch-fade-up flex items-center gap-3 text-paper/75"
-                style={{ animationDelay: "250ms" }}
+        {/* Caption and controls: under the photo on phones, over it from tablet up. */}
+        <div className="mt-5 flex flex-col gap-5 sm:pointer-events-none sm:absolute sm:inset-x-0 sm:bottom-0 sm:z-[4] sm:mt-0 sm:p-5 md:flex-row md:items-end md:justify-between md:p-10">
+          <div key={active} className="max-w-xl">
+            <p
+              className="technical-label ch-fade-up flex items-center gap-3 text-paper/75"
+              style={{ animationDelay: "250ms" }}
+            >
+              <span className="ch-line h-px w-8 origin-left bg-signal" />
+              {current.area}
+            </p>
+            <div className="mt-3 overflow-hidden pb-1">
+              <h3
+                className="ch-rise font-display text-2xl font-medium leading-tight sm:text-3xl md:text-5xl"
+                style={{ animationDelay: "380ms" }}
               >
-                <span className="ch-line h-px w-8 origin-left bg-signal" />
-                {current.area}
-              </p>
-              <div className="mt-3 overflow-hidden pb-1">
-                <h3
-                  className="ch-rise font-display text-2xl font-medium leading-tight sm:text-3xl md:text-5xl"
-                  style={{ animationDelay: "380ms" }}
-                >
-                  {current.title}
-                </h3>
-              </div>
-              {current.text && (
-                <p
-                  className="ch-fade-up mt-2 hidden max-w-md text-sm leading-relaxed text-paper/70 sm:block md:text-base"
-                  style={{ animationDelay: "560ms" }}
-                >
-                  {current.text}
-                </p>
-              )}
+                {current.title}
+              </h3>
             </div>
-            <div className="pointer-events-auto flex items-center justify-between gap-5 md:justify-end">
+            {current.text && (
               <p
-                className="flex items-baseline font-display text-lg tabular-nums text-paper/60"
-                aria-live={running ? "off" : "polite"}
+                className="ch-fade-up mt-2 hidden max-w-md text-sm leading-relaxed text-paper/70 sm:block md:text-base"
+                style={{ animationDelay: "560ms" }}
               >
-                <span className="sr-only">Imagem </span>
-                <span className="inline-block overflow-hidden">
-                  <span
-                    key={active}
-                    className="ch-rise inline-block text-2xl text-paper md:text-3xl"
-                  >
-                    {pad(active + 1)}
-                  </span>
-                </span>
-                <span className="ml-1">
-                  <span aria-hidden>/ </span>
-                  <span className="sr-only">de </span>
-                  {pad(total)}
-                </span>
+                {current.text}
               </p>
-              <div className="flex gap-2">
-                <button
-                  type="button"
-                  aria-label={
-                    paused
-                      ? "Retomar a troca automática"
-                      : "Pausar a troca automática"
-                  }
-                  aria-pressed={paused}
-                  onClick={() => setPaused((p) => !p)}
-                  className={controlClass}
+            )}
+          </div>
+          <div className="pointer-events-auto flex items-center justify-between gap-5 md:justify-end">
+            <p
+              className="flex items-baseline font-display text-lg tabular-nums text-paper/60"
+              aria-live={running ? "off" : "polite"}
+            >
+              <span className="sr-only">Imagem </span>
+              <span className="inline-block overflow-hidden">
+                <span
+                  key={active}
+                  className="ch-rise inline-block text-2xl text-paper md:text-3xl"
                 >
-                  {paused ? (
-                    <Play className="size-4" />
-                  ) : (
-                    <Pause className="size-4" />
-                  )}
-                </button>
-                <button
-                  type="button"
-                  aria-label="Imagem anterior"
-                  onClick={back}
-                  className={controlClass}
-                >
-                  <ArrowLeft className="size-5 transition-transform duration-300 group-hover/btn:-translate-x-0.5" />
-                </button>
-                <button
-                  type="button"
-                  aria-label="Próxima imagem"
-                  onClick={next}
-                  className="group/btn grid size-11 place-items-center border border-signal bg-signal text-primary-foreground transition-all duration-300 hover:bg-transparent hover:text-signal active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-signal md:size-12"
-                >
-                  <ArrowRight className="size-5 transition-transform duration-300 group-hover/btn:translate-x-0.5" />
-                </button>
-              </div>
+                  {pad(active + 1)}
+                </span>
+              </span>
+              <span className="ml-1">
+                <span aria-hidden>/ </span>
+                <span className="sr-only">de </span>
+                {pad(total)}
+              </span>
+            </p>
+            <div className="flex gap-2">
+              <button
+                type="button"
+                aria-label="Imagem anterior"
+                onClick={back}
+                className={controlClass}
+              >
+                <ArrowLeft className="size-5 transition-transform duration-300 group-hover/btn:-translate-x-0.5" />
+              </button>
+              <button
+                type="button"
+                aria-label="Próxima imagem"
+                onClick={next}
+                className="group/btn grid size-11 place-items-center border border-signal bg-signal text-primary-foreground transition-all duration-300 hover:bg-transparent hover:text-signal active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-signal md:size-12"
+              >
+                <ArrowRight className="size-5 transition-transform duration-300 group-hover/btn:translate-x-0.5" />
+              </button>
             </div>
           </div>
         </div>
@@ -447,7 +397,9 @@ export function AutoCarousel({
               className={`group relative aspect-[16/10] w-24 shrink-0 overflow-hidden bg-concrete transition-opacity duration-500 ease-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-signal md:w-32 ${on ? "opacity-100" : "opacity-40 hover:opacity-80"}`}
             >
               <img
-                src={s.src}
+                src={s.thumb}
+                width={400}
+                height={250}
                 alt=""
                 loading="lazy"
                 decoding="async"

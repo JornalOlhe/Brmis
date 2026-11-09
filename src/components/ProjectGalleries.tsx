@@ -3,189 +3,201 @@ import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 
 import { AutoCarousel, type Slide } from "@/components/AutoCarousel";
 
-const obras = import.meta.glob("../assets/projetos/obra-*.webp", {
-  eager: true,
-  query: "?url",
-  import: "default",
-}) as Record<string, string>;
-const casa = import.meta.glob("../assets/casa-horizonte/ch-*.webp", {
-  eager: true,
-  query: "?url",
-  import: "default",
-}) as Record<string, string>;
-const obra = (n: string) => obras[`../assets/projetos/obra-${n}.webp`] ?? "";
-const ch = (n: string) => casa[`../assets/casa-horizonte/ch-${n}.webp`] ?? "";
+// Every photo is 1920×1200 (16:10) with a 400×250 thumbnail of the same name under thumbs/.
+const glob = {
+  obras: import.meta.glob("../assets/projetos/obra-*.webp", {
+    eager: true,
+    query: "?url",
+    import: "default",
+  }) as Record<string, string>,
+  obrasThumbs: import.meta.glob("../assets/projetos/thumbs/obra-*.webp", {
+    eager: true,
+    query: "?url",
+    import: "default",
+  }) as Record<string, string>,
+  casa: import.meta.glob("../assets/casa-horizonte/ch-*.webp", {
+    eager: true,
+    query: "?url",
+    import: "default",
+  }) as Record<string, string>,
+  casaThumbs: import.meta.glob("../assets/casa-horizonte/thumbs/ch-*.webp", {
+    eager: true,
+    query: "?url",
+    import: "default",
+  }) as Record<string, string>,
+};
+const obra = (n: string) => ({
+  src: glob.obras[`../assets/projetos/obra-${n}.webp`] ?? "",
+  thumb: glob.obrasThumbs[`../assets/projetos/thumbs/obra-${n}.webp`] ?? "",
+});
+const ch = (n: string) => ({
+  src: glob.casa[`../assets/casa-horizonte/ch-${n}.webp`] ?? "",
+  thumb: glob.casaThumbs[`../assets/casa-horizonte/thumbs/ch-${n}.webp`] ?? "",
+});
 
 const projetoSlides: Slide[] = [
   {
-    src: obra("02"),
+    ...obra("02"),
     area: "Fachada",
     title: "Residência com cobertura em madeira",
   },
   {
-    src: obra("04"),
+    ...obra("04"),
     area: "Fachada noturna",
     title: "Iluminação que valoriza a arquitetura",
   },
   {
-    src: obra("08"),
+    ...obra("08"),
     area: "Fachada",
     title: "Linhas retas e paisagismo",
-    portrait: true,
   },
-  { src: obra("18"), area: "Fachada", title: "Madeira, vidro e jardim" },
-  { src: obra("09"), area: "Lazer", title: "Piscina e deck", portrait: true },
+  { ...obra("18"), area: "Fachada", title: "Madeira, vidro e jardim" },
+  { ...obra("09"), area: "Lazer", title: "Piscina e deck" },
   {
-    src: obra("16"),
+    ...obra("16"),
     area: "Lazer",
     title: "Área gourmet e piscina ao entardecer",
   },
-  { src: obra("24"), area: "Lazer", title: "Fachada posterior" },
+  { ...obra("24"), area: "Lazer", title: "Fachada posterior" },
   {
-    src: obra("10"),
+    ...obra("10"),
     area: "Interiores",
     title: "Living integrado",
-    portrait: true,
   },
   {
-    src: obra("13"),
+    ...obra("13"),
     area: "Interiores",
     title: "Cozinha com ilha",
-    portrait: true,
   },
   {
-    src: obra("12"),
+    ...obra("12"),
     area: "Interiores",
     title: "Escada e circulação",
-    portrait: true,
   },
 ];
 
 const emObraSlides: Slide[] = [
-  { src: obra("27"), area: "Em obra", title: "Fachada em fase final" },
+  { ...obra("27"), area: "Em obra", title: "Fachada em fase final" },
   {
-    src: obra("29"),
+    ...obra("29"),
     area: "Em obra",
     title: "Balanço, pedra e pórtico de entrada",
   },
   {
-    src: obra("30"),
+    ...obra("30"),
     area: "Em obra",
     title: "Pé-direito duplo e parede em pedra",
   },
-  { src: obra("31"), area: "Em obra", title: "Living e escada em execução" },
+  { ...obra("31"), area: "Em obra", title: "Living e escada em execução" },
   {
-    src: obra("32"),
+    ...obra("32"),
     area: "Em obra",
     title: "Área de lazer com deck e piscina",
   },
   {
-    src: obra("35"),
+    ...obra("35"),
     area: "Em obra",
     title: "Lavabo em porcelanato",
-    portrait: true,
   },
   {
-    src: obra("36"),
+    ...obra("36"),
     area: "Em obra",
     title: "Banho com luz natural",
-    portrait: true,
   },
   {
-    src: obra("39"),
+    ...obra("39"),
     area: "Em obra",
     title: "Lavabo com cuba de apoio",
-    portrait: true,
   },
 ];
 
 const casaSlides: Slide[] = [
   {
-    src: ch("01"),
+    ...ch("01"),
     area: "Estar",
     title: "Sala de estar",
     text: "Revestimento texturizado, escada escultural e iluminação que valoriza cada plano.",
   },
   {
-    src: ch("02"),
+    ...ch("02"),
     area: "Estar",
     title: "Sofá orgânico",
     text: "Formas curvas e tons claros criam um ambiente acolhedor e atemporal.",
   },
   {
-    src: ch("03"),
+    ...ch("03"),
     area: "Integração",
     title: "Estar e jantar integrados",
     text: "Vãos amplos conectam a casa ao exterior com continuidade visual.",
   },
   {
-    src: ch("04"),
+    ...ch("04"),
     area: "Jantar",
     title: "Mesa de jantar",
     text: "Madeira, vidro e pé-direito generoso em um único eixo de convivência.",
   },
   {
-    src: ch("05"),
+    ...ch("05"),
     area: "Cozinha",
     title: "Cozinha e ilha",
     text: "Bancada em pedra natural e marcenaria precisa, pensadas para o uso diário.",
   },
   {
-    src: ch("06"),
+    ...ch("06"),
     area: "Cozinha",
     title: "Bancada e varanda",
     text: "Luz natural em toda a extensão, com vista direta para a área externa.",
   },
   {
-    src: ch("07"),
+    ...ch("07"),
     area: "Gourmet",
     title: "Área gourmet",
     text: "Varanda, piscina e mesa longa para receber com conforto o ano todo.",
   },
   {
-    src: ch("08"),
+    ...ch("08"),
     area: "Cozinha",
     title: "Cozinha integrada",
     text: "Fluxo contínuo entre preparo, refeição e convivência.",
   },
   {
-    src: ch("09"),
+    ...ch("09"),
     area: "Íntimo",
     title: "Sala íntima",
     text: "Um canto reservado, com tons terrosos e acabamento limpo.",
   },
   {
-    src: ch("10"),
+    ...ch("10"),
     area: "Suítes",
     title: "Suíte",
     text: "Cabeceira iluminada, painéis em madeira e bancada de trabalho integrada.",
   },
   {
-    src: ch("11"),
+    ...ch("11"),
     area: "Suítes",
     title: "Suíte com closet",
     text: "Marcenaria até o teto e circulação organizada.",
   },
   {
-    src: ch("12"),
+    ...ch("12"),
     area: "Suítes",
     title: "Closet",
     text: "Armários com linhas contínuas e espaço dedicado de apoio.",
   },
   {
-    src: ch("13"),
+    ...ch("13"),
     area: "Suítes",
     title: "Suíte com vista",
     text: "Cortinas leves e janela ampla enquadrando a paisagem.",
   },
   {
-    src: ch("14"),
+    ...ch("14"),
     area: "Banhos",
     title: "Banheiro",
     text: "Pedra clara, vidro e metais discretos para um banho sereno.",
   },
   {
-    src: ch("15"),
+    ...ch("15"),
     area: "Banhos",
     title: "Banheiro da suíte",
     text: "Cuba suspensa, nicho iluminado e acabamentos de alto padrão.",

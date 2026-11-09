@@ -21,8 +21,9 @@ import {
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import heroLarge from "@/assets/brmis-hero-1920.webp";
 import heroSmall from "@/assets/brmis-hero-1080.webp";
+import heroMedium from "@/assets/brmis-hero-1600.webp";
+import heroLarge from "@/assets/brmis-hero-2560.webp";
 import heroImage from "@/assets/brmis-hero.jpg";
 import { MethodSteps } from "@/components/MethodSteps";
 import { ProjetosCarousel } from "@/components/ProjectGalleries";
@@ -484,12 +485,12 @@ function Index() {
         <div className="hero-media">
           <div className="hero-focus size-full">
             <img
-              src={heroLarge}
-              srcSet={`${heroSmall} 1080w, ${heroLarge} 1920w`}
+              src={heroMedium}
+              srcSet={`${heroSmall} 1080w, ${heroMedium} 1600w, ${heroLarge} 2560w`}
               sizes="100vw"
               alt="Residência contemporânea em concreto, pedra e vidro ao entardecer"
-              width={1920}
-              height={1280}
+              width={2560}
+              height={1707}
               fetchPriority="high"
               className="hero-drift size-full object-cover object-[65%_center]"
             />
