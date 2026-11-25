@@ -6,7 +6,7 @@
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
-const isGitHubPages = process.env.GITHUB_ACTIONS === "true";
+const isGitHubPages = process.env.GITHUB_ACTIONS === "true" && process.env.STATIC_EXPORT !== "true";
 // Static export for any host at the domain root (e.g. Cloudflare Pages): set STATIC_EXPORT=true.
 const isStatic = isGitHubPages || process.env.STATIC_EXPORT === "true";
 
