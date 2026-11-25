@@ -30,7 +30,8 @@ jobs:
 
       - name: Build static site
         env:
-          GITHUB_ACTIONS: "true"
+          STATIC_EXPORT: "true"
+          VITE_SITE_URL: "https://brmis.com.br"
         run: bun run build
 
       - name: Prepare Pages output
@@ -53,6 +54,7 @@ jobs:
           fi
 
           touch pages-dist/.nojekyll
+          echo "brmis.com.br" > pages-dist/CNAME
           test -f pages-dist/index.html
 
       - name: Publish gh-pages branch
