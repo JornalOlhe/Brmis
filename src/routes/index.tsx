@@ -993,7 +993,7 @@ function Index() {
           <p
             ref={markRef}
             aria-hidden
-            className="footer-mark mt-6 select-none whitespace-nowrap text-center font-display text-[15vw] font-bold leading-[0.8] tracking-[-0.03em] text-paper/[0.07] md:mt-8"
+            className="footer-mark mt-6 select-none whitespace-nowrap text-center font-display text-[9vw] font-bold leading-[0.85] tracking-[-0.03em] text-paper/[0.07] md:mt-6 pb-4"
           >
             {"BRMIS".split("").map((letter, i) => (
               <span key={letter} style={vars({ "--i": i })}>
