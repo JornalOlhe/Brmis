@@ -924,17 +924,17 @@ function Index() {
           </div>
         </section>
 
-        <footer className="overflow-hidden bg-night pt-16 text-paper md:pt-24">
+        <footer className="overflow-hidden bg-night pt-12 text-paper md:pt-16">
           <div className="section-shell">
-            <div className="grid gap-12 border-b border-paper/15 pb-14 md:grid-cols-12">
+            <div className="grid gap-10 border-b border-paper/15 pb-10 md:grid-cols-12">
               <div className="md:col-span-5">
                 <BrandMark />
-                <p className="mt-6 max-w-sm font-display text-2xl leading-snug text-paper/70">
+                <p className="mt-4 max-w-xs font-display text-xl leading-snug text-paper/70">
                   Ideias. Projetos. Realizações.
                 </p>
                 <a
                   href="#contato"
-                  className="group mt-8 inline-flex items-center gap-3 border-b border-signal pb-2 text-sm font-semibold"
+                  className="group mt-6 inline-flex items-center gap-3 border-b border-signal pb-2 text-sm font-semibold"
                 >
                   Solicitar orçamento
                   <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -976,7 +976,7 @@ function Index() {
                 </ul>
               </div>
             </div>
-            <div className="flex flex-col gap-4 pt-7 text-xs text-paper/40 md:flex-row md:items-center md:justify-between">
+            <div className="flex flex-col gap-4 pt-6 text-xs text-paper/40 md:flex-row md:items-center md:justify-between">
               <p>
                 © 2026 BRMIS Construtora · Bruno · Roberto · Marcos · Ilenildo ·
                 Silvio
@@ -993,7 +993,7 @@ function Index() {
           <p
             ref={markRef}
             aria-hidden
-            className="footer-mark mt-10 select-none whitespace-nowrap text-center font-display text-[29vw] font-bold leading-[0.8] tracking-[-0.03em] text-paper/[0.07] md:mt-16"
+            className="footer-mark mt-6 select-none whitespace-nowrap text-center font-display text-[15vw] font-bold leading-[0.8] tracking-[-0.03em] text-paper/[0.07] md:mt-8"
           >
             {"BRMIS".split("").map((letter, i) => (
               <span key={letter} style={vars({ "--i": i })}>
