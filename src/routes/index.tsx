@@ -50,7 +50,7 @@ const founders = [
   ["B", "Bruno"],
   ["R", "Roberto"],
   ["M", "Marcos"],
-  ["I", "Ilenildo"],
+  ["I", "Ilinildo"],
   ["S", "Silvio"],
 ] as const;
 
@@ -591,7 +591,7 @@ function Index() {
             <div className="mt-16 grid gap-12 md:mt-24 md:grid-cols-12 md:gap-14">
               <ScrubText
                 className="font-display text-2xl leading-snug md:col-span-6 md:col-start-3 md:text-4xl md:leading-[1.25]"
-                text="A BRMIS nasceu da amizade e da parceria entre Bruno, Roberto, Marcos, Ilenildo e Silvio."
+                text="A BRMIS nasceu da amizade e da parceria entre Bruno, Roberto, Marcos, Ilinildo e Silvio."
               />
               <p className="reveal leading-relaxed text-muted-foreground md:col-span-3 md:col-start-10">
                 O que começou pela confiança entre cinco fundadores tornou-se
@@ -978,7 +978,7 @@ function Index() {
             </div>
             <div className="flex flex-col gap-4 pt-6 text-xs text-paper/40 md:flex-row md:items-center md:justify-between">
               <p>
-                © 2026 BRMIS Construtora · Bruno · Roberto · Marcos · Ilenildo ·
+                © 2026 BRMIS Construtora · Bruno · Roberto · Marcos · Ilinildo ·
                 Silvio
               </p>
               <a
